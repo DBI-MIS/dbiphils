@@ -7,6 +7,8 @@ use App\Filament\Resources\TestimonialResource\RelationManagers;
 use App\Models\Testimonial;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -45,10 +47,17 @@ class TestimonialResource extends Resource
                     ->image()->directory('page/photos')
                     ->nullable(),
                 TextInput::make('personnel'),
-                Textarea::make('description')
+                RichEditor::make('description')
                     ->columnSpanFull()
-                    ->rows(10)
-                    ->cols(20),
+                    ->toolbarButtons([
+                        'blockquote',
+                        'bold',
+                        'italic',
+                        'link',
+                        'redo',
+                        'strike',
+                        'undo',
+                    ]),
                 
             ]);
     }

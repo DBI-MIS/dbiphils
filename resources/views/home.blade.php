@@ -174,7 +174,7 @@
     @endsection
 
     <div class="my-8">
-        <div class="">
+        <div class="mb-7">
             <div class="shadow-md shadow-slate-500/60 rounded-xl overflow-hidden">
 
                 <div x-data="{
@@ -247,18 +247,18 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                         </svg>
                     </button>
-     
-                    <!-- Slides -->
-    <!-- Change aspect-[3/1] to match your images aspect ratio -->
-    <div class="relative aspect-[6.5/1.5] w-full">
-        <template x-for="(slide, index) in slides">
-            <div x-cloak x-show="currentSlideIndex == index + 1" class="absolute inset-0" x-transition.opacity.duration.700ms>
-                <img class="absolute w-full h-full inset-0 object-cover text-slate-700 dark:text-slate-300" 
-                x-bind:src="slide.imgSrc" 
-                x-bind:alt="slide.imgAlt" />
-            </div>
-        </template>
-    </div>
+                    
+                                    <!-- Slides -->
+                    <!-- Change aspect-[3/1] to match your images aspect ratio -->
+                    <div class="relative aspect-[6.5/1.5] w-full">
+                        <template x-for="(slide, index) in slides">
+                            <div x-cloak x-show="currentSlideIndex == index + 1" class="absolute inset-0" x-transition.opacity.duration.700ms>
+                                <img class="absolute w-full h-full inset-0 object-cover text-slate-700 dark:text-slate-300" 
+                                x-bind:src="slide.imgSrc" 
+                                x-bind:alt="slide.imgAlt" />
+                            </div>
+                        </template>
+                    </div>
     
                     <!-- Pause/Play Button -->
                     <button type="button"
@@ -293,16 +293,11 @@
                 </div>
     
             </div>
-            
-                {{-- @foreach ($featuredSlides as $slide)
-                        <x-page.slider :slide="$slide" />
-                    @endforeach --}}
-
-                {{-- <div x-data x-masonry class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
-                </div> --}}
-
-
         </div>
+
+        <hr>
+        <a class="mt-7 block text-center text-lg text-blue-500 font-semibold hover:text-blue-900 cursor-pointer" href="{{ route('home') }}">View All Products
+        </a>
 
     </div>
 

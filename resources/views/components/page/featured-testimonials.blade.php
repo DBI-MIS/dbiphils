@@ -1,20 +1,25 @@
 @props(['testimonial'])
-<div class="rounded-xl border border-opacity-10 shadow-lg bg-white hover:bg-gray-100 border-blue-800 col-span-1 overflow-hidden">
+<div class="rounded-xl border border-opacity-10 shadow-lg bg-white hover:bg-gray-100 border-blue-800 col-span-1 overflow-hidden ">
     <div class="text-balance flex flex-col" 
     wire:navigate href="{{ route('home') }}"
     >
         
         <div class="gap-2">
             <img
-            class="w-full" 
+            class="mx-auto" 
             src="/storage/{{ $testimonial->img }}" 
             alt="{{ $testimonial->title }}" >
             {{-- <img class="w-auto h-auto " src="{{ $testimonial->img }}" alt=""> --}}
         </div>
-        <div class="flex flex-col text-left gap-3 px-10 py-4">
-            <button class="text-base font-light w-max whitespace-nowrap rounded-xl px-2 tracking-wide text-white bg-blue-800">{{ $testimonial->category }}</button>
-            <span class="text-3xl font-bold text-balance">{{ $testimonial->title }}</span>
-            <span class="text-sm font-light text-balance">{{ $testimonial->description }}</span>
+        <div class="flex flex-col gap-2 px-10 py-4 text-center">
+            
+            <svg class="w-10 h-10 mx-auto mb-3 text-gray-400 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
+                <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z"/>
+            </svg>
+            <span class="text-pretty leading-8">{!! $testimonial->description !!}</span>
+            <button class="mx-auto text-base font-light rounded-xl px-2 text-white bg-blue-800 mt-4 pointer-events-none leading-tight">{{ $testimonial->personnel }}</button>
+            {{-- <span class="text-sm font-light text-balance">{{ $testimonial->personnel }}</span> --}}
+            <span class="text-lg font-bold text-balance leading-tight">{{ $testimonial->title }}</span>
         </div>
         
        

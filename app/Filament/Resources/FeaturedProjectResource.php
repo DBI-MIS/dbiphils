@@ -40,7 +40,8 @@ class FeaturedProjectResource extends Resource
                     ->required(),
                 Toggle::make('is_featured'),
                 FileUpload::make('img')
-                    ->image()->directory('page/photos')
+                    ->image()
+                    ->directory('page/photos')
                     ->nullable(),
                TextInput::make('category'),
                Textarea::make('description')
@@ -56,10 +57,8 @@ class FeaturedProjectResource extends Resource
         return $table
             ->columns([
                 ImageColumn::make('img')
-                ->wrap(),
+                    ->wrap(),
                 TextColumn::make('title')
-                    ->searchable(),
-                TextColumn::make('img')
                     ->searchable(),
                 TextColumn::make('category')
                     ->searchable(),
