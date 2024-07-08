@@ -12,7 +12,7 @@
             {{-- <img class="w-auto h-auto " src="{{ $project->img }}" alt=""> --}}
         </div>
         <div class="flex flex-col text-left gap-3 px-10 py-4">
-            <button class="text-base font-light w-max whitespace-nowrap rounded-xl px-2 tracking-wide text-white bg-blue-800">{{ $project->category }}</button>
+            <button class="text-base font-light w-max whitespace-nowrap rounded-xl px-2 py-1 tracking-wide text-white bg-blue-800">{{ $project->category }}</button>
             <span class="text-3xl font-bold text-balance">{{ $project->title }}</span>
             <span class="text-sm font-light text-balance">{{ $project->description }}</span>
         </div>

@@ -43,7 +43,7 @@ class MainpageResource extends Resource
                 ->nullable(),
                 Select::make('section')
                 ->options([
-                        'slider' => 'slider',
+                        'main' => 'main',
                         'featured' => 'featured',
                         'background' => 'background',
                 ]),
@@ -63,7 +63,7 @@ class MainpageResource extends Resource
                 TextColumn::make('title'),
                 SelectColumn::make('section')
             ->options([
-                'slider' => 'slider',
+                'main' => 'main',
                 'featured' => 'featured',
                 'background' => 'background',
             ]),

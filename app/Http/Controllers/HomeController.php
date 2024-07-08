@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FeaturedProduct;
 use App\Models\FeaturedProject;
 use App\Models\Mainpage;
+use App\Models\Service;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
@@ -14,14 +16,13 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        
 
-        $featuredSlides = Mainpage::where('section', 'slider')
+        $featuredMainSlides = Mainpage::where('section', 'featured')
         ->latest('created_at')
-        ->take(10)
+        ->take(5)
         ->get();
         
-        $featuredProducts = Mainpage::where('section', 'featured')
+        $featuredProducts = FeaturedProduct::where('is_featured', true)
         ->latest('created_at')
         ->take(10)
         ->get();
@@ -36,12 +37,18 @@ class HomeController extends Controller
         ->take(4)
         ->get();
 
+        $featuredServices = Service::where('is_featured', true)
+        ->latest('order')
+        ->take(10)
+        ->get();
+
 
         return view('home', [
-            'featuredSlides' => $featuredSlides,
+            'featuredMainSlides' => $featuredMainSlides,
             'featuredProducts' => $featuredProducts,
             'featuredProjects' => $featuredProjects,
             'featuredTestimonials' => $featuredTestimonials,
+            'featuredServices' => $featuredServices,
         ]);
     }
 }

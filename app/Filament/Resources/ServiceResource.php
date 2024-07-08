@@ -2,20 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\TestimonialResource\Pages;
-use App\Filament\Resources\TestimonialResource\RelationManagers;
-use App\Models\Testimonial;
+use App\Filament\Resources\ServiceResource\Pages;
+use App\Filament\Resources\ServiceResource\RelationManagers;
+use App\Models\Service;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
@@ -23,17 +20,17 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class TestimonialResource extends Resource
+class ServiceResource extends Resource
 {
-    protected static ?string $model = Testimonial::class;
+    protected static ?string $model = Service::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $navigationGroup = 'Pages';
 
-    protected static ?string $navigationLabel = 'Testimonials';
+    protected static ?string $navigationLabel = 'Services';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {
@@ -42,10 +39,7 @@ class TestimonialResource extends Resource
                 TextInput::make('title')
                     ->required(),
                 Toggle::make('is_featured'),
-                FileUpload::make('img')
-                    ->image()->directory('page/photos')
-                    ->nullable(),
-                TextInput::make('personnel'),
+                TextInput::make('subtitle'),
                 RichEditor::make('description')
                     ->columnSpanFull()
                     ->toolbarButtons([
@@ -57,7 +51,9 @@ class TestimonialResource extends Resource
                         'strike',
                         'undo',
                     ]),
-                
+                FileUpload::make('img')
+                    ->image()->directory('page/photos')
+                    ->nullable(),
             ]);
     }
 
@@ -65,13 +61,14 @@ class TestimonialResource extends Resource
     {
         return $table
             ->columns([
+
                 ImageColumn::make('img')->wrap(),
                 TextColumn::make('title')
                     ->searchable(),
-                TextColumn::make('personnel')
+                TextColumn::make('subtitle')
                     ->searchable(),
                 ToggleColumn::make('is_featured'),
-            ])
+                    ])
             ->filters([
                 //
             ])
@@ -95,9 +92,9 @@ class TestimonialResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTestimonials::route('/'),
-            'create' => Pages\CreateTestimonial::route('/create'),
-            'edit' => Pages\EditTestimonial::route('/{record}/edit'),
+            'index' => Pages\ListServices::route('/'),
+            'create' => Pages\CreateService::route('/create'),
+            'edit' => Pages\EditService::route('/{record}/edit'),
         ];
     }
 }

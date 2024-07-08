@@ -7,7 +7,7 @@
 @endforeach
 </div>
 <hr>
-        <a class="mt-7 block text-center text-lg text-blue-500 font-semibold hover:text-blue-900 cursor-pointer" href="{{ route('home') }}">View More Testimonials
+        <a class="mt-7 block text-center text-lg text-blue-500 font-semibold hover:text-blue-900 cursor-pointer" href="{{ route('testimonials.index') }}">View More Testimonials
         </a>
 
 </div>
