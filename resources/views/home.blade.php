@@ -273,4 +273,6 @@
 
     @include('layouts.sections.services')
 
+    @include('layouts.sections.news-events')
+
 </x-app-layout>

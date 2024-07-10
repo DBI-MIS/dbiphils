@@ -6,6 +6,7 @@ py-4 text-sm border-t border-gray-100">
         <span class="text-sm">&copy;2024, D.B. International Sales & Services, Inc. All Rights Reserved. 
             <br>Built by <a href="https://instragram.com/_exeill" rel="external">XXIV</a></span>
     </div>
+    
     <div class="flex space-x-4 order-1 sm:order-2">
         <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">{{ __('DBI') }} </x-nav-link>
         {{-- <x-nav-link href="{{ route('projects.index') }}" :active="request()->routeIs('projects.index')">{{ __('All Projects') }} </x-nav-link> --}}

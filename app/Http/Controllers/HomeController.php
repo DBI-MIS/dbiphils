@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FeaturedProduct;
 use App\Models\FeaturedProject;
 use App\Models\Mainpage;
+use App\Models\Post;
 use App\Models\Service;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class HomeController extends Controller
 
         $featuredProjects = FeaturedProject::where('is_featured', true)
         ->latest('created_at')
-        ->take(10)
+        ->take(3)
         ->get();
 
         $featuredTestimonials = Testimonial::where('is_featured', true)
@@ -42,6 +43,11 @@ class HomeController extends Controller
         ->take(10)
         ->get();
 
+        $featuredNews = Post::where('is_featured', true)
+        ->latest('published_at')
+        ->take(3)
+        ->get();
+
 
         return view('home', [
             'featuredMainSlides' => $featuredMainSlides,
@@ -49,6 +55,7 @@ class HomeController extends Controller
             'featuredProjects' => $featuredProjects,
             'featuredTestimonials' => $featuredTestimonials,
             'featuredServices' => $featuredServices,
+            'featuredNews' => $featuredNews,
         ]);
     }
 }
