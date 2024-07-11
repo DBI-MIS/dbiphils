@@ -33,7 +33,7 @@ aria-label="DB Careers Nav">
         <x-nav-link href="https://careers.dbiphils.com">
             {{ __('Careers') }}
         </x-nav-link>
-        <x-nav-link href="https://about.dbiphils.com">
+        <x-nav-link href="{{ route('about') }}">
             {{ __('About') }}
         </x-nav-link>
         </div>
@@ -103,7 +103,7 @@ aria-label="DB Careers Nav">
             {{ __('Careers') }}
         </x-nav-link>
         
-        <x-nav-link href="https://about.dbiphils.com">
+        <x-nav-link href="{{ route('about') }}">
             {{ __('About') }}
         </x-nav-link>
         
