@@ -1,0 +1,3 @@
+<div class="page-loading" wire:loading>
+    Loading...
+</div>

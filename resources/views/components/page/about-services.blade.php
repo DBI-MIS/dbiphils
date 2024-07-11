@@ -1,6 +1,6 @@
 @props(['service'])
 <div class=" border-blue-800 col-span-1 p-4 text-balance flex flex-col  cursor-pointer hover:scale-110 hover:z-50 transition-transform">
-        <div class="flex flex-row items-start justify-start min-w-[360px] space-x-4">
+        <div class="flex flex-row items-start justify-start min-w-sm gap-4">
             <div class="w-[48px]">
                 <img
                 class="w-16 mx-auto" 

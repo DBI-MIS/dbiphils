@@ -35,6 +35,10 @@ class AboutController extends Controller
 
         $aboutVisMinOffice = About::where('title', 'Vis-Min Office')->first();
 
+        $aboutPhoneSupport = About::where('title', 'Customer Support')->first();
+
+        $aboutChatSupport = About::where('title', 'Chat Support')->first();
+
         $aboutServices = Service::where('is_featured', true)
         ->latest('order')
         ->take(10)
@@ -56,6 +60,8 @@ class AboutController extends Controller
             'aboutCorporateOffice' => $aboutCorporateOffice,
             'aboutVisMinOffice' => $aboutVisMinOffice,
             'aboutServices' => $aboutServices,
+            'aboutPhoneSupport' => $aboutPhoneSupport,
+            'aboutChatSupport' => $aboutChatSupport,
          
         ]);
     }

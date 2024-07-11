@@ -100,6 +100,7 @@ class PostResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+        ->defaultPaginationPageOption(25)
             ->columns([
 
                 ImageColumn::make('img')->wrap(),
