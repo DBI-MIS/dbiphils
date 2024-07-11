@@ -1,4 +1,4 @@
-<div class="flex flex-row gap-4 items-center">
+<div class="flex flex-row gap-4 items-center border-t-2 pt-2 mt-2">
     <div class="w-[48px]">
         <img
         class="w-16 mx-auto" 

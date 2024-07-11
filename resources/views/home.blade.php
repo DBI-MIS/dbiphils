@@ -21,6 +21,8 @@
                         description: '{{ $main->notes }}',
                         ctaUrl: 'TEST',
                         ctaText: 'Contact Sales',
+                        ctaUrl2: '',
+                        ctaText2: 'View Products',
                     }
                         @if (!$loop->last),
                         @endif 
@@ -62,27 +64,6 @@
             class="relative w-full overflow-hidden" 
             x-init="autoplay">
 
-
-                {{-- <!-- previous button -->
-                <button type="button"
-                    class="absolute left-5 top-1/2 z-20 flex rounded-full -translate-y-1/2 items-center justify-center bg-white/40 p-2 text-slate-700 transition hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 active:outline-offset-0 dark:bg-slate-900/40 dark:text-slate-300 dark:hover:bg-slate-900/60 dark:focus-visible:outline-blue-600"
-                    aria-label="previous slide" x-on:click="previous()">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor"
-                        fill="none" stroke-width="3" class="size-5 md:size-6 pr-0.5" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                    </svg>
-                </button>
-
-                <!-- next button -->
-                <button type="button"
-                    class="absolute right-5 top-1/2 z-20 flex rounded-full -translate-y-1/2 items-center justify-center bg-white/40 p-2 text-slate-700 transition hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 active:outline-offset-0 dark:bg-slate-900/40 dark:text-slate-300 dark:hover:bg-slate-900/60 dark:focus-visible:outline-blue-600"
-                    aria-label="next slide" x-on:click="next()">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor"
-                        fill="none" stroke-width="3" class="size-5 md:size-6 pl-0.5" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                    </svg>
-                </button> --}}
-
                 <!-- slides -->
                 <!-- Change min-h-[50svh] to your preferred height size -->
                 <div class="relative min-h-[50svh] w-full">
@@ -98,9 +79,18 @@
                                 </h1>
                                 <p class="lg:w-1/2 w-full text-lg md:text-2xl text-slate-300" x-text="slide.description"
                                     x-bind:id="'slide' + (index + 1) + 'Description'"></p>
+                                    <div class="flex flex-row gap-4">
                                 <button type="button" x-cloak x-show="slide.ctaUrl !== null"
                                     class="mt-2 w-max text-left cursor-pointer whitespace-nowrap rounded-xl border border-white bg-transparent px-4 py-2 text-lg md:text-xl font-medium tracking-wide text-white transition hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-onSurfaceDarkStrong active:opacity-100 active:outline-offset-0 hover:text-white hover:bg-blue-800"
                                     x-text="slide.ctaText"></button>
+                                    
+                                    
+                                        
+                                    <div type="button" x-cloak x-show="slide.ctaUrl2 !== null"
+                                        class="mt-2 w-max text-left cursor-pointer whitespace-nowrap rounded-xl border border-yellow-500 bg-yellow-500 px-4 py-2 text-lg md:text-xl  tracking-wide text-gray-600 font-bold transition hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-onSurfaceDarkStrong active:opacity-100 active:outline-offset-0 hover:text-white hover:bg-yellow-800"
+                                        x-text="slide.ctaText2"></div>
+                                    
+                                </div>
                             </div>
 
                             <img class="absolute w-full h-full object-cover object-center md:object-right text-slate-700 dark:text-slate-300"
