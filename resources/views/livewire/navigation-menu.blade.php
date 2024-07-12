@@ -26,7 +26,7 @@ aria-label="DB Careers Nav">
             {{ __('Products') }}
         </x-nav-link>
         
-        <x-nav-link href="https://careers.dbiphils.com">
+        <x-nav-link href="{{ route('jobs.index') }}" :active="request()->routeIs('jobs.index')">
             {{ __('Careers') }}
         </x-nav-link>
         <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
@@ -85,17 +85,20 @@ aria-label="DB Careers Nav">
     x-transition:leave-end="-translate-y-full"
     id="mobileMenu" 
     class="fixed max-h-svh overflow-y-auto inset-x-0 top-0 z-20 flex flex-col divide-y divide-slate-300 gap-y-3 border-b border-slate-300 bg-slate-100 px-6 pb-6 pt-10 md:hidden">
+       
         <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
             {{ __('Home') }}
         </x-nav-link>
+
         <x-nav-link href="{{ route('projects.index') }}" :active="request()->routeIs('projects.index')">
             {{ __('Projects') }}
         </x-nav-link>
-        <x-nav-link href="https://products.dbiphils.com">
+
+        <x-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products.index')">
             {{ __('Products') }}
         </x-nav-link>
        
-        <x-nav-link href="https://careers.dbiphils.com">
+        <x-nav-link href="{{ route('jobs.index') }}" :active="request()->routeIs('jobs.index')">
             {{ __('Careers') }}
         </x-nav-link>
         
