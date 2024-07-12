@@ -2,14 +2,14 @@
     <div class="w-[48px]">
         <img
         class="w-16 mx-auto" 
-        src="/storage/{{ $aboutPhoneSupport->img }}" 
-        alt="{{ $aboutPhoneSupport->title }}" >
+        src="/storage/{{ $aboutData['Customer Support']->img }}" 
+        alt="{{ $aboutData['Customer Support']->title }}" >
         {{-- <img class="w-auto h-auto " src="{{ $service->img }}" alt=""> --}}
     </div>
     <div class="">
-        <h1 class="text-2xl font-black">{{$aboutPhoneSupport->title}}</h1>
+        <h1 class="text-2xl font-black">{{$aboutData['Customer Support']->title}}</h1>
     
-    <span class="font-light text-base">@markdown($aboutPhoneSupport->description)</span>
+    <span class="font-light text-base">@markdown($aboutData['Customer Support']->description)</span>
 
     </div>
 

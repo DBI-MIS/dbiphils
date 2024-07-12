@@ -14,7 +14,7 @@ aria-label="DB Careers Nav">
     </div>
     <!-- Desktop Menu -->
         <div class="hidden gap-4 md:flex">
-        <x-nav-link href="https://dbiphils.com">
+        <x-nav-link href="{{ route('home') }}">
             {{ __('Home') }}
         </x-nav-link>
 
@@ -88,8 +88,8 @@ aria-label="DB Careers Nav">
     x-transition:leave-start="translate-y-0"
     x-transition:leave-end="-translate-y-full"
     id="mobileMenu" 
-    class="fixed max-h-svh overflow-y-auto inset-x-0 top-0 z-10 flex flex-col divide-y divide-slate-300 gap-y-3 border-b border-slate-300 bg-slate-100 px-6 pb-6 pt-10 md:hidden">
-        <x-nav-link href="https://dbiphils.com">
+    class="fixed max-h-svh overflow-y-auto inset-x-0 top-0 z-20 flex flex-col divide-y divide-slate-300 gap-y-3 border-b border-slate-300 bg-slate-100 px-6 pb-6 pt-10 md:hidden">
+        <x-nav-link href="{{ route('home') }}">
             {{ __('Home') }}
         </x-nav-link>
         <x-nav-link href="https://projects.dbiphils.com">

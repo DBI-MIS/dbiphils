@@ -13,6 +13,7 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::get('/about', AboutController::class)->name('about');
 
+
 Route::get('/testimonials', [TestimonialsController::class, 'index'])->name('testimonials.index');
 
 Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');

@@ -1,6 +1,6 @@
 <div class="w-full px-0 xl:px-24 py-8 border-t-2">
-    <h1 class="text-2xl font-black">{{$aboutVisMinOffice->title}}</h1>
+    <h1 class="text-2xl font-medium">{{$aboutData['Vis-Min Office']->title}}</h1>
     
-    <span class="font-light text-lg">@markdown($aboutVisMinOffice->description)</span>
+    <span class="font-light text-base">@markdown($aboutData['Vis-Min Office']->description)</span>
 
 </div>

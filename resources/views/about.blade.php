@@ -22,7 +22,7 @@
                             </h1>
 
                             <div class="w-full text-balance text-lg md:text-xl text-white mt-4">   
-                            @markdown($aboutTitle->description)
+                            @markdown($aboutData['Title']->description)
                             </div>
                         </div>
                     
@@ -39,40 +39,46 @@
     <div class="my-8">
         <div class="mb-7 ">
             <div class="flex flex-col md:flex-row gap-6">
-            <div class="flex flex-col w-full md:w-2/3">
-                @include('layouts.sections.about-vision')
-                @include('layouts.sections.about-mission')
+            <div class="flex flex-col w-full ">
+               <div class="flex flex-col md:flex-row gap-6">
+                <div class="flex-col my-auto">
+                    @include('layouts.sections.about-vision')
+                    @include('layouts.sections.about-mission')
+                </div>
+                <div class="w-full lg:w-1/3">
+                    <div class="w-full px-6 py-8 space-y-4 col-span-1 md:col-span-2 lg:col-span-1 my-auto bg-white/50 rounded-xl ">
+                        <div class="mx-auto w-max ">
+                            <h1 class="text-3xl font-black mb-4">Need Help?</h1>
+                            <div class="flex flex-col">
+                                @include('layouts.sections.about-phone-support')
+                                @include('layouts.sections.about-chat-support')
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="w-full md:w-1/3">
                 @include('layouts.sections.about-values')
             </div>
+            
             </div>
             @include('layouts.sections.about-services')
 
-            <hr>
+           
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-start">
                 
-            <div class="w-full px-6 py-8 space-y-4 col-span-1 md:col-span-2 lg:col-span-1 my-auto bg-white/50 rounded-xl ">
-                <div class="mx-auto w-max">
-                    <h1 class="text-3xl font-black mb-4">Need Help?</h1>
-                    <div class="flex flex-col sm:flex-row lg:flex-col">
-                        @include('layouts.sections.about-phone-support')
-                        @include('layouts.sections.about-chat-support')
-                    </div>
-                    
-              
-                </div>
-            </div>
+                
             <div class="max-w-[768px] w-full mx-auto h-auto col-span-2">
+                <hr>
                 <livewire:create-main-response />
+            </div>
+            <div class="flex flex-col gap-4 col-span-2 lg:col-span-1">
+                @include('layouts.sections.about-corporate-office')
+                @include('layouts.sections.about-vismin-office')
             </div>
             </div>
              
 
-            <div class="flex flex-col md:flex-row gap-4">
-                @include('layouts.sections.about-corporate-office')
-                @include('layouts.sections.about-vismin-office')
-            </div>
+           
             
         </div>
         @include('layouts.sections.about-footer-social')
