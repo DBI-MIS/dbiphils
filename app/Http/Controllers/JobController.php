@@ -26,8 +26,8 @@ class JobController extends Controller
 
     public function list()
     {
-        $categories = Cache::remember('categories', now(), function () {
-            return JobCategory::whereHas('posts', function ($query) {
+        $categories = Cache::remember('job_categories', now(), function () {
+            return JobCategory::whereHas('job_posts', function ($query) {
                 $query->published();
             })->take(20)->get();
         });
