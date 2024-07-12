@@ -19,9 +19,7 @@
                         imgAlt: '{{ $main->title }}',
                         title: '{{ $main->title }}',
                         description: '{{ $main->notes }}',
-                        ctaUrl: 'TEST',
                         ctaText: 'Contact Sales',
-                        ctaUrl2: '',
                         ctaText2: 'View Products',
                     }
                         @if (!$loop->last),
@@ -80,15 +78,19 @@
                                 <p class="lg:w-1/2 w-full text-lg md:text-2xl text-slate-300" x-text="slide.description"
                                     x-bind:id="'slide' + (index + 1) + 'Description'"></p>
                                     <div class="flex flex-row gap-4">
-                                <button type="button" x-cloak x-show="slide.ctaUrl !== null"
+                                <button type="button" x-cloak
                                     class="mt-2 w-max text-left cursor-pointer whitespace-nowrap rounded-xl border border-white bg-transparent px-4 py-2 text-lg md:text-xl font-medium tracking-wide text-white transition hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-onSurfaceDarkStrong active:opacity-100 active:outline-offset-0 hover:text-white hover:bg-blue-800"
-                                    x-text="slide.ctaText"></button>
+                                    x-text="slide.ctaText"
+                                    wire:navigate href="{{ route('about') }}"></button>
                                     
                                     
-                                        
-                                    <div type="button" x-cloak x-show="slide.ctaUrl2 !== null"
-                                        class="mt-2 w-max text-left cursor-pointer whitespace-nowrap rounded-xl border border-yellow-500 bg-yellow-500 px-4 py-2 text-lg md:text-xl  tracking-wide text-gray-600 font-bold transition hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-onSurfaceDarkStrong active:opacity-100 active:outline-offset-0 hover:text-white hover:bg-yellow-800"
-                                        x-text="slide.ctaText2"></div>
+                                       
+                                <div type="button" x-cloak
+                                    class="mt-2 w-max text-left cursor-pointer whitespace-nowrap rounded-xl border border-yellow-500 bg-yellow-500 px-4 py-2 text-lg md:text-xl  tracking-wide text-gray-600 font-bold transition hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-onSurfaceDarkStrong active:opacity-100 active:outline-offset-0 hover:text-white hover:bg-yellow-800"
+                                    x-text="slide.ctaText2"
+                                    wire:navigate href="{{ route('products.index') }}">
+                                </div>
+                                
                                     
                                 </div>
                             </div>
@@ -252,7 +254,7 @@
 
         <hr>
         <a class="mt-7 block text-center text-lg text-blue-500 font-semibold hover:text-blue-900 cursor-pointer"
-            href="{{ route('home') }}">View All Products
+        wire:navigate href="{{ route('products.index') }}">View All Products
         </a>
 
     </div>

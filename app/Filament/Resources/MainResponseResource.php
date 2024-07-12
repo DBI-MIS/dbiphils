@@ -27,11 +27,16 @@ class MainResponseResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Forms';
+    protected static ?string $navigationGroup = 'Form Inquiries';
 
-    protected static ?string $navigationLabel = 'Responses';
+    protected static ?string $navigationLabel = 'About Us Form Inquiries';
 
     protected static ?int $navigationSort = 1;
+
+    public static function getNavigationBadge(): ?string
+{
+    return static::getModel()::count();
+}
 
     public static function form(Form $form): Form
     {

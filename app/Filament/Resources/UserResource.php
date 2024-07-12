@@ -27,7 +27,7 @@ class UserResource extends Resource
 
     protected static ?string $navigationGroup = 'Management';
 
-    protected static ?int $navigationSort = 6;
+    protected static ?int $navigationSort = 20;
     
     protected $casts = [
         'password' => 'hashed',
