@@ -14,8 +14,6 @@ class JobPost extends Model
     use HasFactory,
     SoftDeletes;
     // HasFilamentComments;
-    
-    
 
     protected $fillable = [
         'user_id',
@@ -69,7 +67,7 @@ class JobPost extends Model
 
     public function scopeWithCategory($query, string $category)
     {
-        $query->whereHas('categories', function($query) use ($category)
+        $query->whereHas('jobcategories', function($query) use ($category)
         {
             $query->where('slug', $category);
         });

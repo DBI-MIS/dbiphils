@@ -1,4 +1,4 @@
-<x-app-layout title="Projects Page">
+<x-app-layout title="Projects">
 
     <div class="mb-10 w-full">
         <div class="my-10">

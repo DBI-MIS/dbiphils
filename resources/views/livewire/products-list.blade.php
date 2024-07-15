@@ -3,7 +3,7 @@
         <div class="text-gray-600">
             
             @if($this->activeCategory)
-                <x-badge wire:navigate href="{{ route('products.index', ['category' => $this->activeCategory->slug])}}"
+                <x-badge wire:navigate href="{{ route('products.list', ['category' => $this->activeCategory->slug])}}"
                 :textColor="$this->activeCategory->text_color" :bgColor="$this->activeCategory->bg_color"> 
                 {{ $this->activeCategory->title }}
                 </x-badge>
@@ -23,6 +23,7 @@
             
         </div>
     </div>
+    
     <div class="py-5 flex flex-col md:grid md:grid-cols lg:grid-cols-2">
         @if ($this->products->count() == 0)
         <tr>
@@ -37,5 +38,6 @@
     <div class="my-3">
         {{ $this->products->onEachSide(1)->links() }}
     </div>
+
 
 </div>

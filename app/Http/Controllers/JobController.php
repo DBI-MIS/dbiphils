@@ -6,6 +6,7 @@ use App\Models\JobCategory;
 use App\Models\JobPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Jorenvh\Share\ShareFacade;
 
 class JobController extends Controller
 {
@@ -27,7 +28,7 @@ class JobController extends Controller
     public function list()
     {
         $categories = Cache::remember('job_categories', now(), function () {
-            return JobCategory::whereHas('job_posts', function ($query) {
+            return JobCategory::whereHas('jobposts', function ($query) {
                 $query->published();
             })->take(20)->get();
         });
@@ -41,56 +42,41 @@ class JobController extends Controller
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function show(JobPost $job)
     {
-        //
-    }
+        $jobUrl = route('jobs.show', $job->id);
+        $jobTitle = $job->title;
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $shareComponent = ShareFacade::page($jobUrl, $jobTitle)
+        ->facebook()
+        ->linkedin()
+        ->telegram()
+        ->whatsapp()        
+        ->reddit();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(JobPost $jobPost)
-    {
         return view(
             'jobs.show',
             [
-                'post' => $jobPost,
+                'job' => $job,
+                'shareComponent' => $shareComponent,
             ]
         );
+       
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(JobPost $jobPost)
+    public function ShareWidget(JobPost $job)
     {
-        //
+        $jobUrl = route('jobs.show', $job->id);
+        $jobTitle = $job->title;
+
+        $shareComponent = ShareFacade::page($jobUrl, $jobTitle)
+        ->facebook()
+        ->linkedin()
+        ->telegram()
+        ->whatsapp()        
+        ->reddit();
+        
+        return view('jobs', compact('shareComponent'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, JobPost $jobPost)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(JobPost $jobPost)
-    {
-        //
-    }
 }

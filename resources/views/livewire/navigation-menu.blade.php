@@ -1,7 +1,8 @@
+
 <nav 
 x-data="{ mobileMenuIsOpen: false }" @click.away="mobileMenuIsOpen = false" 
 class="flex items-center mx-auto bg-white border-gray-200"
-aria-label="DB Careers Nav">
+aria-label="DBI Nav">
     
 <div class="w-full flex flex-wrap items-center justify-between mx-auto">
     <div id="nav-left" class="flex items-center space-x-3 rtl:space-x-reverse">

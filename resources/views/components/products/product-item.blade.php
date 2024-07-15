@@ -23,7 +23,7 @@
                 <div class="flex flex-row">
                     <div class="topics flex flex-wrap justify-start gap-1 my-auto">
                         @foreach ($product->product_categories as $category)
-                                    <x-badge wire:navigate href="{{ route('products.index', ['category' => $category->slug])}}"
+                                    <x-badge wire:navigate href="{{ route('products.list', ['category' => $category->slug])}}"
                                              :textColor="$category->text_color" :bgColor="$category->bg_color">
                                         {{ $category->title }}
                                     </x-badge>

@@ -50,12 +50,11 @@ class JobPostList extends Component
 
 
     #[Computed()]
-    public function posts()
+    public function jobs()
     {
         return JobPost::orderBy('date_posted', $this->sort)->where('status',true)
-        // where('title','like',"%{$this->search}%")
+        ->where('title','like',"%{$this->search}%")
         
-
         ->when($this->activeCategory, function ($query)
         {
             $query->withCategory($this->category);

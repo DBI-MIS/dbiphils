@@ -2,7 +2,7 @@
 <x-app-layout :title="$product->title">
 
  
-        <article class="col-span-8 md:col-span-3 md:mt-10 mx-auto py-5 w-full h-full" style="max-width:900px">
+        <article class="col-span-8 md:col-span-3 md:mt-10 mx-auto py-5 w-full h-full min-h-[560px]" style="max-width:900px">
             <div class="flex flex-col md:flex-row items-start gap-x-2 w-full">
             <div class="flex-grow-0 py-5 px-5 mb-5 rounded-md border-opacity-10 p-2 bg-white border-blue-800" 
             style="min-width:280px; max-width:280px"

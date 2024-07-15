@@ -6,19 +6,17 @@
             <a wire:navigate href="{{ route('jobs.show', $post->slug) }}">{{ $post->title}}</a>
         </h1><span class="text-gray-500 text-sm text-nowrap">{{ $post->date_posted->diffForHumans()}}</span>
         </div>
-        <div class="text-sm  line-clamp-2 col-span-4">{{ $post->post_description }}</div>
+        <div class="text-sm  line-clamp-2 col-span-4">@markdown($post->getExcerpt())</div>
         
-        <div class="mt-3">
+        <div class="mt-3 col-span-4">
         <div class="flex items-center mb-2">
             <div class="topics flex flex-wrap justify-start gap-2">
-                @if ($category = $post->jobcategories()->first())
-                <x-badge wire:navigate href="{{ route('jobs.index', ['category' => $category->slug])}}"
-                :textColor="$category->text_color" :bgColor="$category->bg_color">
-                
+            @foreach ($post->jobcategories()->take(3)->get() as $category)
+            <x-badge wire:navigate href="{{ route('jobs.list', ['category' => $category->slug])}}"
+                     :textColor="$category->text_color" :bgColor="$category->bg_color">
                 {{ $category->title }}
-                
-                </x-badge>
-                @endif
+            </x-badge>
+            @endforeach
             
             </div>
             

@@ -240,9 +240,10 @@ class JobPostResource extends Resource
                             ->grouped()
                             ->label(__('Job Location')),
 
-                        Select::make('user_id')
+                            Select::make('user_id')
                             ->relationship('author', 'name')
                             ->searchable()
+                            ->default('3')
                             ->required()
                             ->preload(),
 

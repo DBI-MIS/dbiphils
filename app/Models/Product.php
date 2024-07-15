@@ -32,6 +32,7 @@ class Product extends Model
         'brand_id',
         'status',
         'featured',
+        'product_brand',
     ];
 
     protected $casts = [

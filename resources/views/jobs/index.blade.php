@@ -1,4 +1,4 @@
-<x-app-layout title="Home Page">
+<x-app-layout title="Careers">
     @section('hero')
     <!-- Hero -->
             
@@ -23,7 +23,7 @@
                 </h1>
                 <!-- Call to Action Button -->
                 <a class="my-[clamp(2px,_-1.0593px_+_0.956vi,_12px)] inline-block px-[clamp(12px,_5.8815px_+_1.912vi,_32px)] py-[clamp(2px,_-1.0593px_+_0.956vi,_12px)] text-[clamp(14px,_10.9407px_+_0.956vi,_24px)] text-white bg-blue-600 rounded-lg animate-pulse animate-infinite animate-duration-[3000ms] animate-delay-[2000ms] animate-ease-in shadow-sm shadow-gray-950" 
-                href="{{ route('jobs.index') }}">
+                href="{{ route('jobs.list') }}">
                 {{ __('Join Now') }}</a>
                 </div>
             
@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 <a class="mt-10 block text-center text-sm text-blue-500 font-semibold"
-                    href="{{ route('jobs.index') }}">More
+                    href="{{ route('jobs.list') }}">More
                     Posts</a>
             </div>
             <hr>

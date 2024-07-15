@@ -15,11 +15,11 @@
 		<span class="font-bold text-lg">
         <a wire:navigate href="{{ route('products.show', $product->slug) }}">{{ $product->title}}</a>
         </span>
-        <span class="font-light text-sm">{{ $product->product_brand?->name }}</span>
+        <span class="font-light text-sm">{{ $product->product_brand?->name}}</span>
 
         <div class="topics flex flex-wrap justify-start gap-1 my-auto">
             @if ($category = $product->product_categories()->first())
-            <x-badge wire:navigate href="{{ route('products.index', ['category' => $category->slug])}}"
+            <x-badge wire:navigate href="{{ route('products.list', ['category' => $category->slug])}}"
             :textColor="$category->text_color" :bgColor="$category->bg_color">
             
             {{ $category->title }}
