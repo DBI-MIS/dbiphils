@@ -284,6 +284,7 @@ class JobPostResource extends Resource
                     ->offIcon('heroicon-m-x-mark')
                     ->offColor('warning')
                     ->alignCenter(),
+                   
                 ToggleColumn::make('status')
                     ->label(__('Active'))
                     ->sortable()
@@ -296,6 +297,13 @@ class JobPostResource extends Resource
                     ->afterStateUpdated(function ($record, $state) {
                         // Runs after the state is saved to the database.
                     }),
+                    ToggleColumn::make('urgent')
+                    ->label(__('Urgent'))
+                    ->sortable()
+                    ->onIcon('heroicon-m-check')
+                    ->offIcon('heroicon-m-x-mark')
+                    ->offColor('warning')
+                    ->alignCenter(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

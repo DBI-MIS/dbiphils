@@ -2,7 +2,7 @@
     <div class="w-[48px]">
         <img
         class="w-16 mx-auto" 
-        src="/storage/{{ $aboutData['Customer Support']->img }}" 
+        src="/storage/{{ $aboutData['Customer Support']?->img }}" 
         alt="{{ $aboutData['Customer Support']->title }}" >
         {{-- <img class="w-auto h-auto " src="{{ $service->img }}" alt=""> --}}
     </div>

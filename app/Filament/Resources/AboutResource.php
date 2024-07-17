@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\AboutResource\Pages;
 use App\Filament\Resources\AboutResource\RelationManagers;
 use App\Models\About;
+use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\MarkdownEditor;
@@ -20,6 +21,9 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
+use pxlrbt\FilamentExcel\Columns\Column;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
 use RalphJSmit\Filament\SEO\SEO;
 
 class AboutResource extends Resource
@@ -102,7 +106,19 @@ class AboutResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
+                    ExportBulkAction::make()->exports([
+                        ExcelExport::make()
+                        ->withFilename(date(Carbon::now()) . ' - About Data Export')
+                        ->withColumns([
+                            Column::make('title'),
+                            Column::make('img'),
+                            Column::make('description'),
+                            Column::make('desc_array'),
+                        ]),
+                    ]),
                     Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\ForceDeleteBulkAction::make(), 
+                    Tables\Actions\RestoreBulkAction::make(), 
                 ]),
             ]);
     }

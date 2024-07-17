@@ -24,23 +24,50 @@ class CreateProductResponse extends Component implements HasForms
     #[Locked]
     public  $product_title;
     public  $date_response;
-    #[Validate('required', message:'Please fill out with your full name.')]
-    #[Validate('min:5', message:'Your name is too short.')]
-    public ?string $full_name;
-    #[Validate('required', message:'Please fill out with your contact number.')]
-    #[Validate('min:11', message:'Your contact number is invalid.')]
-    public ?string $contact;
-    #[Validate('required', message:'Please fill out with your email address.')]
-    #[Validate('email', message:'Your email is invalid.')]
-    public ?string $email_address;
-    #[Validate('required', message:'Please fill out with your message.')]
-    #[Validate('min:20', message:'Your message cannot be less than 20 characters.')]
-    public ?string $message;
+    public ?string $full_name = "";
+    public ?string $contact = "";
+    public ?string $email_address = "";
+    public ?string $message = "";
+
+    public bool $isValid = false;
 
     protected $casts = [
         'date_response' => 'datetime',
     ];
 
+    protected $rules = [
+        'full_name' => 'required|min:5',
+        'contact' => 'required|min:11',
+        'email_address' => 'required|email',
+        'message' => 'required|min:20',
+    ];
+
+    protected $messages = [
+        'full_name.required' => 'Please fill out with your full name.',
+        'full_name.min' => 'Your name is too short.',
+        'contact.required' => 'Please fill out with your contact number.',
+        'contact.min' => 'Your contact number is invalid.',
+        'email_address.required' => 'Please fill out with your email address.',
+        'email_address.email' => 'Your email is invalid.',
+        'message.required' => 'Please fill out with your message.',
+        'message.min' => 'Your message cannot be less than 20 characters.',
+    ];
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+        $this->isValid = $this->isFormValid();
+    }
+
+    protected function isFormValid()
+    {
+        try {
+            $this->validate();
+            return true;
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return false;
+        }
+    }
 
     public function mount(ProductResponse $response): void
     {
@@ -122,7 +149,7 @@ class CreateProductResponse extends Component implements HasForms
     #[On('post-created')] 
     public function updatePostList()
     {
-        // session()->flash('message', 'Product Inquiry submitted successfully.');
+        session()->flash('message', 'Product Inquiry submitted successfully.');
 
         $this->form->fill();
     }

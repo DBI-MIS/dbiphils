@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('job_type');
             $table->boolean('status')->default(true);
             $table->boolean('featured')->default(false);
+            $table->boolean('urgent')->default(false);
             $table->timestamp('published_at')->nullable();
             $table->softDeletes();
             $table->timestamps();

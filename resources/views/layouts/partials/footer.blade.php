@@ -8,9 +8,16 @@ py-4 text-sm border-t border-gray-100">
     </div>
     
     <div class="flex space-x-4 order-1 sm:order-2">
+        
         <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">{{ __('DBI') }} </x-nav-link>
         {{-- <x-nav-link href="{{ route('projects.index') }}" :active="request()->routeIs('projects.index')">{{ __('All Projects') }} </x-nav-link> --}}
-        <x-nav-link href="/admin">{{ __('Login') }} </x-nav-link>
+        @guest
+        <x-nav-link href="/admin">{{ __('Login') }} </x-nav-link>    
+        @endguest
+        @auth
+        <x-nav-link href="/admin">{{ Auth::user()->name }} </x-nav-link>
+        @endauth
+        
     </div>
     </div>
 </footer>

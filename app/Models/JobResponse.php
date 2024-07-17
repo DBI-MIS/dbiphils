@@ -36,7 +36,7 @@ class JobResponse extends Model
     protected $casts = [
         'date_response' => 'datetime',
         'review' => 'boolean',
-        'status' => ResponseStatus::class,
+        // 'status' => ResponseStatus::class,
         // 'attachment' => 'array',
     ];
     public function job_title()

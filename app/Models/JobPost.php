@@ -29,6 +29,7 @@ class JobPost extends Model
         'slug',
         'status',
         'featured',
+        'urgent',
         'jobcategories',
     ];
 
@@ -36,6 +37,7 @@ class JobPost extends Model
         'date_posted' => 'datetime',
         'status' => 'boolean',
         'featured' => 'boolean',
+        'urgent' => 'boolean',
     ];
 
     public function author()

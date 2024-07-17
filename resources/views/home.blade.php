@@ -78,17 +78,20 @@
                                 <p class="lg:w-1/2 w-full text-lg md:text-2xl text-slate-300" x-text="slide.description"
                                     x-bind:id="'slide' + (index + 1) + 'Description'"></p>
                                     <div class="flex flex-row gap-4">
+                                        
                                 <button type="button" x-cloak
                                     class="mt-2 w-max text-left cursor-pointer whitespace-nowrap rounded-xl border border-white bg-transparent px-4 py-2 text-lg md:text-xl font-medium tracking-wide text-white transition hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-onSurfaceDarkStrong active:opacity-100 active:outline-offset-0 hover:text-white hover:bg-blue-800"
                                     x-text="slide.ctaText"
-                                    wire:navigate href="{{ route('about') }}"></button>
+                                    wire:navigate href="{{ route('about') }}"
+                                    ></button>
                                     
                                     
                                        
                                 <div type="button" x-cloak
                                     class="mt-2 w-max text-left cursor-pointer whitespace-nowrap rounded-xl border border-yellow-500 bg-yellow-500 px-4 py-2 text-lg md:text-xl  tracking-wide text-gray-600 font-bold transition hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-onSurfaceDarkStrong active:opacity-100 active:outline-offset-0 hover:text-white hover:bg-yellow-800"
                                     x-text="slide.ctaText2"
-                                    wire:navigate href="{{ route('products.index') }}">
+                                    wire:navigate href="{{ route('products.index') }}"
+                                    >
                                 </div>
                                 
                                     

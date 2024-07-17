@@ -11,7 +11,10 @@
                 </video>
             </div>
             <div class="mx-[clamp(12px,_-8.8031px_+_6.501vi,_80px)] xl:flex xl:justify-between xl:items-center">
-                <div class="py-[clamp(52px,_-0.6195px_+_16.4436vi,_224px)]">
+                <div class="
+                {{-- py-5 --}}
+                py-[clamp(18px,_-38.3478px_+_17.6087vw,_180px)]
+                ">
                 <!-- Hero Title -->
                 <h1 class="font-bold text-[clamp(26px,_4.5851px_+_6.6922vi,_96px)] leading-[clamp(12px,_-8.8031px_+_6.501vi,_80px)] text-balance text-white">
                 Join Our Team
@@ -21,10 +24,53 @@
                 </span>
                 <p class="my-[clamp(8px,_-0.566px_+_2.6769vi,_36px)] text-[clamp(12px,_4.0459px_+_2.4857vi,_38px)] leading-[clamp(12px,_4.0459px_+_2.4857vi,_38px)] font-thin text-white mb-2">{{ __('Drive your future forward') }}</p>
                 </h1>
-                <!-- Call to Action Button -->
-                <a class="my-[clamp(2px,_-1.0593px_+_0.956vi,_12px)] inline-block px-[clamp(12px,_5.8815px_+_1.912vi,_32px)] py-[clamp(2px,_-1.0593px_+_0.956vi,_12px)] text-[clamp(14px,_10.9407px_+_0.956vi,_24px)] text-white bg-blue-600 rounded-lg animate-pulse animate-infinite animate-duration-[3000ms] animate-delay-[2000ms] animate-ease-in shadow-sm shadow-gray-950" 
-                href="{{ route('jobs.list') }}">
-                {{ __('Join Now') }}</a>
+
+                 <!-- Search Form -->
+                 <div class="mt-4">
+                    <form action="{{ route('jobs.list') }}" method="GET" class="block">
+                        <input 
+                        type="text" 
+                        name="search" 
+                        id="searchInput" 
+                        class="w-full px-4 py-2 rounded-lg text-gray-800 bg-white/80 h-max text-base md:text-xl" 
+                        placeholder="Search for job...">
+
+                        <button 
+                        id="searchButton"
+                        type="submit"
+                        class="my-[clamp(2px,_-1.0593px_+_0.956vi,_12px)] inline-block px-[clamp(12px,_5.8815px_+_1.912vi,_32px)] 
+                        py-3
+                        text-[clamp(14px,_10.9407px_+_0.956vi,_24px)]
+                         text-black
+                          bg-yellow-500
+                           rounded-lg
+                             shadow-sm
+                              shadow-gray-950
+                               hover:text-white
+                                hover:bg-slate-800
+                         items-center" 
+                        href="{{ route('products.list') }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5 md:size-7 lg:size-9 inline-block">
+                            <path d="M8.25 10.875a2.625 2.625 0 1 1 5.25 0 2.625 2.625 0 0 1-5.25 0Z" />
+                            <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.125 4.5a4.125 4.125 0 1 0 2.338 7.524l2.007 2.006a.75.75 0 1 0 1.06-1.06l-2.006-2.007a4.125 4.125 0 0 0-3.399-6.463Z" clip-rule="evenodd" />
+                          </svg>
+                          <span id="buttonText">All Jobs</span>
+                        </button>
+                    </form>
+                </div>
+
+                <script>
+                    const searchInput = document.getElementById('searchInput');
+                    const searchButton = document.getElementById('buttonText');
+                
+                    searchInput.addEventListener('input', () => {
+                        if (searchInput.value.trim() !== '') {
+                            searchButton.textContent = 'Search';
+                        } else {
+                            searchButton.textContent = 'All Jobs';
+                        }
+                    });
+                </script>
                 </div>
             
                 
@@ -84,7 +130,7 @@
                 </div>
                 <a class="mt-10 block text-center text-sm text-blue-500 font-semibold"
                     href="{{ route('jobs.list') }}">More
-                    Posts</a>
+                    Jobs</a>
             </div>
             <hr>
 

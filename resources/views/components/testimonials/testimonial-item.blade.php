@@ -1,6 +1,6 @@
 @props(['testimonial'])
 
-    <div class="h-max w-full rounded-xl border border-opacity-10 shadow-lg bg-white hover:bg-gray-100 border-blue-800 col-span-1 overflow-hidden">
+    <div class="h-max w-full rounded-xl border border-opacity-10 shadow-lg bg-white hover:bg-gray-100 border-blue-800 col-span-1 overflow-hidden cursor-pointer hover:scale-110 hover:z-50 transition-transform">
         <div class="text-balance flex flex-col h-max">
             
             <div class="gap-2 mt-4">

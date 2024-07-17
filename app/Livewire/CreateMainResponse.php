@@ -24,25 +24,70 @@ class CreateMainResponse extends Component implements HasForms
     // public ?array $form = [];
 
     public MainResponse $response;
+
+    // public bool $isValid = false;
  
-    #[Validate('required', message:'Please fill out with your full name.')]
-    #[Validate('min:5', message:'Your name is too short.')]
+    // #[Validate('required', message:'Please fill out with your full name.')]
+    // #[Validate('min:5', message:'Your name is too short.')]
+    // public ?string $name = "";
+
+    // #[Validate('required', message:'Please Select the Subject.')]
+    // public ?string $subject = "";
+
+    // #[Validate('required', message:'Please fill out with your contact number.')]
+    // #[Validate('min:11', message:'Your contact number is invalid.')]
+    // public ?string $contact  = "";
+
+    // #[Validate('required', message:'Please fill out with your email address.')]
+    // #[Validate('email', message:'Your email is invalid.')]
+    // public ?string $email  = "";
+
+    // #[Validate('required', message:'Please fill out with your message.')]
+    // #[Validate('min:20', message:'Your message cannot be less than 20 characters.')]
+    // public ?string $message  = "";
+
     public ?string $name = "";
-
-    #[Validate('required', message:'Please Select the Subject.')]
     public ?string $subject = "";
+    public ?string $contact = "";
+    public ?string $email = "";
+    public ?string $message = "";
+    public bool $isValid = false;
 
-    #[Validate('required', message:'Please fill out with your contact number.')]
-    #[Validate('min:11', message:'Your contact number is invalid.')]
-    public ?string $contact  = "";
+    protected $rules = [
+        'name' => 'required|min:5',
+        'subject' => 'required',
+        'contact' => 'required|min:11',
+        'email' => 'required|email',
+        'message' => 'required|min:20',
+    ];
 
-    #[Validate('required', message:'Please fill out with your email address.')]
-    #[Validate('email', message:'Your email is invalid.')]
-    public ?string $email  = "";
+    protected $messages = [
+        'name.required' => 'Please fill out with your full name.',
+        'name.min' => 'Your name is too short.',
+        'subject.required' => 'Please Select the Subject.',
+        'contact.required' => 'Please fill out with your contact number.',
+        'contact.min' => 'Your contact number is invalid.',
+        'email.required' => 'Please fill out with your email address.',
+        'email.email' => 'Your email is invalid.',
+        'message.required' => 'Please fill out with your message.',
+        'message.min' => 'Your message cannot be less than 20 characters.',
+    ];
 
-    #[Validate('required', message:'Please fill out with your message.')]
-    #[Validate('min:20', message:'Your message cannot be less than 20 characters.')]
-    public ?string $message  = "";
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+        $this->isValid = $this->isFormValid();
+    }
+
+    protected function isFormValid()
+    {
+        try {
+            $this->validate();
+            return true;
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return false;
+        }
+    }
 
     public function mount(MainResponse $response): void
     {
@@ -102,8 +147,6 @@ class CreateMainResponse extends Component implements HasForms
             
             
     }
-    
-    
     
     public function create(): void
     {

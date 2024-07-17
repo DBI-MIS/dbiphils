@@ -26,28 +26,20 @@ class CreateJobResponse extends Component implements HasForms, HasActions
     use InteractsWithActions;
     use InteractsWithForms;
     use Notifiable;
+    
+   
 
     // public ?array $data = [];
     #[Locked]
     public  $post_title;
     public  $date_response;
-    #[Validate('required', message:'Please fill out with your full name.')]
-    #[Validate('min:5', message:'Your name is too short.')]
-    public ?string $full_name;
-    #[Validate('required', message:'Please fill out with your contact number.')]
-    #[Validate('min:11', message:'Your contact number is invalid.')]
-    public ?string $contact;
-    #[Validate('required', message:'Please fill out with your email address.')]
-    #[Validate('email', message:'Your email is invalid.')]
-    #[Validate('regex:/(.*)@(gmail|yahoo)\.com/i', message:'Your email is invalid.')]
-    public ?string $email_address;
-    #[Validate('required', message:'Please fill out with your current address.')]
-    #[Validate('min:5', message:'Your current address format is invalid.')]
-    public ?string $current_address;
-    #[Validate('required', message:'Please attached your resume.')]
-    #[Validate('file|mimes:pdf, doc, docx', message:'Your file must be in PDF or MS Word Format.')]
-    #[Validate('max:5120', message:'Your file must have maximum size of 5MB.')]
-    public $attachment;
+    public ?string $full_name = "";
+    public ?string $contact = "";
+    public ?string $email_address = "";
+    public ?string $current_address = "";
+    public $attachment = [];
+    
+    public bool $isValid = false;
 
     public $captcha = null;
     
@@ -57,6 +49,44 @@ class CreateJobResponse extends Component implements HasForms, HasActions
         // 'attachment' => 'array',
        
     ];
+
+    protected $rules = [
+        'full_name' => 'required|min:5',
+        'contact' => 'required|min:11',
+        'email_address' => 'required|email',
+        'current_address' => 'required|min:5',
+        'attachment' => 'required|max:5120|file|mimes:pdf, doc, docx',
+    ];
+
+    protected $messages = [
+        'full_name.required' => 'Please fill out with your full name.',
+        'full_name.min' => 'Your name is too short.',
+        'contact.required' => 'Please fill out with your contact number.',
+        'contact.min' => 'Your contact number is invalid.',
+        'email_address.required' => 'Please fill out with your email address.',
+        'email_address.email' => 'Your email is invalid.',
+        'current_address.required' => 'Please fill out with your current address.',
+        'current_address.min' => 'Your address is invalid.',
+        'attachment.required' => 'Please attach your CV or Resume.',
+        'attachment.max' => 'Your file must have maximum size of 5MB.',
+        'attachment.file' => 'Your file must be in PDF or MS Word Format.',
+    ];
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+        $this->isValid = $this->isFormValid();
+    }
+
+    protected function isFormValid()
+    {
+        try {
+            $this->validate();
+            return true;
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return false;
+        }
+    }
 
 
     public function mount(JobResponse $response): void
@@ -74,7 +104,7 @@ class CreateJobResponse extends Component implements HasForms, HasActions
         return $form
             ->schema([
                 Select::make('post_title')
-                ->relationship('post', 'title')
+                ->relationship('job_post', 'title')
                 // ->readOnly()
                 ->label(__('Position'))
                 ->required()
@@ -100,7 +130,6 @@ class CreateJobResponse extends Component implements HasForms, HasActions
 
                 TextInput::make('email_address')
                 ->label(__('Email'))
-                ->unique()
                 ->email()
                 ->required()
                 ->endsWith(['.com,.org,.ph'])
@@ -125,10 +154,6 @@ class CreateJobResponse extends Component implements HasForms, HasActions
                     fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
                         ->prepend('job_response-'),)
                 ->openable()
-                // ->downloadable()
-                // ->fetchFileInformation(true)
-                // ->moveFiles()
-                // ->storeFiles(true)
                 ->live()
                 ->columnSpan(3)
                 ->id('attachment')
@@ -208,12 +233,6 @@ class CreateJobResponse extends Component implements HasForms, HasActions
         $this->form->model($response)->saveRelationships();
 
         // Mail::to('zhenjin666@gmail.com')->queue(new EmailResponse($response));
-
-        $this->form->fill();
-
-        $this->attachment=null;
-
-       
         
         $this->dispatch('post-created');
         
@@ -226,6 +245,8 @@ class CreateJobResponse extends Component implements HasForms, HasActions
 
         $this->form->fill();
         $this->attachment=null;
+
+       
     }
 
     public function render()

@@ -21,10 +21,13 @@
 
     <article class="col-span-8 md:col-span-3 md:mt-10 mx-auto py-5 w-full h-5/6 min-h-[560px]" style="max-width:900px">
         
-        <div class="flex flex-row justify-between">
+        <div class="inline-flex gap-2">
         <h1 class="text-2xl md:text-4xl font-bold text-left text-gray-800">
             {{ $job->title }}
         </h1>
+        @if ($job->urgent)
+        <span class="bg-red-500 text-center py-[2px] px-[3px] rounded-lg text-white text-xs h-max">URGENT</span>
+    @endif
         </div>
 
         <div class="mt-2 flex justify-between items-center">
@@ -41,6 +44,7 @@
                         d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
             </div>
+            
         </div>
 
         <div class="w-full inline-flex items-center mb-10" >
@@ -102,15 +106,29 @@
             {{-- <x-nav-link href="{{ route('application') }}">
                 {{ __('Apply Here') }}
             </x-nav-link> --}}
-            
-            <x-filament::modal width="2xl">
-                <x-slot name="trigger">
-                    <x-filament::button class="mt-3 inline-flex items-center justify-center h-10 px-4 font-medium tracking-wide text-white transition duration-200 bg-blue-900 rounded-lg hover:bg-gray-800 focus:shadow-outline focus:outline-none">
+            {{-- <x-button type="button"
+            class="mt-3 inline-flex items-center justify-center h-10 px-4 font-medium tracking-wide text-white transition duration-200 bg-blue-900 rounded-lg hover:bg-gray-800 focus:shadow-outline focus:outline-none"
+            x-data
+            x-on:click="Livewire.dispatchTo( 'modals.modal', 'open')">
                         Apply Now!
-                    </x-filament::button>
-                </x-slot>
-                <livewire:create-job-response :job_title="$job->id" :date_response="Carbon\Carbon::now()->format('M-d-Y')"/>
-            </x-filament::modal>
+            </x-button> --}}
+
+            <form>
+                <x-filament::modal width="2xl" id="modal" >
+                    <x-slot name="trigger">
+                        <x-filament::button 
+                        class="w-full mt-3 inline-flex items-center justify-center h-10 px-4 font-medium tracking-wide text-white transition duration-200 bg-blue-900 rounded-lg hover:bg-gray-800 focus:shadow-outline focus:outline-none">
+                            Apply Now!
+                        </x-filament::button>
+                    </x-slot>
+                    <livewire:create-job-response :post_title="$job->id" :date_response="Carbon\Carbon::now()->format('M-d-Y')" id="modal"/>
+                </x-filament::modal>
+            </form>
+
+            
+                
+                
+            
     </article>
 
     <div class="flex flex-col md:flex-row md:items-center items-start gap-5 w-full justify-between py-4 px-5 md:px-10 border-y-2 border-blue-200 mt-24 mx-auto" style="max-width:900px">

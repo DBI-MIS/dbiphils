@@ -28,7 +28,7 @@ class ProductResponse extends Model
     protected $casts = [
         'date_response' => 'datetime',
         'review' => 'boolean',
-        'status' => ResponseStatus::class,
+        // 'status' => ResponseStatus::class,
     ];
 
     public function equipment_title()

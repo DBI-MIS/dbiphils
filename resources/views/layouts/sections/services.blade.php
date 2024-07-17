@@ -6,6 +6,6 @@
 <x-page.featured-services :service="$service" />
 @endforeach
 </div>
-<hr>
+
 
 </div>

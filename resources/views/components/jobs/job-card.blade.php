@@ -2,9 +2,16 @@
 <div class="w-full rounded-md shadow-lg py-5 px-5 mb-5 bg-white hover:bg-gray-100 border-t-2 border-blue-800">
     <div class="grid grid-cols-4 gap-1 text-balance">
         <div class="col-span-4 w-full flex flex-row justify-between">
-		<h1 class="font-bold text-2xl">
-            <a wire:navigate href="{{ route('jobs.show', $post->slug) }}">{{ $post->title}}</a>
-        </h1><span class="text-gray-500 text-sm text-nowrap">{{ $post->date_posted->diffForHumans()}}</span>
+            <div class="inline-flex gap-2">
+                <h1 class="font-bold text-2xl">
+                    <a wire:navigate href="{{ route('jobs.show', $post->slug) }}">{{ $post->title}}</a>
+                </h1>
+                @if ($post->urgent)
+                <span class="bg-red-500 text-center py-[2px] px-[3px] rounded-lg text-white text-xs h-max">URGENT</span>
+                @endif
+            </div>
+		
+        <span class="text-gray-500 text-sm text-nowrap">{{ $post->date_posted->diffForHumans()}}</span>
         </div>
         <div class="text-sm  line-clamp-2 col-span-4">@markdown($post->getExcerpt())</div>
         

@@ -22,6 +22,13 @@
                             <span class="error">{{ $message }}</span>
                         @enderror
                     </div>
+                    <div class="mt-2">
+                        @if (session()->has('message'))
+                            <div class="alert alert-success text-gray-500 font-bold py-2 bg-lime-400 text-center rounded-md">
+                                {{ session('message') }}
+                            </div>
+                        @endif
+                    </div>
                 </div>
 
 
@@ -85,7 +92,7 @@
                                         <span class="error text-red-600 text-sm">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <textarea type="text" wire:model.change="message" name="message" rows="5"
+                                <textarea type="text" wire:model.live="message" name="message" rows="5"
                                     class="!w-full !mb-4 !rounded-md border-blue-100 text-sm md:text-base"></textarea>
                             </td>
                         </tr>
@@ -99,21 +106,13 @@
 
 
                 <div class="float-right">
+                    @if ($isValid)
                     <button wire:loading.class="opacity-50" type="submit"
                         class="mt-3 inline-flex items-center justify-center h-10 px-4 font-medium tracking-wide text-white transition duration-200 bg-blue-900 rounded-lg hover:bg-gray-800 focus:shadow-outline focus:outline-none">
                         <span wire:loading.remove>Submit</span>
-                        
                     </button>
+                    @endif
                 </div>
-
-           
-            <div>
-                @if (session()->has('message'))
-                    <div class="alert alert-success text-green-700 font-bold py-2">
-                        {{ session('message') }}
-                    </div>
-                @endif
-            </div>
        
 
     </form>

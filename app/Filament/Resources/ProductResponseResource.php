@@ -6,6 +6,7 @@ use App\Filament\Resources\ProductResponseResource\Pages;
 use App\Filament\Resources\ProductResponseResource\RelationManagers;
 use App\Models\ProductResponse;
 use App\ResponseStatus;
+use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
@@ -14,12 +15,16 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
+use pxlrbt\FilamentExcel\Columns\Column;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
 
 class ProductResponseResource extends Resource
 {
@@ -97,17 +102,27 @@ class ProductResponseResource extends Resource
                  ->label(__('Product'))
                     ->sortable()
                     ->alignCenter(),
-                ToggleColumn::make('review')
+                IconColumn::make('review')
+                    ->boolean()
                     ->label(__('Reviewed'))
                     ->sortable()
                     ->alignCenter(),
-                    SelectColumn::make('status')
-                    ->options(ResponseStatus::class)
+                SelectColumn::make('status')
                     ->selectablePlaceholder(false)
                     ->sortable()
                     ->searchable()
                     ->grow(false)
                     ->alignCenter()
+                    ->options([
+                        'pending' => 'pending',
+                        'reviewed' => 'reviewed',
+                    ])
+                    ->afterStateUpdated(function ($state, $record) {
+                        if ($state === 'reviewed') {
+                            $record->review = true;
+                            $record->save();
+                        }
+                    }),
                     
             ])->defaultSort('date_response', 'desc')
             ->heading('Product Inquiry Form Responses')
@@ -121,31 +136,31 @@ class ProductResponseResource extends Resource
                 Tables\Actions\DeleteAction::make(), 
                 Tables\Actions\RestoreAction::make(),
             ])
-            // ->bulkActions([
-            //     Tables\Actions\BulkActionGroup::make([
-            //         ExportBulkAction::make()->exports([
-            //             ExcelExport::make()
-            //             ->withFilename(date(Carbon::now()) . ' - Product Inquiry Responses')
-            //             ->withColumns([
-            //                 Column::make('date_response')
-            //                 ->heading('Date of Inquiry'),
-            //                 Column::make('full_name')
-            //                 ->heading('Name'),
-            //                 Column::make('product.title')
-            //                 ->heading('Product Inquired'),
-            //                 Column::make('contact')
-            //                 ->heading('Contact No.'),
-            //                 Column::make('email_address')
-            //                 ->heading('Email Address'),
-            //                 Column::make('status')
-            //                 ->heading('Status'),
-            //             ]),
-            //         ]),
-            //         Tables\Actions\DeleteBulkAction::make(),
-            //         Tables\Actions\ForceDeleteBulkAction::make(), 
-            //         Tables\Actions\RestoreBulkAction::make(), 
-            //     ]),
-            // ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    ExportBulkAction::make()->exports([
+                        ExcelExport::make()
+                        ->withFilename(date(Carbon::now()) . ' - Product Inquiry Responses')
+                        ->withColumns([
+                            Column::make('date_response')
+                            ->heading('Date of Inquiry'),
+                            Column::make('full_name')
+                            ->heading('Name'),
+                            Column::make('product.title')
+                            ->heading('Product Inquired'),
+                            Column::make('contact')
+                            ->heading('Contact No.'),
+                            Column::make('email_address')
+                            ->heading('Email Address'),
+                            Column::make('status')
+                            ->heading('Status'),
+                        ]),
+                    ]),
+                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\ForceDeleteBulkAction::make(), 
+                    Tables\Actions\RestoreBulkAction::make(), 
+                ]),
+            ])
             ;
     }
 

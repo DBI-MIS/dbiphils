@@ -6,6 +6,7 @@ use App\Filament\Resources\JobResponseResource\Pages;
 use App\Filament\Resources\JobResponseResource\RelationManagers;
 use App\Models\JobResponse;
 use App\ResponseStatus;
+use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
@@ -22,6 +23,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
+use pxlrbt\FilamentExcel\Columns\Column;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
 
 class JobResponseResource extends Resource
 {
@@ -127,17 +131,29 @@ public static function table(Table $table): Table
                 ->icon('heroicon-o-link')
                 ->wrap()
                 ->alignCenter(),
-            ToggleColumn::make('review')
-                ->label(__('Reviewed'))
+            IconColumn::make('review')
+                ->boolean()
+                ->label('Reviewed')
                 ->sortable()
                 ->alignCenter(),
-                SelectColumn::make('status')
-                ->options(ResponseStatus::class)
+            SelectColumn::make('status')
+                // ->options(ResponseStatus::class)
                 ->selectablePlaceholder(false)
                 ->sortable()
                 ->searchable()
                 ->grow(false)
                 ->alignCenter()
+                ->options([
+                    'cancelled' => 'cancelled',
+                    'hired' => 'hired',
+                    'unqualified' => 'unqualified',
+                ])
+                ->afterStateUpdated(function ($state, $record) {
+                    if ($state === 'cancelled' || 'hired' || 'unqualified' ) {
+                        $record->review = true;
+                        $record->save();
+                    }
+                }),
                 
         ])->defaultSort('date_response', 'desc')
         ->heading('Job Form Responses')
@@ -151,31 +167,31 @@ public static function table(Table $table): Table
             Tables\Actions\DeleteAction::make(), 
             Tables\Actions\RestoreAction::make(),
         ])
-        // ->bulkActions([
-        //     Tables\Actions\BulkActionGroup::make([
-        //         ExportBulkAction::make()->exports([
-        //             ExcelExport::make()
-        //             ->withFilename(date(Carbon::now()) . ' - Job Application Responses')
-        //             ->withColumns([
-        //                 Column::make('date_response')
-        //                 ->heading('Date of Application'),
-        //                 Column::make('full_name')
-        //                 ->heading('Name of Applicant'),
-        //                 Column::make('post.title')
-        //                 ->heading('Position Applied'),
-        //                 Column::make('contact')
-        //                 ->heading('Contact No.'),
-        //                 Column::make('email_address')
-        //                 ->heading('Email Address'),
-        //                 Column::make('status')
-        //                 ->heading('Status'),
-        //             ]),
-        //         ]),
-        //         Tables\Actions\DeleteBulkAction::make(),
-        //         Tables\Actions\ForceDeleteBulkAction::make(), 
-        //         Tables\Actions\RestoreBulkAction::make(), 
-        //     ]),
-        // ]);
+        ->bulkActions([
+            Tables\Actions\BulkActionGroup::make([
+                ExportBulkAction::make()->exports([
+                    ExcelExport::make()
+                    ->withFilename(date(Carbon::now()) . ' - Job Application Responses')
+                    ->withColumns([
+                        Column::make('date_response')
+                        ->heading('Date of Application'),
+                        Column::make('full_name')
+                        ->heading('Name of Applicant'),
+                        Column::make('post.title')
+                        ->heading('Position Applied'),
+                        Column::make('contact')
+                        ->heading('Contact No.'),
+                        Column::make('email_address')
+                        ->heading('Email Address'),
+                        Column::make('status')
+                        ->heading('Status'),
+                    ]),
+                ]),
+                Tables\Actions\DeleteBulkAction::make(),
+                Tables\Actions\ForceDeleteBulkAction::make(), 
+                Tables\Actions\RestoreBulkAction::make(), 
+            ]),
+        ]);
         ;
 }
 
