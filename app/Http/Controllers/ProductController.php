@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Jorenvh\Share\ShareFacade;
 
 class ProductController extends Controller
 {
@@ -47,10 +48,22 @@ class ProductController extends Controller
    
     public function show(Product $product)
     {
+
+        $productUrl = route('products.show', $product->id);
+        $productTitle = $product->title;
+
+        $shareComponent = ShareFacade::page($productUrl, $productTitle)
+        ->facebook()
+        ->linkedin()
+        ->telegram()
+        ->whatsapp()        
+        ->reddit();
+
         return view(
             'products.show',
             [
                 'product' => $product,
+                'shareComponent' => $shareComponent,
             ]
         );
     }

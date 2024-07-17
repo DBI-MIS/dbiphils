@@ -1,6 +1,24 @@
 
 <x-app-layout :title="$product->title">
 
+    <style>
+        div#social-links {
+            margin: 0 ;
+            max-width: 500px;
+        }
+    
+        div#social-links ul li {
+            display: inline-block;
+        }   
+    
+        div#social-links ul li a {
+            padding: 5px;
+            margin: 1px;
+            font-size: 20px;       
+        }
+        </style>
+     
+
  
         <article class="col-span-8 md:col-span-3 md:mt-10 mx-auto py-5 w-full h-full min-h-[560px]" style="max-width:900px">
             <div class="flex flex-col md:flex-row items-start gap-x-2 w-full">
@@ -39,6 +57,11 @@
                                 <span class="mr-1 rounded-xl px-2 py-1 text-sm bg-sky-200">{{ $product->product_brand?->name }}</span>
                                 {{-- <span class="mr-1 rounded-xl px-3 py-1 text-base bg-green-200">{{ $product->equipment_header }}</span> --}}
                         </div>
+
+                        <div class="w-full inline-flex items-center mb-10 mt-4" >
+            <span>Share | </span> 
+            {!!$shareComponent!!}
+        </div>
 
                         <div class="flex flex-row gap-x-2 mt-2">
                             <div class="topics flex flex-wrap justify-start gap-1 my-auto py-1">
