@@ -58,7 +58,7 @@ class PostResource extends Resource
                 MarkdownEditor::make('content')
                     ->columnSpanFull()
                     ->fileAttachmentsDirectory('event/photos')
-                    ->fileAttachmentsVisibility('private')
+                    ->fileAttachmentsVisibility('public')
                     ->toolbarButtons([
                        'attachFiles',
                         'blockquote',
@@ -79,14 +79,8 @@ class PostResource extends Resource
                 DatePicker::make('published_at')
                     ->timezone('Asia/Manila')
                     ->required()
-                    // ->closeOnDateSelection()
-                    // ->disabledOn('edit')
-                    ->afterStateHydrated(function (DatePicker $component, ?string $state) {
-                        // if the value is empty in the database, set a default value, if not, just continue with the default component hydration
-                        if (!$state) {
-                            $component->state(now()->toDateString());
-                        }
-                    }),
+                    ->default(Carbon::today())
+                    ,
                 FileUpload::make('img')
                     ->image()->directory('event/photos')
                     ->nullable(),
