@@ -53,6 +53,7 @@ class CreateMainResponse extends Component implements HasForms
     public ?string $message = "";
     public bool $isValid = false;
 
+
     protected $rules = [
         'name' => 'required|min:5',
         'subject' => 'required',
@@ -171,4 +172,6 @@ class CreateMainResponse extends Component implements HasForms
     {
         return view('livewire.create-main-response');
     }
+
+   
 }

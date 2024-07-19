@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+
+    public $show = false;
     /**
      * Handle the incoming request.
      */
@@ -72,5 +74,15 @@ class HomeController extends Controller
             'featuredServices' => $featuredServices,
             'featuredNews' => $featuredNews,
         ]);
+    }
+
+    public function openModal()
+    {
+        $this->show = true;
+    }
+
+    public function closeModal()
+    {
+        $this->show = false;
     }
 }

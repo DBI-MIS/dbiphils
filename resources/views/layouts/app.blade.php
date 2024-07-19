@@ -34,7 +34,7 @@
             @yield('hero')
             @yield('hero2')
             
-        
+            {{-- <modal></modal> --}}
             <main class="flex
             flex-col
             mx-[clamp(12px,_-8.8031px_+_6.501vi,_80px)]">
@@ -114,13 +114,13 @@ x-show="loading"
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', () => { 
-        this.livewire.hook('message.sent', () => {
+        Livewire.hook('message.sent', () => {
             window.dispatchEvent(
                 new CustomEvent('loading', { detail: { loading: true }})
             );
         });
         
-        this.livewire.hook('message.processed', (message, component) => {
+        Livewire.hook('message.processed', (message, component) => {
             setTimeout(() => {
                 window.dispatchEvent(
                     new CustomEvent('loading', { detail: { loading: false }})

@@ -71,7 +71,8 @@
 
                             <!-- Title and description -->
                             <div
-                                class="lg:px-32 lg:py-14 absolute inset-0 z-10 flex flex-col justify-center gap-2 bg-gradient-to-t from-slate-900/85 to-transparent md:px-16 md:py-12 p-6">
+                                class="lg:px-32 lg:py-14 absolute inset-0 z-10 flex flex-col justify-center gap-2 bg-gradient-to-t from-slate-900/85 to-transparent md:px-16 md:py-12 p-6"
+                                x-data="{ isOpen: false }">
                                 <h1 class="w-full lg:w-[80%] text-balance text-4xl md:text-6xl font-bold text-white"
                                     x-text="slide.title" x-bind:aria-describedby="'slide' + (index + 1) + 'Description'">
                                 </h1>
@@ -82,11 +83,11 @@
                                 <button type="button" x-cloak
                                     class="mt-2 w-max text-left cursor-pointer whitespace-nowrap rounded-xl border border-white bg-transparent px-4 py-2 text-lg md:text-xl font-medium tracking-wide text-white transition hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-onSurfaceDarkStrong active:opacity-100 active:outline-offset-0 hover:text-white hover:bg-blue-800"
                                     x-text="slide.ctaText"
-                                    wire:navigate href="{{ route('about') }}"
-                                    ></button>
-                                    
-                                    
-                                       
+                                    x-text="isOpen ? 'Close Modal' : 'Open Modal'"
+                                    @click="isOpen = !isOpen; Livewire.dispatch(isOpen ? 'openModal' : 'closeModal')"
+                                    >
+                                </button>
+
                                 <div type="button" x-cloak
                                     class="mt-2 w-max text-left cursor-pointer whitespace-nowrap rounded-xl border border-yellow-500 bg-yellow-500 px-4 py-2 text-lg md:text-xl  tracking-wide text-gray-600 font-bold transition hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-onSurfaceDarkStrong active:opacity-100 active:outline-offset-0 hover:text-white hover:bg-yellow-800"
                                     x-text="slide.ctaText2"
@@ -123,21 +124,22 @@
                             clip-rule="evenodd">
                     </svg>
                 </button>
-
-                <!-- indicators -->
-                {{-- <div class="absolute rounded-xl bottom-3 md:bottom-5 left-1/2 z-20 flex -translate-x-1/2 gap-4 md:gap-3 px-1.5 py-1 md:px-2"
-                    role="group" aria-label="slides">
-                    <template x-for="(slide, index) in slides">
-                        <button class="size-2 cursor-pointer rounded-full transition"
-                            x-on:click="currentSlideIndex = index + 1"
-                            x-bind:class="[currentSlideIndex === index + 1 ? 'bg-slate-300' : 'bg-slate-300/50']"
-                            x-bind:aria-label="'slide ' + (index + 1)"></button>
-                    </template>
-                </div> --}}
             </div>
 
         </div>
+
+
     @endsection
+    
+    <livewire:contact-sales />
+
+       
+
+        
+
+    
+
+                        
 
     <div class="my-8">
         <div class="mb-7">
