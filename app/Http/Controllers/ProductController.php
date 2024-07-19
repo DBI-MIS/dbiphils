@@ -49,10 +49,15 @@ class ProductController extends Controller
     public function show(Product $product)
     {
 
-        $productUrl = route('products.show', $product->id);
+        $productUrl = route('products.show', $product->slug);
         $productTitle = $product->title;
 
-        $shareComponent = ShareFacade::page($productUrl, $productTitle)
+        $shareComponent = ShareFacade::page($productUrl, $productTitle,
+        [
+            'class' => 'my-class',
+            'id' => 'my-id',
+            'title' => 'my-title',
+            'rel' => 'nofollow noopener noreferrer'])
         ->facebook()
         ->linkedin()
         ->telegram()

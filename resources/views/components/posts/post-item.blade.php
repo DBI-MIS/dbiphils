@@ -7,7 +7,7 @@
         
         <div class="text-balance flex flex-row w-full">
             
-            <div class="gap-2">
+            <div class="gap-2 w-1/2">
                 <img
                 class="mx-auto" 
                 src="/storage/{{ $post->img }}" 

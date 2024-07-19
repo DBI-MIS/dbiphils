@@ -8,7 +8,7 @@
                 <div class="flex flex-wrap sm:flex-row md:grid md:grid-cols-2 lg:grid-cols-3 justify-around items-center text-center gap-y-2 sm:gap-x-2">
                     
                         <div class="w-full sm:max-w-48 min-h-[50px] max-h-fit rounded-xl md:border border-none md:border-opacity-10 sm:shadow-none shadow-lg bg-white sm:bg-transparent hover:bg-gray-100 border-blue-800 min-w-28 md:min-h-28 flex sm:block items-center mx-auto cursor-pointer">
-                            <a href="/product-list?category=Airconditioning" class="mx-auto">
+                            <a href="{{ route('products.list') }}?category=Airconditioning" class="mx-auto">
                             <img class="w-full mx-auto hidden sm:block p-2" src="{{asset('/Product Image - AIRCONDITIONING.png')}}" alt="">
                             <p class="text-lg sm:text-base md:text-xs lg:text-lg mx-auto py-2 text-wrap px-4">Airconditioning</p>
                         </a>
@@ -17,7 +17,7 @@
                         
 
                       <div class="w-full sm:max-w-48 min-h-[50px] max-h-fit rounded-xl md:border border-none md:border-opacity-10 sm:shadow-none shadow-lg bg-white sm:bg-transparent hover:bg-gray-100 border-blue-800 min-w-28 md:min-h-28 flex sm:block items-center mx-auto cursor-pointer">
-                            <a href="/product-list?category=Refrigeration" class="mx-auto">
+                            <a href="{{ route('products.list') }}?category=Refrigeration" class="mx-auto">
                             <img class="w-full mx-auto hidden sm:block p-2" src="{{asset('/Product Image - REFRIGERATION.png')}}" alt="">
                             <p class="text-lg sm:text-base md:text-xs lg:text-lg mx-auto py-2 text-wrap px-4">Refrigeration</p>
                         </a>
@@ -26,7 +26,7 @@
                     
                     
                       <div class="w-full sm:max-w-48 min-h-[50px] max-h-fit rounded-xl md:border border-none md:border-opacity-10 sm:shadow-none shadow-lg bg-white sm:bg-transparent hover:bg-gray-100 border-blue-800 min-w-28 md:min-h-28 flex sm:block items-center mx-auto cursor-pointer">
-                            <a href="/product-list?category=Ventilation" class="mx-auto">
+                            <a href="{{ route('products.list') }}?category=Ventilation" class="mx-auto">
                             <img class="w-full mx-auto hidden sm:block p-2" src="{{asset('/Product Image - VENTILATION.png')}}" alt="">
                             <p class="text-lg sm:text-base md:text-xs lg:text-lg mx-auto py-2 text-wrap px-4">Ventilation</p>
                         </a>
@@ -34,7 +34,7 @@
                         
 
                       <div class="w-full sm:max-w-48 min-h-[50px] max-h-fit rounded-xl md:border border-none md:border-opacity-10 sm:shadow-none shadow-lg bg-white sm:bg-transparent hover:bg-gray-100 border-blue-800 min-w-28 md:min-h-28 flex sm:block items-center mx-auto cursor-pointer">
-                            <a href="/product-list?category=CoolingTower" class="mx-auto">
+                            <a href="{{ route('products.list') }}?category=CoolingTower" class="mx-auto">
                             <img class="w-full mx-auto hidden sm:block p-2" src="{{asset('/Product Image - COOLING TOWER TRUE.png')}}" alt="">
                             <p class="text-lg sm:text-base md:text-xs lg:text-lg mx-auto py-2 text-wrap px-4">Cooling Towers</p>
                         </a>

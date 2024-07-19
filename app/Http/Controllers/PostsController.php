@@ -28,10 +28,19 @@ class PostsController extends Controller
     public function show(Post $post)
     {
 
-        $postUrl = route('posts.show', $post->id);
+        $postUrl = route('posts.show', $post->slug);
         $postTitle = $post->title;
 
-        $shareComponent = ShareFacade::page($postUrl, $postTitle)
+
+        $shareComponent = ShareFacade::page(
+            $postUrl,
+            $postTitle,
+            [
+                'class' => 'my-class',
+                'id' => 'my-id',
+                'title' => 'my-title',
+                'rel' => 'nofollow noopener noreferrer']
+            )
         ->facebook()
         ->linkedin()
         ->telegram()
@@ -47,18 +56,4 @@ class PostsController extends Controller
         );
     }
 
-    public function ShareWidget(Post $post)
-    {
-        $postUrl = route('posts.show', $post->id);
-        $postTitle = $post->title;
-
-        $shareComponent = ShareFacade::page($postUrl, $postTitle)
-        ->facebook()
-        ->linkedin()
-        ->telegram()
-        ->whatsapp()        
-        ->reddit();
-        
-        return view('posts', compact('shareComponent'));
-    }
 }

@@ -9,7 +9,7 @@ class SocialShareButtonsController extends Controller
 {
     public function ShareWidget()
     {
-        $shareComponent = Share::page('https://dbiphils.com', 'test')
+        $shareComponent = Share::page('https://dbiphils.com', 'DBI')
         ->facebook()
         ->twitter()
         ->linkedin()

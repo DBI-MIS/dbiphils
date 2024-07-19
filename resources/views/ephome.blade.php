@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <a class="mt-10 block text-center text-lg text-blue-500 font-semibold"
-                    href="{{ route('products.index') }}?category=ep-solutions">View All
+                    href="{{ route('products.list') }}?category=ep-solutions">View All
                     Products</a>
             </div>
             <hr>

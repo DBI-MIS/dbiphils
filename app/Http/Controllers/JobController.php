@@ -44,10 +44,14 @@ class JobController extends Controller
 
     public function show(JobPost $job)
     {
-        $jobUrl = route('jobs.show', $job->id);
+        $jobUrl = route('jobs.show', $job->slug);
         $jobTitle = $job->title;
 
-        $shareComponent = ShareFacade::page($jobUrl, $jobTitle)
+        $shareComponent = ShareFacade::page($jobUrl, $jobTitle,[
+            'class' => 'my-class',
+            'id' => 'my-id',
+            'title' => 'my-title',
+            'rel' => 'nofollow noopener noreferrer'])
         ->facebook()
         ->linkedin()
         ->telegram()
@@ -66,7 +70,7 @@ class JobController extends Controller
 
     public function ShareWidget(JobPost $job)
     {
-        $jobUrl = route('jobs.show', $job->id);
+        $jobUrl = route('jobs.show', $job->slug);
         $jobTitle = $job->title;
 
         $shareComponent = ShareFacade::page($jobUrl, $jobTitle)

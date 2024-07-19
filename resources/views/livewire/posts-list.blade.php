@@ -17,7 +17,7 @@
             
         </div>
     </div>
-    <div class="py-5 flex flex-col md:grid md:grid-cols lg:grid-cols-2 gap-4">
+    <div class="py-5 flex flex-col gap-4">
         @if ($this->posts->count() == 0)
         <tr>
             <td colspan="4">No News & Events to display.</td>

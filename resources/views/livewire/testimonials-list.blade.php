@@ -6,9 +6,7 @@
         @endforeach
     </div>
 
-    <div class="my-3">
-        {{ $this->testimonials->onEachSide(1)->links() }}
-    </div>
+ 
     <hr>
 
 </div>

@@ -48,10 +48,11 @@ class TestimonialsList extends Component
     #[Computed()]
     public function testimonials()
     {
-        return Testimonial::orderBy('published_at', $this->sort)
+        return Testimonial::orderBy('created_at')->take(100)
+        ->get();
         // ->where('status',true)
-        ->where('name','like',"%{$this->search}%")
-        ->paginate(20);
+        // ->where('title','like',"%{$this->search}%");
+        // ->paginate(20);
 
         // $query = Project::orderBy('published_at', $this->sort)
         //     ->where('status', true)
