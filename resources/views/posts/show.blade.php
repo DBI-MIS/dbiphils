@@ -1,6 +1,8 @@
 
 <x-app-layout :title="$post->title">
 
+    {!! seo()->for($post) !!}
+
     <style>
     div#social-links {
         margin: 0 ;
@@ -19,8 +21,8 @@
     </style>
  
     <article class="col-span-8 md:col-span-3 md:mt-8 mx-auto w-full h-full py-4" style="max-width:900px">
-        <div class="flex flex-col gap-x-2 w-full min-h-[540px]">
-            
+       
+
                 <div class="inline cursor-pointer"
                 wire:navigate href="{{ route('posts.index') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">

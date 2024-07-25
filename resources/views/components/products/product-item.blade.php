@@ -1,7 +1,7 @@
 @props(['product'])
-<article class="[&:not(:last-child)]:border-b border-gray-100 pb-2">
+<article class="[&:not(:last-child)]:border-b border-gray-100 pb-2 hover:scale-110 hover:z-50 transition-transform">
     <div class="article-body grid grid-cols-4 gap-3 mt-5 items-start">
-        <div class="col-span-4 flex flex-row gap-2 items-start">
+        <div class="col-span-4 flex md:flex-row flex-col w-full gap-y-2 gap-2 items-start">
            
             <div class="col-span-1 flex-shrink-0 w-[180px]">
                 @if ($product->product_img === null)

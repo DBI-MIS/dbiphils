@@ -37,8 +37,6 @@ class BrandResource extends Resource
 
     protected static ?int $navigationSort = 2;
     
-    protected static bool $shouldSkipAuthorization = true;
-
     public static function form(Form $form): Form
     {
         return $form

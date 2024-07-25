@@ -39,7 +39,7 @@ class PostsController extends Controller
                 'class' => 'my-class',
                 'id' => 'my-id',
                 'title' => 'my-title',
-                'rel' => 'nofollow noopener noreferrer']
+                'rel' => 'nofollow noopener noreferrer',]
             )
         ->facebook()
         ->linkedin()

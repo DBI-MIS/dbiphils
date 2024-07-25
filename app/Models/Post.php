@@ -43,11 +43,11 @@ class Post extends Model
 
     public function getDynamicSEOData(): SEOData
     {
-        $pathToFeaturedImageRelativeToPublicPath =  $this->img;
+        $pathToFeaturedImageRelativeToPublicPath =  '/storage/'.$this->img;
 
         return new SEOData(
             title: $this->title,
-            description: $this->getExcerpt,
+            description: $this->getExcerpt(),
             image: $pathToFeaturedImageRelativeToPublicPath,
         );
     }

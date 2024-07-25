@@ -15,12 +15,16 @@ class User extends Authenticatable
 
     const ROLE_ADMIN = 'ADMIN';
     const ROLE_EDITOR = 'EDITOR';
+    const ROLE_SALES = 'SALES';
+    const ROLE_HRAD = 'HRAD';
     const ROLE_USER = 'USER';
     const ROLE_DEFAULT = self::ROLE_USER;
 
     const ROLES = [
         self::ROLE_ADMIN => 'Admin',
         self::ROLE_EDITOR => 'Editor',
+        self::ROLE_SALES => 'Sales',
+        self::ROLE_HRAD => 'Hrad',
         self::ROLE_USER => 'User',
     ];
 
@@ -37,6 +41,14 @@ class User extends Authenticatable
         return $this->role === self::ROLE_EDITOR;
     }
 
+    public function isSales(){
+        return $this->role === self::ROLE_SALES;
+    }
+
+    public function isHrad(){
+        return $this->role === self::ROLE_HRAD;
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -46,6 +58,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**

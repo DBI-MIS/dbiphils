@@ -7,12 +7,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
+use RalphJSmit\Laravel\SEO\Support\HasSEO;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class JobPost extends Model
 {
 
     use HasFactory,
-    SoftDeletes;
+    SoftDeletes,
+    HasSEO;
     // HasFilamentComments;
 
     protected $fillable = [
@@ -83,5 +86,16 @@ class JobPost extends Model
     public function getExcerpt() 
     {
         return Str::limit(strip_tags($this->post_description), 200);
+    }
+
+    public function getDynamicSEOData(): SEOData
+    {
+        $pathToFeaturedImageRelativeToPublicPath = null;
+
+        return new SEOData(
+            title: $this->title,
+            description: $this->post_description,
+            image: $pathToFeaturedImageRelativeToPublicPath,
+        );
     }
 }

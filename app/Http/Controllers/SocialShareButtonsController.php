@@ -9,14 +9,14 @@ class SocialShareButtonsController extends Controller
 {
     public function ShareWidget()
     {
-        $shareComponent = Share::page('https://dbiphils.com', 'DBI')
-        ->facebook()
-        ->twitter()
-        ->linkedin()
-        ->telegram()
-        ->whatsapp()        
-        ->reddit();
+        // $shareComponent = Share::page('https://dbiphils.com', 'DBI')
+        // ->facebook()
+        // ->twitter()
+        // ->linkedin()
+        // ->telegram()
+        // ->whatsapp()        
+        // ->reddit();
         
-        return view('posts.show', compact('shareComponent'));
+        // return view('posts.show', compact('shareComponent'));
     }
 }

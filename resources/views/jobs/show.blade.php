@@ -1,4 +1,5 @@
 <x-app-layout :title="$job->title">
+    {!! seo()->for($job) !!}
 
     <style>
         div#social-links {

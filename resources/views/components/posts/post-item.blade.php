@@ -1,13 +1,13 @@
 @props(['post'])
 
-<article class="[&:not(:last-child)]:border-b border-gray-200 pb-2">
+<article class="[&:not(:last-child)]:border-b border-gray-200 pb-2 hover:scale-110 hover:z-50 transition-transform">
 
     <div class="w-full overflow-hidden cursor-pointer"
         wire:navigate href="{{ route('posts.show', $post->slug) }}">
         
-        <div class="text-balance flex flex-row w-full">
+        <div class="text-balance flex md:flex-row flex-col w-full gap-y-2">
             
-            <div class="gap-2 w-1/2">
+            <div class="gap-2 w-full md:w-1/2">
                 <img
                 class="mx-auto" 
                 src="/storage/{{ $post->img }}" 
@@ -15,7 +15,7 @@
                 {{-- <img class="w-auto h-auto " src="{{ $post->img }}" alt=""> --}}
             </div>
 
-            <div class="flex flex-col gap-y-2 px-10 text-left w-full">
+            <div class="flex flex-col gap-y-2 px-1 sm:px-10 text-left w-full">
                 <div class="flex flex-row justify-between items-center">
                 <span class="text-base font-light whitespace-nowrap ">{{ $post->published_at->diffForHumans() }}</span>
                 <div class="w-4">

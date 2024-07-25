@@ -6,9 +6,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <meta property="og:site_name" :content="title">
+        <meta property="og:title" :content="title">
+        <meta property="og:description" :content="description">
+        <meta property="og:type" content="website">
+        <meta property="og:locale" content="en">
+        <meta property="og:url" :content="title">
+        <meta property="og:image" content="`/storage/${img}`">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:image:alt" content="D.B. International Sales & Services, Inc">
+
+        {{-- <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@stefanbauerme">
+        <meta name="twitter:creator" content="@stefanbauerme">
+        <meta name="twitter:title" content="Laravel Secrets">
+        <meta name="twitter:image" content="{{ asset('img/twitter_summary_card.png') }}"> --}}
+
         <title> {{ isset ($title) ? $title . ' - ' : '' }} {{ config('app.name', 'DBI') }}</title>
 
         <!-- Fonts -->
+        {{-- <link rel="icon" type="image/x-icon" href="{{ asset('/favicon.ico')}}"> --}}
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />

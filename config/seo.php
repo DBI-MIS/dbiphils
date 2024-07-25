@@ -12,7 +12,7 @@ return [
     /**
      * Use this setting to specify the site name that will be used in OpenGraph tags.
      */
-    'site_name' => 'dbiphils.com',
+    'site_name' => 'www.dbiphils.com',
 
     /**
      * Use this setting to specify the path to the sitemap of your website. This exact path will outputted, so

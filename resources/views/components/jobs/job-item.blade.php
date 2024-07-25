@@ -1,5 +1,5 @@
 @props(['job'])
-<article class="[&:not(:last-child)]:border-b border-gray-100 pb-10">
+<article class="[&:not(:last-child)]:border-b border-gray-100 pb-10 hover:scale-110 hover:z-50 transition-transform">
     <div class="article-body grid grid-cols-8 gap-3 mt-5 items-start">
         <div class="col-span-8">
             
