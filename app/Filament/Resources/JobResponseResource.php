@@ -177,7 +177,7 @@ public static function table(Table $table): Table
                         ->heading('Date of Application'),
                         Column::make('full_name')
                         ->heading('Name of Applicant'),
-                        Column::make('post.title')
+                        Column::make('job_post.title')
                         ->heading('Position Applied'),
                         Column::make('contact')
                         ->heading('Contact No.'),

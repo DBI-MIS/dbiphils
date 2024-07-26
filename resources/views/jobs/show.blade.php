@@ -34,7 +34,7 @@
         <div class="mt-2 flex justify-between items-center">
             
             <div class="flex py-5 text-base items-center">
-                <span class="mr-1">Posted By: {{ $job->author->name }}</span>
+                <span class="mr-1">Posted By: {{ $job->author->name ?? 'hrad' }}</span>
             </div>
 
             <div class="flex items-center">

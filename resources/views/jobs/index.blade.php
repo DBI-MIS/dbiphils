@@ -7,7 +7,7 @@
             
             <div class="absolute left-0 top-0 overflow-hidden -z-20 w-full bg-gradient-to-r from-sky-900 via-sky-200 brightness-50">
                 <video autoplay loop muted class="pointer-events-none object-cover">
-                    <source src="https://dbiphils.com/AvpShort.webm" type="video/webm">
+                    <source src="{{asset('/AvpShort.webm')}}" type="video/webm">
                 </video>
             </div>
             <div class="mx-[clamp(12px,_-8.8031px_+_6.501vi,_80px)] xl:flex xl:justify-between xl:items-center">
@@ -83,7 +83,7 @@
                         <div class="leading-3 w-full xl:mb-5">
                             <hr class="hidden xl:block">
                             <span class="text-xs lg:text-sm xl:text-base">Serving</span><br>
-                            <span class="text-xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold">140+</span><br>
+                            <span class="text-xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold">500+</span><br>
                             <span class="text-xs lg:text-sm xl:text-base">Clients/Projects</span>
                         </div>
                         <div class="leading-3 w-full xl:mb-5">
@@ -94,9 +94,10 @@
                         </div>
                         <div class="leading-3 w-full xl:mb-5">
                             <hr class="hidden xl:block">
-                            <span class="text-xs lg:text-sm xl:text-base">Among the</span><br>
-                            <span class="text-xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold inline-block"><span class="text-xl align-top">Top</span>100</span><br>
-                            <span class="text-xs lg:text-sm xl:text-base italic text-pretty">*Employer for Fresh Graduates</span>
+                            <span class="text-xs lg:text-sm xl:text-base">Among the Top</span><br>
+                            <span class="text-xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold inline-block"><span class="text-xl align-top">No.</span>51</span><br>
+                            <a href="https://ph.prosple.com/top-employers">
+                            <span class="text-xs lg:text-sm xl:text-base italic text-pretty text-yellow-400 shadow-white">*Employer for Fresh Graduates</span></a>
                         </div>  
                     </div>                       
                     

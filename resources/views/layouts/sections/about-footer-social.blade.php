@@ -9,8 +9,10 @@
               <span>Email: </span>
         </div>
         <div class="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-2">
-            <span>corporate@dbiphils.com </span>
             <span>sales@dbiphils.com</span>
+            <span>corporate@dbiphils.com </span>
+            <span>rtg@dbiphils.com </span>
+            
         </div>
         
     </div>

@@ -137,12 +137,12 @@
                     @enderror
                 </div>
 
-
-                {{-- <div id="captcha" class="mt-4" wire:ignore></div>
-
+              
+                <div id="recaptchaToken" class="g-recaptcha mt-4" data-sitekey='6LdOzxgqAAAAAG-HijnnRLOVdiLKEn8BCP7_exhO' wire:ignore></div>
+                
  
 
-                @error('captcha')
+                @error('recaptchaToken')
         
                     <p class="mt-3 text-sm text-red-600 text-left">
         
@@ -150,13 +150,7 @@
         
                     </p>
         
-                @enderror --}}
-
-
-                {{-- <livewire:dropzone
-                 wire:model="attachment"
-                    :rules="['file','mimes:pdf,doc','max:10420']"
-                    :multiple="false" /> --}}
+                @enderror
               
 
 
@@ -177,41 +171,8 @@
         
     </form>
 
-    {{-- <script src="https://www.google.com/recaptcha/api.js?onload=handle&render=explicit"
+    <script async src="https://www.google.com/recaptcha/api.js" defer></script>
 
-    async
-
-    defer>
-
-</script> --}}
-
- 
-{{-- 
-<script>
-
-    var  handle = function(e) {
-
-        widget = grecaptcha.render('captcha', {
-
-            'sitekey': '{{ env('CAPTCHA_SITE_KEY') }}',
-
-            'theme': 'light', // you could switch between dark and light mode.
-
-            'callback': verify
-
-        });
-
- 
-
-    }
-
-    var verify = function (response) {
-
-        @this.set('captcha', response)
-
-    }
-
-</script> --}}
 
 
 <x-filament-actions::modals />

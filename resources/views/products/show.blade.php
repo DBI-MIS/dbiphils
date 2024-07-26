@@ -169,8 +169,10 @@
                       <div class="text-sm">
                         <span>Email</span>
                         <div class="flex flex-col">
+                            <p>sales@dbiphils.com,</p>
                             <p>corporate@dbiphils.com,</p>
-                            <p>sales@dbiphils.com</p>
+                            <p>rtg@dbiphils.com</p>
+                            
                         </div>
                         
                     </div>

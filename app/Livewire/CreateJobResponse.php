@@ -14,6 +14,8 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Illuminate\Contracts\Queue\Job;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
@@ -41,7 +43,7 @@ class CreateJobResponse extends Component implements HasForms, HasActions
     
     public bool $isValid = false;
 
-    public $captcha = null;
+    public $recaptchaToken = null;
     
 
     protected $casts = [
@@ -82,6 +84,7 @@ class CreateJobResponse extends Component implements HasForms, HasActions
     {
         try {
             $this->validate();
+            $this->validateCaptcha($this->recaptchaToken);
             return true;
         } catch (\Illuminate\Validation\ValidationException $e) {
             return false;
@@ -171,63 +174,37 @@ class CreateJobResponse extends Component implements HasForms, HasActions
             
     }
     
-//     public function updatedCaptcha($token)
+    public function updatedCaptchaToken($token)
+    {
+        $this->recaptchaToken = $token;
+        $this->validateCaptcha($token);
+    }
 
-// {
+    protected function validateCaptcha($token)
+    {
+        $response = Http::post(
+            'https://www.google.com/recaptcha/api/siteverify?secret='.
+            env('RECAPTCHA_SECRET_KEY').
+            '&response='.$token
+        );
 
-//     $response = Http::post(
+        $success = $response->json()['success'];
 
-//         'https://www.google.com/recaptcha/api/siteverify?secret='.
-
-//         env('CAPTCHA_SECRET_KEY').
-
-//         '&response='.$token
-
-//     );
-
- 
-
-//     $success = $response->json()['success'];
-
- 
-
-//     if (! $success) {
-
-//         throw ValidationException::withMessages([
-
-//             'captcha' => __('Google thinks, you are a bot, please refresh and try again!'),
-
-//         ]);
-
-//     } else {
-
-//         $this->captcha = true;
-
-//     }
-
-// }
+        if (!$success) {
+            throw ValidationException::withMessages([
+                'recaptcha' => __('Google thinks you are a bot, please refresh and try again!'),
+            ]);
+        }
+    }
 
  
 
-// validate the captcha rule
-
-// protected function rules()
-
-// {
-
-//     return [
-
-//         'captcha' => ['required'],
-
-//         // ...
-
-//     ];
-
-// }
     
     public function create(): void
     {
         $this->validate();
+        
+        $this->validateCaptcha($this->recaptchaToken);
         $response = JobResponse::create($this->form->getState());
 
         $this->form->model($response)->saveRelationships();
