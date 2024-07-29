@@ -7,6 +7,7 @@ use App\Filament\Resources\JobCategoryResource\RelationManagers;
 use App\Models\JobCategory;
 use Filament\Forms;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Form;
@@ -22,13 +23,13 @@ class JobCategoryResource extends Resource
     protected static ?string $model = JobCategory::class;
 
     protected static ?string $navigationIcon = 'heroicon-s-tag';
-    
+
     protected static ?string $navigationGroup = 'Job Post';
 
     public static function getNavigationBadge(): ?string
-{
-    return static::getModel()::count();
-}
+    {
+        return static::getModel()::count();
+    }
 
     protected static ?int $navigationSort = 2;
 
@@ -36,46 +37,55 @@ class JobCategoryResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('title')
-                    ->required()
-                    ->label(__('Category'))
-                    ->live(onBlur:true)
-                    ->columnSpan(1)
-                    ->afterStateUpdated(
-                        function(string $operation, string $state, Forms\Set $set) {
-                        if ($operation === 'edit'){
-                            return;}
-                    $set('slug', Str::slug($state));
-                    }),
-                Hidden::make('slug')
-                    ->required()
-                    ->unique(ignoreRecord: true),
+                Section::make('Category')
+                    ->description(' ')
+                    ->schema([
+                        TextInput::make('title')
+                            ->required()
+                            ->label(__('Category'))
+                            ->live(onBlur: true)
+                            ->columnSpan(1)
+                            ->afterStateUpdated(
+                                function (string $operation, string $state, Forms\Set $set) {
+                                    if ($operation === 'edit') {
+                                        return;
+                                    }
+                                    $set('slug', Str::slug($state));
+                                }
+                            ),
+                        Hidden::make('slug')
+                            ->required()
+                            ->unique(ignoreRecord: true),
+                    ])->columnSpan(2),
+                Section::make('Colors')
+                    ->description(' ')
+                    ->schema([
+                        ToggleButtons::make('text_color')->default('white')
+                            ->required()
+                            ->options([
+                                'white' => 'white',
+                                'blue' => 'blue',
+                                'red' => 'red',
+                                'yellow' => 'yellow',
+                                'green' => 'green',
+                            ])
+                            ->grouped()
+                            ->label(__('Text Color')),
 
-                ToggleButtons::make('text_color')->default('white')
-                    ->required()
-                    ->options([
-                        'white' => 'white',
-                        'blue' => 'blue',
-                        'red' => 'red',
-                        'yellow' => 'yellow',
-                        'green' => 'green',
-                        ])
-                    ->grouped()
-                    ->label(__('Text Color')),
-                    
 
-                ToggleButtons::make('bg_color')->default('blue')
-                    ->required()
-                    ->options([
-                        'gray' => 'gray',
-                        'blue' => 'blue',
-                        'red' => 'red',
-                        'yellow' => 'yellow',
-                        'green' => 'green',
-                        ])
-                    ->grouped()
-                    ->label(__('Background Color')),
-                
+                        ToggleButtons::make('bg_color')->default('blue')
+                            ->required()
+                            ->options([
+                                'gray' => 'gray',
+                                'blue' => 'blue',
+                                'red' => 'red',
+                                'yellow' => 'yellow',
+                                'green' => 'green',
+                            ])
+                            ->grouped()
+                            ->label(__('Background Color')),
+                    ])->columnSpan(1),
+
             ])->columns(3);
     }
 

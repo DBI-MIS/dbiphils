@@ -8,6 +8,7 @@ use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -28,7 +29,7 @@ class UserResource extends Resource
     protected static ?string $navigationGroup = 'Management';
 
     protected static ?int $navigationSort = 20;
-    
+
     protected $casts = [
         'password' => 'hashed',
     ];
@@ -37,22 +38,34 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                TextInput::make('email')
-                    ->email()
-                    ->required()
-                    ->maxLength(255),
-                TextInput::make('password')
-                    ->password()
-                    ->password()
-                    ->dehydrateStateUsing(fn ($state) => Hash::make($state))
-                    ->dehydrated(fn ($state) => filled($state)),
-                Select::make('role')
-                    ->options(User::ROLES)
-                    ->required(),
-            ]);
+                Section::make(' ')
+                    ->description(' ')
+                    ->schema([
+                        TextInput::make('name')
+                            ->required()
+                            ->maxLength(255),
+                        TextInput::make('email')
+                            ->email()
+                            ->required()
+                            ->maxLength(255),
+                        TextInput::make('password')
+                            ->password()
+                            ->password()
+                            ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                            ->dehydrated(fn ($state) => filled($state)),
+                    ])->columnSpan(2),
+                Section::make(' ')
+                    ->description(' ')
+                    ->schema([
+                        Select::make('role')
+                            ->options(User::ROLES)
+                            ->required(),
+                    ])->columnSpan(1),
+
+
+
+
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table

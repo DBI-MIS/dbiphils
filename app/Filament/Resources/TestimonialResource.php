@@ -9,6 +9,7 @@ use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -39,32 +40,45 @@ class TestimonialResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('title')
-                    ->required(),
-                Toggle::make('is_featured'),
-                FileUpload::make('img')
-                    ->image()->directory('page/photos')
-                    ->nullable(),
-                TextInput::make('personnel'),
-                RichEditor::make('description')
-                    ->columnSpanFull()
-                    ->toolbarButtons([
-                        'blockquote',
-                        'bold',
-                        'italic',
-                        'link',
-                        'redo',
-                        'strike',
-                        'undo',
-                    ]),
-                
-            ]);
+                Section::make(' ')
+                    ->description(' ')
+                    ->schema([
+                        TextInput::make('title')
+                            ->required(),
+                        TextInput::make('personnel'),
+                        RichEditor::make('description')
+                            ->columnSpanFull()
+                            ->toolbarButtons([
+                                'blockquote',
+                                'bold',
+                                'italic',
+                                'link',
+                                'redo',
+                                'strike',
+                                'undo',
+                            ]),
+                    ])->columnSpan(2),
+                Section::make(' ')
+                    ->description(' ')
+                    ->schema([
+                        Toggle::make('is_featured'),
+                        FileUpload::make('img')
+                            ->image()->directory('page/photos')
+                            ->nullable(),
+                    ])->columnSpan(1),
+
+
+
+
+
+
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
     {
         return $table
-        ->defaultPaginationPageOption(25)
+            ->defaultPaginationPageOption(25)
             ->columns([
                 ImageColumn::make('img')->wrap(),
                 TextColumn::make('title')

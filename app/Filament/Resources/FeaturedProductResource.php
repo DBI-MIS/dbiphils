@@ -7,6 +7,7 @@ use App\Filament\Resources\FeaturedProductResource\RelationManagers;
 use App\Models\FeaturedProduct;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -35,35 +36,47 @@ class FeaturedProductResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-        ->schema([
-            TextInput::make('title')
-                 ->required(),
-             Toggle::make('is_featured'),
-             FileUpload::make('img')
-                 ->image()
-                 ->directory('page/photos')
-                 ->nullable(),
-            TextInput::make('category'),
-            Textarea::make('description')
-                 ->columnSpanFull()
-                 ->rows(10)
-                 ->cols(20),
-            
-         ]);
+            ->schema([
+                Section::make(' ')
+                    ->description(' ')
+                    ->schema([
+                        TextInput::make('title')
+                            ->required(),
+                        TextInput::make('category'),
+                        Textarea::make('description')
+                            ->columnSpanFull()
+                            ->rows(10)
+                            ->cols(20),
+                    ])->columnSpan(2),
+                Section::make(' ')
+                    ->description(' ')
+                    ->schema([
+                        Toggle::make('is_featured'),
+                        FileUpload::make('img')
+                            ->image()
+                            ->directory('page/photos')
+                            ->nullable(),
+                    ])->columnSpan(1),
+
+
+
+
+
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
     {
         return $table
-        ->columns([
-            ImageColumn::make('img')
-                ->wrap(),
-            TextColumn::make('title')
-                ->searchable(),
-            TextColumn::make('category')
-                ->searchable(),
-            ToggleColumn::make('is_featured'),
-        ])
+            ->columns([
+                ImageColumn::make('img')
+                    ->wrap(),
+                TextColumn::make('title')
+                    ->searchable(),
+                TextColumn::make('category')
+                    ->searchable(),
+                ToggleColumn::make('is_featured'),
+            ])
             ->filters([
                 //
             ])

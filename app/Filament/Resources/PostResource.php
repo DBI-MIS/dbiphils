@@ -11,6 +11,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -43,58 +44,71 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('title')
-                    ->required()
-                    ->live(onBlur: true)
-                    ->afterStateUpdated(
-                        function (string $operation, string $state, Forms\Set $set) {
-                            if ($operation === 'edit') {
-                                return;
-                            }
-                            $set('slug', Str::slug($state));
-                        }
-                    ),
-                Toggle::make('is_featured'),
-                MarkdownEditor::make('content')
-                    ->columnSpanFull()
-                    ->fileAttachmentsDirectory('event/photos')
-                    ->fileAttachmentsVisibility('public')
-                    ->toolbarButtons([
-                       'attachFiles',
-                        'blockquote',
-                        'bold',
-                        'bulletList',
-                        'codeBlock',
-                        'heading',
-                        'italic',
-                        'link',
-                        'orderedList',
-                        'redo',
-                        'strike',
-                        'table',
-                        'undo',
-                        'paragraph',
-                    ]),
-                TextInput::make('category'),
-                DatePicker::make('published_at')
-                    ->timezone('Asia/Manila')
-                    ->required()
-                    ->default(Carbon::today())
-                    ,
-                FileUpload::make('img')
-                    ->image()->directory('event/photos')
-                    ->nullable(),
-                TextInput::make('slug')
-                    ->required(),
-                SEO::make()->hidden(),
-                
-            ]);
+                Section::make(' ')
+                    ->description(' ')
+                    ->schema([
+                        TextInput::make('title')
+                            ->required()
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(
+                                function (string $operation, string $state, Forms\Set $set) {
+                                    if ($operation === 'edit') {
+                                        return;
+                                    }
+                                    $set('slug', Str::slug($state));
+                                }
+                            ),
+                        TextInput::make('category'),
+                        MarkdownEditor::make('content')
+                            ->columnSpanFull()
+                            ->fileAttachmentsDirectory('event/photos')
+                            ->fileAttachmentsVisibility('public')
+                            ->toolbarButtons([
+                                'attachFiles',
+                                'blockquote',
+                                'bold',
+                                'bulletList',
+                                'codeBlock',
+                                'heading',
+                                'italic',
+                                'link',
+                                'orderedList',
+                                'redo',
+                                'strike',
+                                'table',
+                                'undo',
+                                'paragraph',
+                            ]),
+                    ])->columnSpan(2),
+                Section::make(' ')
+                    ->description(' ')
+                    ->schema([
+                        Toggle::make('is_featured'),
+                        DatePicker::make('published_at')
+                            ->timezone('Asia/Manila')
+                            ->required()
+                            ->default(Carbon::today()),
+                        FileUpload::make('img')
+                            ->image()->directory('event/photos')
+                            ->nullable(),
+                        TextInput::make('slug')
+                            ->required(),
+                        SEO::make()->hidden(),
+                    ])->columnSpan(1),
+
+
+
+
+
+
+
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
     {
         return $table
-        ->defaultPaginationPageOption(25)
+            ->defaultPaginationPageOption(25)
             ->columns([
 
                 ImageColumn::make('img')->wrap(),

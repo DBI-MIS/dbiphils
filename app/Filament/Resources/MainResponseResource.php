@@ -6,6 +6,7 @@ use App\Filament\Resources\MainResponseResource\Pages;
 use App\Filament\Resources\MainResponseResource\RelationManagers;
 use App\Models\MainResponse;
 use Filament\Forms;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -31,50 +32,67 @@ class MainResponseResource extends Resource
 
     protected static ?string $navigationLabel = 'About Us Form Inquiries';
 
+    protected static ?string $label = 'Form Inquiries';
+
     protected static ?int $navigationSort = 1;
 
     public static function getNavigationBadge(): ?string
-{
-    return static::getModel()::count();
-}
+    {
+        return static::getModel()::count();
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('name')
-                    ->required(),
-                TextInput::make('email')
-                    ->email()
-                    ->required(),
-                Select::make('subject')
-                ->options([
-                    'General Inquiry' => 'General Inquiry',
-                    'Product Inquiry' => 'Product Inquiry',
-                    'Concern/Issue' => 'Concern/Issue',
-                    'Careers/Hiring' => 'Careers/Hiring',
-                    'Feedback' => 'Feedback',
-                ])->default('General Inquiry'),
-                TextInput::make('contact')
-                    ->required(),
-                Textarea::make('message')
-                    ->required()
-                    ->columnSpanFull(),
-                Toggle::make('review')
-                    ->hidden()
-                    ->default(false),
+                Section::make('Form Response')
+                    ->description(' ')
+                    ->schema([
+                        TextInput::make('name')
+                            ->required(),
+
+                        Textarea::make('message')
+                            ->required()
+                            ->columnSpanFull()
+                            ->rows(5),
+                        Toggle::make('review')
+                            ->hidden()
+                            ->default(false),
+                    ])->columnSpan(2),
+                Section::make(' ')
+                    ->description(' ')
+                    ->schema([
+                        Select::make('subject')
+                            ->options([
+                                'General Inquiry' => 'General Inquiry',
+                                'Product Inquiry' => 'Product Inquiry',
+                                'Concern/Issue' => 'Concern/Issue',
+                                'Careers/Hiring' => 'Careers/Hiring',
+                                'Feedback' => 'Feedback',
+                            ])->default('General Inquiry'),
+                        TextInput::make('email')
+                            ->email()
+                            ->required(),
+                        TextInput::make('contact')
+                            ->required(),
+
+                    ])->columnSpan(1),
                 Select::make('status')
                     ->options([
                         'pending' => 'pending',
                         'reviewed' => 'reviewed',
                     ])->default('pending')->hidden(),
-            ]);
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
+                TextColumn::make('created_at')
+                ->since()
+                ->dateTimeTooltip()
+                ->label('Date'),
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('email')
@@ -96,7 +114,8 @@ class MainResponseResource extends Resource
                             $record->save();
                         }
                     }),
-            ])
+                   
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])

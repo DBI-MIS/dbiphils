@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -39,176 +40,192 @@ class JobResponseResource extends Resource
 
     protected static ?int $navigationSort = 3;
 
+    protected static ?string $label = 'Job Inquiries';
+
     public static function getNavigationBadge(): ?string
-{
-    return static::getModel()::count();
-}
+    {
+        return static::getModel()::count();
+    }
 
 
-public static function form(Form $form): Form
-{
-    return $form
-        ->schema([
-            TextInput::make('full_name')
-            ->required()
-            ->label(__('Full Name'))
-            ->live(onBlur:true)
-            ->columnSpan(2)
-            ->hint('  '),
-            // Radio::make('status')->options(ResponseStatus::class),
-            Select::make('post_title')
-                ->relationship('job_post', 'title')
-                ->searchable()
-                ->required()
-                ->preload()
-                ->label(__('Position')),
-            DatePicker::make('date_response')
-                ->required()
-                ->readonly()
-                ->closeOnDateSelection()
-                ->default(now())
-                ->label(__('Date')),
-            TextInput::make('contact')
-                ->tel()
-                ->maxLength(11)
-                ->label(__('Contact Number')),
-            TextInput::make('email_address')
-                ->email()
-                ->label(__('Email Address')),
-            TextInput::make('current_address')
-            ->columnSpan(3)
-                ->required()
-                ->label(__('Current Address'))
-                ->hint('#/Street'),
-                
-            FileUpload::make('attachment')
-            ->uploadingMessage('Uploading attachment...')
-            ->directory('form-attachments')
-            ->visibility('public')
-            ->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])
-            ->maxSize(5120)
-            ->getUploadedFileNameForStorageUsing(
-                fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
-                    ->prepend('job_response'),)
-            ->openable()
-            ->downloadable()
-            ->fetchFileInformation(true)
-            ->moveFiles()
-            ->storeFiles(true)
-            ->removeUploadedFileButtonPosition('right')
-            ->uploadButtonPosition('left')
-            ->uploadProgressIndicatorPosition('left')
-            // ->required()
-            ->columnSpan(3)
-            ->id('attachment')
+    public static function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                Section::make(' ')
+                    ->description(' ')
+                    ->schema([
+                        Select::make('post_title')
+                            ->relationship('job_post', 'title')
+                            ->searchable()
+                            ->required()
+                            ->preload()
+                            ->label(__('Position'))
+                            ->columnSpan(2),
+                        TextInput::make('full_name')
+                            ->required()
+                            ->label(__('Full Name'))
+                            ->live(onBlur: true)
+                            ->hint('  ')
+                            ->columnSpan(2),
+                        // Radio::make('status')->options(ResponseStatus::class),
+                        TextInput::make('email_address')
+                            ->email()
+                            ->label(__('Email Address'))
+                            ->columnSpan(1),
+                        TextInput::make('contact')
+                            ->tel()
+                            ->maxLength(11)
+                            ->label(__('Contact Number'))
+                            ->columnSpan(1),
 
-        ,
-        ]) ->columns(3);
-}
+                        TextInput::make('current_address')
+                            ->columnSpan(2)
+                            ->required()
+                            ->label(__('Current Address'))
+                            ->hint('#/Street'),
 
-public static function table(Table $table): Table
-{
-    return $table
-    
-        ->columns([
-            
-            TextColumn::make('date_response')
-                ->date()
-                ->sortable()
-                ->label(__('Date'))
-                ->alignCenter(),
-            TextColumn::make('full_name')
-                ->searchable()
-                ->label(__('Name'))
-                ->alignCenter(),
-            TextColumn::make('job_post.title')
-             ->label(__('Position'))
-                ->sortable()
-                ->alignCenter(),
-            IconColumn::make('attachment')
-                ->grow(false)
-                ->label(' ')
-                ->icon('heroicon-o-link')
-                ->wrap()
-                ->alignCenter(),
-            IconColumn::make('review')
-                ->boolean()
-                ->label('Reviewed')
-                ->sortable()
-                ->alignCenter(),
-            SelectColumn::make('status')
-                // ->options(ResponseStatus::class)
-                ->selectablePlaceholder(false)
-                ->sortable()
-                ->searchable()
-                ->grow(false)
-                ->alignCenter()
-                ->options([
-                    'cancelled' => 'cancelled',
-                    'hired' => 'hired',
-                    'unqualified' => 'unqualified',
-                ])
-                ->afterStateUpdated(function ($state, $record) {
-                    if ($state === 'cancelled' || 'hired' || 'unqualified' ) {
-                        $record->review = true;
-                        $record->save();
-                    }
-                }),
-                
-        ])->defaultSort('date_response', 'desc')
-        ->heading('Job Form Responses')
-        ->filters([
-            
-            Tables\Filters\TrashedFilter::make(),
-        ])
-        ->actions([
-            Tables\Actions\ViewAction::make(),
-            Tables\Actions\EditAction::make(),
-            Tables\Actions\DeleteAction::make(), 
-            Tables\Actions\RestoreAction::make(),
-        ])
-        ->bulkActions([
-            Tables\Actions\BulkActionGroup::make([
-                ExportBulkAction::make()->exports([
-                    ExcelExport::make()
-                    ->withFilename(date(Carbon::now()) . ' - Job Application Responses')
-                    ->withColumns([
-                        Column::make('date_response')
-                        ->heading('Date of Application'),
-                        Column::make('full_name')
-                        ->heading('Name of Applicant'),
-                        Column::make('job_post.title')
-                        ->heading('Position Applied'),
-                        Column::make('contact')
-                        ->heading('Contact No.'),
-                        Column::make('email_address')
-                        ->heading('Email Address'),
-                        Column::make('status')
-                        ->heading('Status'),
+                    ])->columnSpan(2),
+                Section::make(' ')
+                    ->description(' ')
+                    ->schema([
+                        DatePicker::make('date_response')
+                            ->required()
+                            ->readonly()
+                            ->closeOnDateSelection()
+                            ->default(now())
+                            ->label(__('Date')),
+                        FileUpload::make('attachment')
+                            ->uploadingMessage('Uploading attachment...')
+                            ->directory('form-attachments')
+                            ->visibility('public')
+                            ->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])
+                            ->maxSize(5120)
+                            ->getUploadedFileNameForStorageUsing(
+                                fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
+                                    ->prepend('job_response'),
+                            )
+                            ->openable()
+                            ->downloadable()
+                            ->fetchFileInformation(true)
+                            ->moveFiles()
+                            ->storeFiles(true)
+                            ->removeUploadedFileButtonPosition('right')
+                            ->uploadButtonPosition('left')
+                            ->uploadProgressIndicatorPosition('left')
+                            // ->required()
+                            ->columnSpanFull()
+                            ->id('attachment'),
+
+                    ])->columnSpan(1),
+
+
+            ])->columns(3);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+
+            ->columns([
+
+                TextColumn::make('date_response')
+                    ->date()
+                    ->sortable()
+                    ->label(__('Date'))
+                    ->alignCenter(),
+                TextColumn::make('full_name')
+                    ->searchable()
+                    ->label(__('Name'))
+                    ->alignCenter(),
+                TextColumn::make('job_post.title')
+                    ->label(__('Position'))
+                    ->sortable()
+                    ->alignCenter(),
+                IconColumn::make('attachment')
+                    ->grow(false)
+                    ->label(' ')
+                    ->icon('heroicon-o-link')
+                    ->wrap()
+                    ->alignCenter(),
+                IconColumn::make('review')
+                    ->boolean()
+                    ->label('Reviewed')
+                    ->sortable()
+                    ->alignCenter(),
+                SelectColumn::make('status')
+                    // ->options(ResponseStatus::class)
+                    ->selectablePlaceholder(false)
+                    ->sortable()
+                    ->searchable()
+                    ->grow(false)
+                    ->alignCenter()
+                    ->options([
+                        'cancelled' => 'cancelled',
+                        'hired' => 'hired',
+                        'unqualified' => 'unqualified',
+                    ])
+                    ->afterStateUpdated(function ($state, $record) {
+                        if ($state === 'cancelled' || 'hired' || 'unqualified') {
+                            $record->review = true;
+                            $record->save();
+                        }
+                    }),
+
+            ])->defaultSort('date_response', 'desc')
+            ->defaultPaginationPageOption(25)
+            ->heading('Job Form Responses')
+            ->filters([
+
+                Tables\Filters\TrashedFilter::make(),
+            ])
+            ->actions([
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\RestoreAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    ExportBulkAction::make()->exports([
+                        ExcelExport::make()
+                            ->withFilename(date(Carbon::now()) . ' - Job Application Responses')
+                            ->withColumns([
+                                Column::make('date_response')
+                                    ->heading('Date of Application'),
+                                Column::make('full_name')
+                                    ->heading('Name of Applicant'),
+                                Column::make('job_post.title')
+                                    ->heading('Position Applied'),
+                                Column::make('contact')
+                                    ->heading('Contact No.'),
+                                Column::make('email_address')
+                                    ->heading('Email Address'),
+                                Column::make('status')
+                                    ->heading('Status'),
+                            ]),
                     ]),
+                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\ForceDeleteBulkAction::make(),
+                    Tables\Actions\RestoreBulkAction::make(),
                 ]),
-                Tables\Actions\DeleteBulkAction::make(),
-                Tables\Actions\ForceDeleteBulkAction::make(), 
-                Tables\Actions\RestoreBulkAction::make(), 
-            ]),
-        ]);
-        ;
-}
+            ]);;
+    }
 
-public static function getRelations(): array
-{
-    return [
-        //
-    ];
-}
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
 
-public static function getPages(): array
-{
-    return [
-        'index' => Pages\ListJobResponses::route('/'),
-        'create' => Pages\CreateJobResponse::route('/create'),
-        // 'view' => Pages\ViewJobResponse::route('/{record}'),
-        'edit' => Pages\EditJobResponse::route('/{record}/edit'),
-    ];
-}
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListJobResponses::route('/'),
+            'create' => Pages\CreateJobResponse::route('/create'),
+            // 'view' => Pages\ViewJobResponse::route('/{record}'),
+            'edit' => Pages\EditJobResponse::route('/{record}/edit'),
+        ];
+    }
 }

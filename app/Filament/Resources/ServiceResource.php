@@ -8,6 +8,7 @@ use App\Models\Service;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
@@ -36,31 +37,43 @@ class ServiceResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('title')
-                    ->required(),
-                Toggle::make('is_featured'),
-                TextInput::make('subtitle'),
-                RichEditor::make('description')
-                    ->columnSpanFull()
-                    ->toolbarButtons([
-                        'blockquote',
-                        'bold',
-                        'italic',
-                        'link',
-                        'redo',
-                        'strike',
-                        'undo',
-                    ]),
-                FileUpload::make('img')
-                    ->image()->directory('page/photos')
-                    ->nullable(),
-            ]);
+                Section::make(' ')
+                    ->description(' ')
+                    ->schema([
+                        TextInput::make('title')
+                            ->required(),
+                        TextInput::make('subtitle'),
+                        RichEditor::make('description')
+                            ->columnSpanFull()
+                            ->toolbarButtons([
+                                'blockquote',
+                                'bold',
+                                'italic',
+                                'link',
+                                'redo',
+                                'strike',
+                                'undo',
+                            ]),
+                    ])->columnSpan(2),
+                Section::make(' ')
+                    ->description(' ')
+                    ->schema([
+                        Toggle::make('is_featured'),
+                        FileUpload::make('img')
+                            ->image()->directory('page/photos')
+                            ->nullable(),
+                    ])->columnSpan(1),
+
+
+
+
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
     {
         return $table
-        ->defaultPaginationPageOption(25)
+            ->defaultPaginationPageOption(25)
             ->columns([
 
                 ImageColumn::make('img')->wrap(),
@@ -69,7 +82,7 @@ class ServiceResource extends Resource
                 TextColumn::make('subtitle')
                     ->searchable(),
                 ToggleColumn::make('is_featured'),
-                    ])
+            ])
             ->filters([
                 //
             ])

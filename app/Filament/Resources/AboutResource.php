@@ -41,39 +41,44 @@ class AboutResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-        
+
             ->schema([
 
-            Section::make('About Us')
-            ->description(' ')
-            ->schema([
+                Section::make('About Us')
+                    ->description(' ')
+                    ->schema([
 
-                FileUpload::make('img')
-                    ->directory('about/photos')
-                    ->nullable(),
 
-                TextInput::make('title')
-                    ->required(),
-                
-                MarkdownEditor::make('description')
-                    ->columnSpanFull()
-                    ->toolbarButtons([
-                       'attachFiles',
-                        'blockquote',
-                        'bold',
-                        'bulletList',
-                        'codeBlock',
-                        'heading',
-                        'italic',
-                        'link',
-                        'orderedList',
-                        'redo',
-                        'strike',
-                        'table',
-                        'undo',
-                        'paragraph',
-                    ]),
-                ]),
+
+                        TextInput::make('title')
+                            ->required(),
+
+                        MarkdownEditor::make('description')
+                            ->columnSpanFull()
+                            ->toolbarButtons([
+                                'attachFiles',
+                                'blockquote',
+                                'bold',
+                                'bulletList',
+                                'codeBlock',
+                                'heading',
+                                'italic',
+                                'link',
+                                'orderedList',
+                                'redo',
+                                'strike',
+                                'table',
+                                'undo',
+                                'paragraph',
+                            ]),
+                    ])->columnSpan(2),
+                Section::make(' ')
+                    ->description(' ')
+                    ->schema([
+                        FileUpload::make('img')
+                            ->directory('about/photos')
+                            ->nullable(),
+                    ])->columnSpan(1),
 
                 // Repeater::make('')
                 //     ->schema([
@@ -81,18 +86,18 @@ class AboutResource extends Resource
                 //     ,
                 //     ])->columnSpanFull(),
 
-                
-                
-                    
-                    // // SEO::make()->hidden(),
-            ]);
-        }
 
-            
+
+
+                // // SEO::make()->hidden(),
+            ])->columns(3);
+    }
+
+
     public static function table(Table $table): Table
     {
         return $table
-        ->defaultPaginationPageOption(25)
+            ->defaultPaginationPageOption(25)
             ->columns([
                 TextColumn::make('title')
                     ->searchable(),
@@ -108,17 +113,17 @@ class AboutResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     ExportBulkAction::make()->exports([
                         ExcelExport::make()
-                        ->withFilename(date(Carbon::now()) . ' - About Data Export')
-                        ->withColumns([
-                            Column::make('title'),
-                            Column::make('img'),
-                            Column::make('description'),
-                            Column::make('desc_array'),
-                        ]),
+                            ->withFilename(date(Carbon::now()) . ' - About Data Export')
+                            ->withColumns([
+                                Column::make('title'),
+                                Column::make('img'),
+                                Column::make('description'),
+                                Column::make('desc_array'),
+                            ]),
                     ]),
                     Tables\Actions\DeleteBulkAction::make(),
-                    Tables\Actions\ForceDeleteBulkAction::make(), 
-                    Tables\Actions\RestoreBulkAction::make(), 
+                    Tables\Actions\ForceDeleteBulkAction::make(),
+                    Tables\Actions\RestoreBulkAction::make(),
                 ]),
             ]);
     }

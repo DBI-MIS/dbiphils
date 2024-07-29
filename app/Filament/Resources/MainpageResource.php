@@ -7,6 +7,7 @@ use App\Filament\Resources\MainpageResource\RelationManagers;
 use App\Models\Mainpage;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -36,39 +37,51 @@ class MainpageResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('title'),
-                FileUpload::make('img')
-                ->image()
-                ->directory('page/photos')
-                ->nullable(),
-                Select::make('section')
-                ->options([
-                        'main' => 'main',
-                        'featured' => 'featured',
-                        'background' => 'background',
-                ]),
-                Textarea::make('notes')
-                ->rows(10)
-                ->cols(20)
+                Section::make(' ')
+                    ->description(' ')
+                    ->schema([
+                        Select::make('section')
+                            ->options([
+                                'main' => 'main',
+                                'featured' => 'featured',
+                                'background' => 'background',
+                            ]),
+                        TextInput::make('title'),
+                        Textarea::make('notes')
+                            ->rows(10)
+                            ->cols(20)
+                    ])->columnSpan(2),
+                Section::make(' ')
+                    ->description(' ')
+                    ->schema([
+                        FileUpload::make('img')
+                            ->image()
+                            ->directory('page/photos')
+                            ->nullable(),
+                    ])->columnSpan(1),
 
-                
-            ]);
+
+
+
+
+
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
     {
         return $table
-        ->defaultPaginationPageOption(25)
+            ->defaultPaginationPageOption(25)
             ->columns([
                 ImageColumn::make('img')->wrap(),
                 TextColumn::make('title'),
                 SelectColumn::make('section')
-            ->options([
-                'main' => 'main',
-                'featured' => 'featured',
-                'background' => 'background',
-            ]),
-                 TextColumn::make('notes')->wrap(),
+                    ->options([
+                        'main' => 'main',
+                        'featured' => 'featured',
+                        'background' => 'background',
+                    ]),
+                TextColumn::make('notes')->wrap(),
             ])
             ->filters([
                 //
