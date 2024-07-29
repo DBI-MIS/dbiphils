@@ -25,7 +25,7 @@ class FeaturedProductResource extends Resource
 {
     protected static ?string $model = FeaturedProduct::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-device-phone-mobile';
 
     protected static ?string $navigationGroup = 'Pages';
 

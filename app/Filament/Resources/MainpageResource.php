@@ -25,11 +25,13 @@ class MainpageResource extends Resource
 {
     protected static ?string $model = Mainpage::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-home-modern';
 
     protected static ?string $navigationGroup = 'Pages';
 
     protected static ?string $navigationLabel = 'Main';
+    
+    protected static ?string $label = 'Main Pages';
 
     protected static ?int $navigationSort = 1;
 

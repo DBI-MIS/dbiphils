@@ -31,12 +31,12 @@ class ProductResponseResource extends Resource
 {
     protected static ?string $model = ProductResponse::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
 
     protected static ?string $navigationGroup = 'Form Inquiries';
 
     protected static ?string $navigationLabel = 'Product Inquiries';
-
+    
     protected static ?string $label = 'Product Inquiries';
 
     protected static ?int $navigationSort = 2;

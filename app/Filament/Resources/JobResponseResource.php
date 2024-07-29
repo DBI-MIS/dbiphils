@@ -32,7 +32,7 @@ class JobResponseResource extends Resource
 {
     protected static ?string $model = JobResponse::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-ellipsis';
 
     protected static ?string $navigationGroup = 'Form Inquiries';
 
@@ -128,12 +128,16 @@ class JobResponseResource extends Resource
         return $table
 
             ->columns([
-
-                TextColumn::make('date_response')
-                    ->date()
-                    ->sortable()
-                    ->label(__('Date'))
-                    ->alignCenter(),
+                TextColumn::make('created_at')
+                ->since()
+                ->dateTimeTooltip()
+                ->sortable()
+                ->label('Date'),
+                // TextColumn::make('date_response')
+                //     ->date()
+                //     ->sortable()
+                //     ->label(__('Date'))
+                //     ->alignCenter(),
                 TextColumn::make('full_name')
                     ->searchable()
                     ->label(__('Name'))
@@ -161,6 +165,7 @@ class JobResponseResource extends Resource
                     ->grow(false)
                     ->alignCenter()
                     ->options([
+                        'pending' => 'pending',
                         'cancelled' => 'cancelled',
                         'hired' => 'hired',
                         'unqualified' => 'unqualified',
@@ -172,7 +177,7 @@ class JobResponseResource extends Resource
                         }
                     }),
 
-            ])->defaultSort('date_response', 'desc')
+            ])->defaultSort('created_at', 'desc')
             ->defaultPaginationPageOption(25)
             ->heading('Job Form Responses')
             ->filters([

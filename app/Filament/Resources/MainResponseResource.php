@@ -26,12 +26,12 @@ class MainResponseResource extends Resource
 {
     protected static ?string $model = MainResponse::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
 
     protected static ?string $navigationGroup = 'Form Inquiries';
 
-    protected static ?string $navigationLabel = 'About Us Form Inquiries';
-
+    protected static ?string $navigationLabel = 'General Inquiries';
+    
     protected static ?string $label = 'Form Inquiries';
 
     protected static ?int $navigationSort = 1;
@@ -114,13 +114,14 @@ class MainResponseResource extends Resource
                             $record->save();
                         }
                     }),
-                   
             ])->defaultSort('created_at', 'desc')
+            ->defaultPaginationPageOption(25)
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
