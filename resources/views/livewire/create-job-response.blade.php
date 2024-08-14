@@ -23,8 +23,9 @@
 
                 <div class="mb-5">
 
-                    <span class="text-base md:text-2xl text-bold font-semibold text-gray-600 dark:text-white">Job
+                    <span class="text-base md:text-2xl text-bold font-semibold text-gray-600 dark:text-white block">Job
                         Application</span>
+                        <span class="text-sm italic text-gray-600 block mt-2 dark:text-white">Note: Fill up all required fields to complete the form.</span>
                     <input type="text" wire:model="post_title" @readonly(true) name="post_title" hidden>
                     <div>
                         @error('post_title')

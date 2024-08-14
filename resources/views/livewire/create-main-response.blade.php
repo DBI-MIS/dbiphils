@@ -11,7 +11,8 @@
 
                 <div class="mb-5">
 
-                    <span class="text-2xl text-bold font-semibold text-gray-600">Send Us A Message</span>
+                    <span class="text-2xl text-bold font-semibold text-gray-600 block">Send Us A Message</span>
+                    <span class="text-sm italic text-gray-600 block mt-2">Note: Fill up all required fields to complete the form.</span>
 
                     <div class="mt-2">
                         @if (session()->has('message'))
