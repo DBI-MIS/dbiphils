@@ -1,5 +1,5 @@
 @props(['job'])
-<article class="[&:not(:last-child)]:border-b border-gray-100 pb-10 hover:scale-110 hover:z-50 transition-transform">
+<article class="[&:not(:last-child)]:border-b border-gray-100 pb-10 hover:scale-105 hover:z-50 transition-transform">
     <div class="article-body grid grid-cols-8 gap-3 mt-5 items-start">
         <div class="col-span-8">
             
@@ -16,8 +16,10 @@
             @endif
         </div>
         <div class="article-meta flex py-1 text-sm items-center justify-start ">
-            <span class="mr-1 text-xs">Posted By: {{ $job->author->name }}</span>
-            <span class="text-gray-500 text-xs">{{ $job->date_posted->diffForHumans()}}</span>
+            <span class="mr-1 text-xs">Posted By: {{ $job->author ? $job->author->name : 'hrad'}}</span>
+            <span class="text-gray-500 text-xs">
+                {{ $job->date_posted->timezone('Asia/Manila')->diffForHumans() }}
+            </span>
         </div>
 
             <p class="mt-2 text-base text-gray-700 font-light">

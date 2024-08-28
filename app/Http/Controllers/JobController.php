@@ -20,7 +20,12 @@ class JobController extends Controller
         // });
         return view('jobs.index', [
             // 'featuredPosts' => $featuredPosts,
-            'featuredPosts' => JobPost::where('status', true)->where('featured',true)->latest('date_posted')->take(6)->get(),
+            'featuredPosts' => JobPost::where('status', true)
+            ->where('featured',true)
+            // ->latest('date_posted')
+            ->orderByRaw('COALESCE(updated_at, date_posted) DESC')
+            ->take(6)
+            ->get(),
 
         ]);
     }

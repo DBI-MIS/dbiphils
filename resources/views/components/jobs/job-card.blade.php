@@ -1,5 +1,5 @@
 @props(['post'])
-<div class="w-full rounded-md shadow-lg py-5 px-5 mb-5 bg-white hover:bg-gray-100 border-t-2 border-blue-800 hover:scale-110 hover:z-50 transition-transform">
+<div class="w-full rounded-md shadow-lg py-5 px-5 mb-5 bg-white hover:bg-gray-100 border-t-2 border-blue-800 hover:scale-105 hover:z-50 transition-transform">
     <div class="grid grid-cols-4 gap-1 text-balance">
         <div class="col-span-4 w-full flex flex-row justify-between">
             <div class="block sm:inline-flex gap-2 ">
@@ -12,7 +12,9 @@
                
             </div>
 		
-        <span class="text-gray-500 text-sm text-nowrap">{{ $post->date_posted->diffForHumans()}}</span>
+        <span class="text-gray-500 text-sm text-nowrap">
+            {{ $post->date_posted->timezone('Asia/Manila')->diffForHumans() }}
+        </span>
         </div>
         <div class="text-sm  line-clamp-2 col-span-4">@markdown($post->getExcerpt())</div>
         
