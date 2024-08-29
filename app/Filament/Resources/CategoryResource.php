@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
 use App\Models\Category;
+use DiscoveryDesign\FilamentGaze\Forms\Components\GazeBanner;
 use Filament\Forms;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\Section;
@@ -39,6 +40,11 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
+                GazeBanner::make()
+                ->lock()
+                ->canTakeControl()
+                ->hideOnCreate()
+                ->columnSpanFull(),
                 Section::make(' ')->schema(
                     [
                 TextInput::make('title')

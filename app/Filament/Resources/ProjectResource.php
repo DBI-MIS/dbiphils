@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Models\Project;
+use DiscoveryDesign\FilamentGaze\Forms\Components\GazeBanner;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
@@ -37,11 +38,21 @@ class ProjectResource extends Resource
     protected static ?string $navigationLabel = 'Projects';
 
     protected static ?int $navigationSort = 6;
+    
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                GazeBanner::make()
+                ->lock()
+                ->canTakeControl()
+                ->hideOnCreate()
+                ->columnSpanFull(),
 
                 Section::make('Details')->schema(
                     [

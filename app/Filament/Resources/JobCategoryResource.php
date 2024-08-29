@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\JobCategoryResource\Pages;
 use App\Filament\Resources\JobCategoryResource\RelationManagers;
 use App\Models\JobCategory;
+use DiscoveryDesign\FilamentGaze\Forms\Components\GazeBanner;
 use Filament\Forms;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Section;
@@ -37,6 +38,11 @@ class JobCategoryResource extends Resource
     {
         return $form
             ->schema([
+                GazeBanner::make()
+                ->lock()
+                ->canTakeControl()
+                ->hideOnCreate()
+                ->columnSpanFull(),
                 Section::make('Category')
                     ->description(' ')
                     ->schema([

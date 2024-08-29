@@ -41,6 +41,7 @@ class JobPost extends Model
         'status' => 'boolean',
         'featured' => 'boolean',
         'urgent' => 'boolean',
+        'job_location' => 'array',
     ];
 
     public function author()

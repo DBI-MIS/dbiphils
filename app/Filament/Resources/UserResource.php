@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
+use DiscoveryDesign\FilamentGaze\Forms\Components\GazeBanner;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DateTimePicker;
@@ -41,6 +42,11 @@ class UserResource extends Resource
                 Section::make(' ')
                     ->description(' ')
                     ->schema([
+                        GazeBanner::make()
+                        ->lock()
+                        ->canTakeControl()
+                        ->hideOnCreate()
+                        ->columnSpanFull(),
                         TextInput::make('name')
                             ->required()
                             ->maxLength(255),

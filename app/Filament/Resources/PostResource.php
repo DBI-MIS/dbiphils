@@ -6,6 +6,7 @@ use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
 use Carbon\Carbon;
+use DiscoveryDesign\FilamentGaze\Forms\Components\GazeBanner;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
@@ -44,6 +45,11 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
+                GazeBanner::make()
+                ->lock()
+                ->canTakeControl()
+                ->hideOnCreate()
+                ->columnSpanFull(),
                 Section::make(' ')
                     ->description(' ')
                     ->schema([

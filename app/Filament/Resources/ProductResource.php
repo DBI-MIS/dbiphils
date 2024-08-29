@@ -6,6 +6,7 @@ use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use Carbon\Carbon;
+use DiscoveryDesign\FilamentGaze\Forms\Components\GazeBanner;
 use Faker\Provider\ar_EG\Text;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
@@ -54,6 +55,11 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
+                GazeBanner::make()
+                ->lock()
+                ->canTakeControl()
+                ->hideOnCreate()
+                ->columnSpanFull(),
 
                 Section::make('Main Content')->schema(
                     [

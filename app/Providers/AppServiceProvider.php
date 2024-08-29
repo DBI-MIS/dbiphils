@@ -16,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         ShareServiceProvider::class;
+        
     }
 
     /**
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
         ShareServiceProvider::class;
 
         DateTimePicker::$defaultDateTimeDisplayFormat = 'm d, Y';

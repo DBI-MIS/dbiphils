@@ -5,6 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\JobPostResource\Pages;
 use App\Filament\Resources\JobPostResource\RelationManagers;
 use App\Models\JobPost;
+use Carbon\Carbon;
+use DiscoveryDesign\FilamentGaze\Forms\Components\GazeBanner;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Hidden;
@@ -49,6 +51,11 @@ class JobPostResource extends Resource
                 Section::make('Job Details')
                     ->description(' ')
                     ->schema([
+                        GazeBanner::make()
+                        ->lock()
+                        ->canTakeControl()
+                        ->hideOnCreate()
+                        ->columnSpanFull(),
                         TextInput::make('title')
                             ->required()
                             ->label(__('Job Title'))
@@ -144,6 +151,7 @@ class JobPostResource extends Resource
                                 'h3',
                                 'link',
                                 'orderedList',
+                                'bulletList',
                                 'strike',
                             ])
                             ->columnSpan(2),
@@ -158,6 +166,7 @@ class JobPostResource extends Resource
                                 'h3',
                                 'link',
                                 'orderedList',
+                                'bulletList',
                                 'strike',
                             ])
                             ->columnSpan(2),
@@ -172,6 +181,7 @@ class JobPostResource extends Resource
                                 'h3',
                                 'link',
                                 'orderedList',
+                                'bulletList',
                                 'strike',
                             ])
                             ->columnSpan(2),
@@ -185,9 +195,9 @@ class JobPostResource extends Resource
                         DatePicker::make('date_posted')
                             ->required()
                             ->label(__('Date'))
-                            ->readonly()
+                            // ->readonly()
                             ->closeOnDateSelection()
-                            ->default(now())
+                            ->default(Carbon::now())
                             ->displayFormat('m/d/Y')
                             ->nullable(),
 
@@ -230,6 +240,7 @@ class JobPostResource extends Resource
 
                         ToggleButtons::make('job_location')
                             ->required()
+                            ->multiple()
                             ->options([
                                 'Metro Manila' => 'Metro Manila',
                                 'Cebu' => 'Cebu',

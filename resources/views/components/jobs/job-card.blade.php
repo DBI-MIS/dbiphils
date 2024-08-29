@@ -13,7 +13,7 @@
             </div>
 		
         <span class="text-gray-500 text-sm text-nowrap">
-            {{ $post->date_posted->timezone('Asia/Manila')->diffForHumans() }}
+            {{ $post->date_posted->gt($post->updated_at) ? $post->date_posted->diffForHumans() : $post->updated_at->diffForHumans() }}
         </span>
         </div>
         <div class="text-sm  line-clamp-2 col-span-4">@markdown($post->getExcerpt())</div>

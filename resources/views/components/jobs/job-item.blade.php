@@ -18,7 +18,7 @@
         <div class="article-meta flex py-1 text-sm items-center justify-start ">
             <span class="mr-1 text-xs">Posted By: {{ $job->author ? $job->author->name : 'hrad'}}</span>
             <span class="text-gray-500 text-xs">
-                {{ $job->date_posted->timezone('Asia/Manila')->diffForHumans() }}
+                {{ $job->date_posted->gt($job->updated_at) ? $job->date_posted->diffForHumans() : $job->updated_at->diffForHumans() }}
             </span>
         </div>
 
