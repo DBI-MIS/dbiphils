@@ -20,25 +20,24 @@
     <meta name="description"
         content="The Exclusive Distributor of Dunham-Bush Airconditioning, Refrigeration, Ventilation Equipment and Ice Thermal Energy System in the Philippines.">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="keywords" content="HVAC" />
 
-    <meta property="og:site_name" :content="title">
+    <meta property="og:site_name" content="dbiphils.com">
     <meta property="og:title" :content="title">
     <meta property="og:description" :content="description">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en">
-    <meta property="og:url" :content="title">
-    {{-- <meta property="og:image" content="`/storage/${img}`">
-        <meta property="og:image:width" content="1200">
-        <meta property="og:image:height" content="630">
-        <meta property="og:image:alt" content="D.B. International Sales & Services, Inc"> --}}
+    <meta property="og:url" content="">
+    <meta property="og:image" content="{{ asset('/Meta.png') }}">
 
-    {{-- <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:site" content="@stefanbauerme">
-        <meta name="twitter:creator" content="@stefanbauerme">
-        <meta name="twitter:title" content="Laravel Secrets">
-        <meta name="twitter:image" content="{{ asset('img/twitter_summary_card.png') }}"> --}}
+    <meta name="twitter:title" :content="title">
+    <meta name="twitter:description" :content="title">
+    <meta name="twitter:image" content="{{ asset('/Meta.png') }}">
+    <meta name="twitter:card" :content="description">
 
-    <title> {{ isset($title) ? $title . ' - ' : '' }} {{ config('app.name', 'DBI') }}</title>
+
+
+    <title> {{ isset($title) ? $title : '' }}</title>
 
     <!-- Fonts -->
     {{-- <link rel="icon" type="image/x-icon" href="{{ asset('/favicon.ico')}}"> --}}
