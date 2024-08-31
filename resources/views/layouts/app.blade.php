@@ -20,14 +20,15 @@
     <meta name="description"
         content="The Exclusive Distributor of Dunham-Bush Airconditioning, Refrigeration, Ventilation Equipment and Ice Thermal Energy System in the Philippines.">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="keywords" content="HVAC" />
+    <meta name="keywords" content="@yield('meta_keywords')" >
+    <link rel="canonical" href="{{url()->current()}}" >
 
     <meta property="og:site_name" content="dbiphils.com">
     <meta property="og:title" :content="title">
-    <meta property="og:description" :content="description">
-    <meta property="og:type" content="website">
+    <meta property="og:description" content="@yield('meta_description')">
+    <meta property="og:type" content="@yield('meta_type')">
     <meta property="og:locale" content="en">
-    <meta property="og:url" content="">
+    <meta property="og:url" content="{{url()->current()}}">
     <meta property="og:image" content="{{ asset('/Meta.png') }}">
 
     <meta name="twitter:title" :content="title">

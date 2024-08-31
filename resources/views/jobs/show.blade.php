@@ -18,7 +18,9 @@
         }
     </style>
 
-
+    {{-- @extends('app.blade.php') --}}
+    @section('meta_type', 'article')
+    @section('meta_description', strip_tags($job->post_description))
 
     <article class="col-span-8 md:col-span-3 md:mt-10 mx-auto py-5 w-full h-5/6 min-h-[560px]" style="max-width:900px">
 
