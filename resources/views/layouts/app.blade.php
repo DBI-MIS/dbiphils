@@ -24,21 +24,25 @@
     <link rel="canonical" href="{{url()->current()}}" >
 
     <meta property="og:site_name" content="dbiphils.com">
-    <meta property="og:title" :content="title">
+    <meta property="og:title" content="@yield('meta_title')">
     <meta property="og:description" content="@yield('meta_description')">
     <meta property="og:type" content="@yield('meta_type')">
     <meta property="og:locale" content="en">
     <meta property="og:url" content="{{url()->current()}}">
-    <meta property="og:image" content="{{ asset('/Meta.png') }}">
+    <meta property="og:image" content="@yield('meta_image')">
+    <meta property="og:image:alt" content="@yield('meta_title')">
+    <meta property="fb:app_id" content="487677117179781" />
 
-    <meta name="twitter:title" :content="title">
-    <meta name="twitter:description" :content="title">
-    <meta name="twitter:image" content="{{ asset('/Meta.png') }}">
-    <meta name="twitter:card" :content="description">
+    <meta name="twitter:site" content="{{url()->current()}}">
+    <meta name="twitter:title" content="@yield('meta_title')">
+    <meta name="twitter:description" content="@yield('meta_description')">
+    <meta name="twitter:image" content="@yield('meta_image')">
+    {{-- <meta name="twitter:image" content="{{ asset('/Meta.png') }}"> --}}
+    <meta name="twitter:card" content="summary">
 
 
 
-    <title> {{ isset($title) ? $title : '' }}</title>
+    <title>{{ isset($title) ? $title : '' }}</title>
 
     <!-- Fonts -->
     {{-- <link rel="icon" type="image/x-icon" href="{{ asset('/favicon.ico')}}"> --}}

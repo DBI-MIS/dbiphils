@@ -19,6 +19,12 @@
         font-size: 20px;       
     }
     </style>
+
+@section('meta_title', ($post->title))
+@section('meta_type', 'article')
+@section('meta_description', strip_tags($post->getExcerpt()))
+@section('meta_image', (asset("/storage/$post->img")))
+@section('meta_keywords', $post->title . ', DBI Event, HVAC')
  
     <article class="col-span-8 md:col-span-3 md:mt-8 mx-auto w-full h-full py-4" style="max-width:900px">
        

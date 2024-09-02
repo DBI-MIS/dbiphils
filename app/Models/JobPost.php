@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
+use Spatie\LaravelMarkdown\MarkdownRenderer;
 
 class JobPost extends Model
 {
@@ -87,6 +88,11 @@ class JobPost extends Model
     public function getExcerpt() 
     {
         return Str::limit(strip_tags($this->post_description), 200);
+    }
+
+    public function markdowntransform() 
+    {
+        return app(MarkdownRenderer::class)->toHtml($this->post_description);
     }
 
     public function getDynamicSEOData(): SEOData

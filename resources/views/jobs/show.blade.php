@@ -18,9 +18,11 @@
         }
     </style>
 
-    {{-- @extends('app.blade.php') --}}
-    @section('meta_type', 'article')
-    @section('meta_description', strip_tags($job->post_description))
+    @section('meta_title', ($job->title))
+    @section('meta_type', 'website')
+    @section('meta_description', ($job->getExcerpt()))
+    @section('meta_image', (asset('/Meta_jobpost.png')))
+    @section('meta_keywords', $job->title . ', ' . $job->job_level . ', ' . $job->job_type .', Job Vacancies, Trabaho')
 
     <article class="col-span-8 md:col-span-3 md:mt-10 mx-auto py-5 w-full h-5/6 min-h-[560px]" style="max-width:900px">
 
@@ -70,15 +72,16 @@
         <div
             class="my-6 flex text-base items-center justify-between border-t border-b border-gray-100 py-4 px-2 text-balance">
 
-            {!! $job->post_description !!}
+            @markdown($job->post_description)
+            {{-- {!! $job->post_description !!} --}}
 
         </div>
 
         <div class="py-3 text-gray-800 text-lg">
             Responsibilities
             <div class="text-base items-center justify-between border-b border-gray-100 py-4 px-2">
-
-                {!! $job->post_responsibility !!}
+                @markdown($job->post_responsibility)
+                {{-- {!! $job->post_responsibility !!} --}}
 
             </div>
         </div>
@@ -86,8 +89,8 @@
         <div class="py-3 text-gray-800 text-lg">
             Qualifications
             <div class="text-base items-center justify-between border-b border-gray-100 py-4 px-2">
-
-                {!! $job->post_qualification !!}
+                @markdown($job->post_qualification)
+                {{-- {!! $job->post_qualification !!} --}}
 
             </div>
         </div>

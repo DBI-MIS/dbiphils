@@ -1,5 +1,11 @@
 <x-app-layout title="D.B. International Sales & Services, Inc.">
 
+    @section('meta_title', 'D.B. International Sales & Services, Inc.')
+    @section('meta_type', 'website')
+    @section('meta_description', 'The Exclusive Distributor of Dunham-Bush Airconditioning, Refrigeration, Ventilation Equipment and Ice Thermal Energy System in the Philippines.')
+    @section('meta_image', (asset('/Meta.png')))
+    @section('meta_keywords', 'Dunham-Bush, D.B. International Sales & Services Inc., HVAC, HVAC Philippines, Airconditioning, Refrigeration, Ventilation Equipment, Ice Thermal Energy System ')
+
     @section('hero2')
         <!-- Hero -->
     
