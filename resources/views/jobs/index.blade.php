@@ -1,4 +1,11 @@
 <x-app-layout title="Careers">
+
+    @section('meta_title', 'Job Vacancies')
+    @section('meta_type', 'website')
+    @section('meta_description', 'Be Part of Our Dynamic Team')
+    @section('meta_image', (asset('/Meta_jobpost.png')))
+    @section('meta_keywords', 'Dunham-Bush, D.B. International Sales & Services Inc., HVAC, HVAC Philippines, Airconditioning, Refrigeration, Ventilation Equipment, Ice Thermal Energy System, Job Vacancies, DBI Jobs, Trabaho, Pilipinas Trabaho, Philippines Job ')
+
     @section('hero')
     <!-- Hero -->
             

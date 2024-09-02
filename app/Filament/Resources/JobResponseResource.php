@@ -166,12 +166,13 @@ class JobResponseResource extends Resource
                     ->alignCenter()
                     ->options([
                         'pending' => 'pending',
+                        'reviewed' => 'reviewed',
                         'cancelled' => 'cancelled',
                         'hired' => 'hired',
                         'unqualified' => 'unqualified',
                     ])
                     ->afterStateUpdated(function ($state, $record) {
-                        if ($state === 'cancelled' || 'hired' || 'unqualified') {
+                        if ($state === 'reviewed' || 'cancelled' || 'hired' || 'unqualified') {
                             $record->review = true;
                             $record->save();
                         }
@@ -228,7 +229,7 @@ class JobResponseResource extends Resource
     {
         return [
             'index' => Pages\ListJobResponses::route('/'),
-            'create' => Pages\CreateJobResponse::route('/create'),
+            // 'create' => Pages\CreateJobResponse::route('/create'),
             // 'view' => Pages\ViewJobResponse::route('/{record}'),
             'edit' => Pages\EditJobResponse::route('/{record}/edit'),
         ];
