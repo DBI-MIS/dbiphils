@@ -17,6 +17,14 @@
             font-size: 20px;       
         }
         </style>
+
+@section('meta_title', ($product->title))
+@section('meta_type', 'website')
+@section('meta_description', ($product->getExcerpt()))
+@section('meta_image', $product->product_img ? asset("/storage/$product->product_img") : asset('/Product_Default.png'))
+@section('meta_keywords', $product->title . ', ' . $product->product_brand?->name . ', ' . $product->product_categories->pluck('title')->implode(', ') . ', HVAC Equipment, Chiller, AHU, FCU')
+
+
      
 
  
@@ -25,12 +33,10 @@
             <div class="flex-grow-0 py-5 px-5 mb-5 rounded-md border-opacity-10 p-2 bg-white border-blue-800" 
             style="min-width:280px; max-width:280px"
             >
-                @if ($product->product_img === null)
-                <tr>
-                    <td><img src="{{asset('/Product_Default.png')}}" alt="Product Image" class="w-full max-h-48"></td>
-                </tr>
-                @endif
-                <img class="w-full" src="/storage/{{ $product->product_img }}" alt="">
+                <img class="w-full" 
+                src="{{ $product->product_img ? asset('storage/' . $product->product_img) : asset('/Product_Default.png') }}" 
+                alt="{{ $product->title }}">
+           
                 
             </div>
             <div class="grid grid-cols-3 gap-3 flex-grow">        

@@ -1,4 +1,11 @@
 <x-app-layout title="Products">
+
+    @section('meta_title', 'Products')
+    @section('meta_type', 'website')
+    @section('meta_description', 'Building Sustainable Future Through Green Technology')
+    @section('meta_image', (asset('/Meta.png')))
+    @section('meta_keywords', 'Dunham-Bush, D.B. International Sales & Services Inc., HVAC, HVAC Philippines, Airconditioning, Refrigeration, Ventilation Equipment, Ice Thermal Energy System')
+
     @section('hero')
     <!-- Hero -->
 
