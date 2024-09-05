@@ -25,7 +25,7 @@
                     </div>
                 </div>
 
-                <h1 class="text-4xl font-bold text-balance mt-1">{{ $post->title }}</h1>
+                <h2 class="text-4xl font-bold text-balance mt-1">{{ $post->title }}</h2>
 
                 
         

@@ -50,7 +50,7 @@
                         
                       <div class="w-full sm:max-w-48 min-h-[50px] max-h-fit rounded-xl md:border border-none md:border-opacity-10 sm:shadow-none shadow-lg bg-white sm:bg-transparent hover:bg-gray-100 border-blue-800 min-w-28 md:min-h-28 flex sm:block items-center mx-auto cursor-pointer"
                       >
-                      <a href="https://www.tacphils.com/" target="_blank" class="mx-auto">
+                      <a href="https://www.tacphils.com/" target="_blank" rel="noopener noreferrer" class="mx-auto">
                         <img class="w-full mx-auto hidden sm:block p-2" src="{{asset('/VCOLogo.png')}}" alt="">
                         <p class="text-lg sm:text-base md:text-xs lg:text-lg mx-auto py-2 text-wrap px-4">Coconut Oil Products</p>
                         </a>

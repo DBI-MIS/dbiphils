@@ -44,9 +44,9 @@
 
                     <div class="flex flex-row justify-between w-full">
             
-                        <h1 class="text-2xl md:text-4xl font-bold text-left text-gray-800">
+                        <h3 class="text-2xl md:text-4xl font-bold text-left text-gray-800">
                             {{ $product->title }}
-                        </h1>
+                        </h3>
                                 <div class="flex items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor"
@@ -87,7 +87,9 @@
                                 <td>No Description to display.</td>
                             </tr>
                             @endif
+                            <p>
                         {!! $product->description !!}
+                    </p>
                         </div>
 
                         <h3 class="font-light mt-4 mb-2">Features</h3>
@@ -159,8 +161,8 @@
                     
                       <div class="text-sm text-nowrap">
                         <span>For More Info:</span>
-                        <p>Contact Us @ </p>
-                        <p>Tel: +632 8723 4461 to 64</p>
+                    <span>Contact Us @ </span>
+                    <span>Tel: +632 8723 4461 to 64</span>
                     </div>
                 </div>
             
@@ -175,9 +177,9 @@
                       <div class="text-sm">
                         <span>Email</span>
                         <div class="flex flex-col">
-                            <p>sales@dbiphils.com,</p>
-                            <p>corporate@dbiphils.com,</p>
-                            <p>rtg@dbiphils.com</p>
+                            <span>sales@dbiphils.com,</span>
+                            <span>corporate@dbiphils.com,</span>
+                            <span>rtg@dbiphils.com</span>
                             
                         </div>
                         
@@ -204,7 +206,7 @@
                               
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M16,2c-7.732,0-14,6.268-14,14,0,6.566,4.52,12.075,10.618,13.588v-9.31h-2.887v-4.278h2.887v-1.843c0-4.765,2.156-6.974,6.835-6.974,.887,0,2.417,.174,3.043,.348v3.878c-.33-.035-.904-.052-1.617-.052-2.296,0-3.183,.87-3.183,3.13v1.513h4.573l-.786,4.278h-3.787v9.619c6.932-.837,12.304-6.74,12.304-13.897,0-7.732-6.268-14-14-14Z"></path></svg>
                         </div>
-                      <div><a href="https://facebook.com/DBIntPhilippines" target="_blank">DBIntPhilippines</a></div>
+                      <div><a href="https://facebook.com/DBIntPhilippines" target="_blank" rel="noopener noreferrer">DBIntPhilippines</a></div>
                         
                     </div>
                     <div class="flex gap-1 mt-1">
@@ -212,7 +214,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path d="M26.111,3H5.889c-1.595,0-2.889,1.293-2.889,2.889V26.111c0,1.595,1.293,2.889,2.889,2.889H26.111c1.595,0,2.889-1.293,2.889-2.889V5.889c0-1.595-1.293-2.889-2.889-2.889ZM10.861,25.389h-3.877V12.87h3.877v12.519Zm-1.957-14.158c-1.267,0-2.293-1.034-2.293-2.31s1.026-2.31,2.293-2.31,2.292,1.034,2.292,2.31-1.026,2.31-2.292,2.31Zm16.485,14.158h-3.858v-6.571c0-1.802-.685-2.809-2.111-2.809-1.551,0-2.362,1.048-2.362,2.809v6.571h-3.718V12.87h3.718v1.686s1.118-2.069,3.775-2.069,4.556,1.621,4.556,4.975v7.926Z" fill-rule="evenodd"></path></svg>
                         </div>
                         
-                        <div><a href="https://www.linkedin.com/company/db-international-sales?originalSubdomain=ph" target="_blank">DBInternational</a></div> 
+                        <div><a href="https://www.linkedin.com/company/db-international-sales?originalSubdomain=ph" target="_blank" rel="noopener noreferrer">DBInternational</a></div> 
                     </div>
                     </div>
                 </div>

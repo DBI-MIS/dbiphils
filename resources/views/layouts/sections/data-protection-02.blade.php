@@ -13,7 +13,7 @@
     </div>
     <div class="flex items-center my-5">
         <a class="text-center py-5 px-3 text-white bg-blue-600 rounded-lg shadow-sm shadow-gray-950" 
-        href="https://ep2000.com/data-center-protection/?v=e75edac1b83f" target="_blank">
+        href="https://ep2000.com/data-center-protection/?v=e75edac1b83f" target="_blank" rel="noopener noreferrer">
         {{ __('COMPLETE DATA CENTER PROTECTION') }}</a>
     </div>
     

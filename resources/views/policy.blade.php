@@ -1,13 +1,13 @@
 <x-app-layout title="D.B. International Sales & Services, Inc.">
 <div class="max-w-[768px] mx-auto my-6 flex flex-col gap-2">
     <div>
-        <h1 class="text-4xl my-2">Privacy Policy</h1>
+        <h3 class="text-4xl my-2">Privacy Policy</h3>
         <p class="font-light my-2">Last updated: July 25, 2024</p>
     </div>
     
     
     <p class="my-2">This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
-    <p class="my-2">We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. This Privacy Policy has been created with the help of the <a href="https://www.termsfeed.com/privacy-policy-generator/" target="_blank">Privacy Policy Generator</a>.</p>
+    <p class="my-2">We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy.</p>
     <h2 class="text-2xl my-2">Interpretation and Definitions</h2>
     <h3 class="text-xl my-2">Interpretation</h3>
     <p class="my-2">The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
@@ -80,7 +80,7 @@
     <li><strong>Cookies or Browser Cookies.</strong> A cookie is a small file placed on Your Device. You can instruct Your browser to refuse all Cookies or to indicate when a Cookie is being sent. However, if You do not accept Cookies, You may not be able to use some parts of our Service. Unless you have adjusted Your browser setting so that it will refuse Cookies, our Service may use Cookies.</li>
     <li><strong>Web Beacons.</strong> Certain sections of our Service and our emails may contain small electronic files known as web beacons (also referred to as clear gifs, pixel tags, and single-pixel gifs) that permit the Company, for example, to count users who have visited those pages or opened an email and for other related website statistics (for example, recording the popularity of a certain section and verifying system and server integrity).</li>
     </ul>
-    <p class="my-2">Cookies can be &quot;Persistent&quot; or &quot;Session&quot; Cookies. Persistent Cookies remain on Your personal computer or mobile device when You go offline, while Session Cookies are deleted as soon as You close Your web browser. You can learn more about cookies on <a href="https://www.termsfeed.com/blog/cookies/#What_Are_Cookies" target="_blank">TermsFeed website</a> article.</p>
+    <p class="my-2">Cookies can be &quot;Persistent&quot; or &quot;Session&quot; Cookies. Persistent Cookies remain on Your personal computer or mobile device when You go offline, while Session Cookies are deleted as soon as You close Your web browser.</p>
     <p class="my-2">We use both Session and Persistent Cookies for the purposes set out below:</p>
     <ul class="ml-4 list-disc">
     <li>

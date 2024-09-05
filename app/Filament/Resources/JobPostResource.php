@@ -61,6 +61,9 @@ class JobPostResource extends Resource
                             ->label(__('Job Title'))
                             ->live(onBlur: true)
                             ->columnSpan(2)
+                            ->hint('Need Help?')
+                            ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Refresh the page if not accessible.')
+                            ->hintColor('danger')
                             ->afterStateUpdated(
                                 function (string $operation, string $state, Forms\Set $set) {
                                     if ($operation === 'edit') {
@@ -143,6 +146,8 @@ class JobPostResource extends Resource
                         RichEditor::make('post_description')
                             ->required()
                             ->label(__('Job Description'))
+                            ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Refresh the page if not accessible.')
+                            ->hintColor('danger')
                             ->disableToolbarButtons([
                                 'attachFiles',
                                 'blockquote',
@@ -158,6 +163,8 @@ class JobPostResource extends Resource
                         RichEditor::make('post_responsibility')
                             ->required()
                             ->label(__('Job Responsibilities'))
+                            ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Refresh the page if not accessible.')
+                            ->hintColor('danger')
                             ->disableToolbarButtons([
                                 'attachFiles',
                                 'blockquote',
@@ -173,6 +180,8 @@ class JobPostResource extends Resource
                         RichEditor::make('post_qualification')
                             ->required()
                             ->label(__('Job Qualifications'))
+                            ->hintIcon('heroicon-m-question-mark-circle', tooltip: 'Refresh the page if not accessible.')
+                            ->hintColor('danger')
                             ->disableToolbarButtons([
                                 'attachFiles',
                                 'blockquote',

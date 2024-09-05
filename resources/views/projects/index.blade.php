@@ -2,8 +2,8 @@
 
     <div class="mb-10 w-full">
         <div class="my-10">
-            <h1 class="my-2 sm:my-4 md:my-6 text-xl xl:text-2xl text-gray-800 font-bold " animate-shake animate-infinite animate-ease-in>
-                Project Installations</h1>
+            <h2 class="my-2 sm:my-4 md:my-6 text-xl xl:text-2xl text-gray-800 font-bold " animate-shake animate-infinite animate-ease-in>
+                Project Installations</h2>
                 <hr>
             <div class="w-full mt-6 ">
                 

@@ -23,14 +23,14 @@
                 py-[clamp(18px,_-38.3478px_+_17.6087vw,_180px)]
                 ">
                 <!-- Hero Title -->
-                <h1 class="font-bold text-[clamp(26px,_4.5851px_+_6.6922vi,_96px)] leading-[clamp(12px,_-8.8031px_+_6.501vi,_80px)] text-balance text-white">
+                <h2 class="font-bold text-[clamp(26px,_4.5851px_+_6.6922vi,_96px)] leading-[clamp(12px,_-8.8031px_+_6.501vi,_80px)] text-balance text-white">
                 Join Our Team
                 <br>& 
                 <span x-data="{ texts: ['Thrive!', 'Succeed!','Flourish!','Grow!','Prosper!'] }" 
                 x-typewriter.3000ms="texts">
                 </span>
                 <p class="my-[clamp(8px,_-0.566px_+_2.6769vi,_36px)] text-[clamp(12px,_4.0459px_+_2.4857vi,_38px)] leading-[clamp(12px,_4.0459px_+_2.4857vi,_38px)] font-thin text-white mb-2">{{ __('Drive your future forward') }}</p>
-                </h1>
+                </h2>
 
                  <!-- Search Form -->
                  <div class="mt-4">

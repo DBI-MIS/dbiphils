@@ -6,9 +6,9 @@
                 @if ($post->urgent)
                 <span class="bg-red-500 text-center py-[2px] px-[3px] rounded-lg text-white text-xs h-max order-1 sm:order-2">URGENT</span>
                 @endif
-                <h1 class="font-bold text-2xl order-2 sm:order-1">
+                <h3 class="font-bold text-2xl order-2 sm:order-1">
                     <a wire:navigate href="{{ route('jobs.show', $post->slug) }}">{{ $post->title}}</a>
-                </h1>
+                </h3>
                
             </div>
 		

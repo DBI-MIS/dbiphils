@@ -54,7 +54,7 @@
                 <div class="w-full lg:w-1/3">
                     <div class="w-full px-6 py-8 space-y-4 col-span-1 md:col-span-2 lg:col-span-1 my-auto bg-white/50 rounded-xl ">
                         <div class="mx-auto w-max ">
-                            <h1 class="text-3xl font-black mb-4">Need Help?</h1>
+                            <h3 class="text-3xl font-black mb-4">Need Help?</h3>
                             <div class="flex flex-col">
                                 @include('layouts.sections.about-phone-support')
                                 @include('layouts.sections.about-chat-support')

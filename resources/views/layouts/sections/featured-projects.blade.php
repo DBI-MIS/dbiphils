@@ -1,5 +1,5 @@
 <div class="w-full px-0 xl:px-24 py-8 border-t-2">
-    <h1 class="text-4xl font-black">Project Installations</h1>
+    <h2 class="text-4xl font-black">Project Installations</h2>
     <span class="font-light text-base">Dunham-Bush Provides Leading Green-Cooling Products Around The Globe</span>
 <div class="flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 mx-auto gap-2 my-5">
 @foreach ($featuredProjects as $project)

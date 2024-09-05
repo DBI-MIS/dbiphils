@@ -1,5 +1,5 @@
 <div class="w-full px-0 xl:px-24 py-8 border-t-2">
-    <h1 class="text-3xl font-black mb-6">Our Core Values</h1>
+    <h2 class="text-3xl font-black mb-6">Our Core Values</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-4">
     <div class="flex flex-row items-start gap-1 max-w-md">
         <div class="min-w-10 m-1">

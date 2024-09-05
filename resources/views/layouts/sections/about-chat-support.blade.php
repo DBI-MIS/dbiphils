@@ -7,7 +7,7 @@
         {{-- <img class="w-auto h-auto " src="{{ $service->img }}" alt=""> --}}
     </div>
     <div>
-        <h1 class="text-2xl font-black">{{$aboutData['Chat Support']->title}}</h1>
+        <h3 class="text-2xl font-black">{{$aboutData['Chat Support']->title}}</h3>
     
     <span class="font-light text-base">@markdown($aboutData['Chat Support']->description)</span>
 

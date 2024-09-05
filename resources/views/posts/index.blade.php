@@ -1,6 +1,6 @@
 <x-app-layout title="News & Events">
     <div class="my-4">
-        <h1 class="text-4xl font-black">News & Events</h1>
+        <h2 class="text-4xl font-black">News & Events</h2>
         <span class="font-light text-base">  </span>
         
     </div>

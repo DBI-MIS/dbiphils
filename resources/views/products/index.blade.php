@@ -19,14 +19,14 @@
                 
                 <div class="py-[clamp(52px,_-0.6195px_+_16.4436vi,_224px)]">
                 <!-- Hero Title -->
-                <h1 class="font-bold text-[clamp(26px,_4.5851px_+_6.6922vi,_96px)] leading-[clamp(12px,_-8.8031px_+_6.501vi,_80px)] text-balance text-white">
+                <h2 class="font-bold text-[clamp(26px,_4.5851px_+_6.6922vi,_96px)] leading-[clamp(12px,_-8.8031px_+_6.501vi,_80px)] text-balance text-white">
                 Technology That
                 <br>Delivers
                 <span x-data="{ texts: ['Value', 'Efficiency','Innovation','Impact'] }" 
                 x-typewriter.3000ms="texts">
                 </span>
                 <p class="my-[clamp(8px,_-0.566px_+_2.6769vi,_36px)] text-[clamp(12px,_4.0459px_+_2.4857vi,_38px)] leading-[clamp(12px,_4.0459px_+_2.4857vi,_38px)] font-thin text-white mb-2">{{ __('Building Sustainable Future Through Green Technology') }}</p>
-                </h1>
+                </h2>
 
                   <!-- Search Form -->
                   <div class="mt-4">
@@ -91,8 +91,8 @@
         <div class="mb-10 w-full">
             <div class="my-10">
                 <hr>
-                <h1 class="my-2 sm:my-4 md:my-6 text-xl xl:text-2xl text-gray-800 font-bold " animate-shake animate-infinite animate-ease-in>
-                    Featured Products</h1>
+                <h2 class="my-2 sm:my-4 md:my-6 text-xl xl:text-2xl text-gray-800 font-bold " animate-shake animate-infinite animate-ease-in>
+                    Featured Products</h2>
                 <div class="w-full">
                     <div class="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-2">
 

@@ -27,9 +27,9 @@
     <article class="col-span-8 md:col-span-3 md:mt-10 mx-auto py-5 w-full h-5/6 min-h-[560px]" style="max-width:900px">
 
         <div class="inline-flex gap-2">
-            <h1 class="text-2xl md:text-4xl font-bold text-left text-gray-800">
+            <h2 class="text-2xl md:text-4xl font-bold text-left text-gray-800">
                 {{ $job->title }}
-            </h1>
+            </h2>
             @if ($job->urgent)
                 <span class="bg-red-500 text-center py-[2px] px-[3px] rounded-lg text-white text-xs h-max">URGENT</span>
             @endif
@@ -71,8 +71,9 @@
 
         <div
             class="my-6 flex text-base items-center justify-between border-t border-b border-gray-100 py-4 px-2 text-balance">
-
+            <p>
             @markdown($job->post_description)
+        </p>
             {{-- {!! $job->post_description !!} --}}
 
         </div>
@@ -156,9 +157,9 @@
             </div>
 
             <div class="text-sm text-nowrap">
-                <span>For More Information:</span>
-                <p>Contact Us @ </p>
-                <p>Tel: +632 8723 4461 to 64</p>
+                <span>For More Info:</span>
+                    <span>Contact Us @ </span>
+                    <span>Tel: +632 8723 4461 to 64</span>
             </div>
         </div>
 
@@ -175,7 +176,7 @@
             <div class="text-sm">
                 <span>Send your CV/Resume to:</span>
                 <div class="flex flex-col">
-                    <p>hrspecialist@dbiphils.com</p>
+                    <span>hrspecialist@dbiphils.com</span>
                 </div>
 
             </div>
@@ -207,7 +208,7 @@
                                 </path>
                             </svg>
                         </div>
-                        <div><a href="https://facebook.com/DBIntPhilippines" target="_blank">DBIntPhilippines</a></div>
+                        <div><a href="https://facebook.com/DBIntPhilippines" target="_blank" rel="noopener noreferrer">DBIntPhilippines</a></div>
 
                     </div>
                     <div class="flex gap-1 mt-1">
@@ -220,7 +221,7 @@
                         </div>
 
                         <div><a href="https://www.linkedin.com/company/db-international-sales?originalSubdomain=ph"
-                                target="_blank">DBInternational</a></div>
+                            target="_blank" rel="noopener noreferrer">DBInternational</a></div>
                     </div>
                 </div>
             </div>
