@@ -159,7 +159,7 @@
                           </svg>
                     </div>
                     
-                      <div class="text-sm text-nowrap">
+                    <div class="flex flex-col text-sm text-nowrap">
                         <span>For More Info:</span>
                     <span>Contact Us @ </span>
                     <span>Tel: +632 8723 4461 to 64</span>
