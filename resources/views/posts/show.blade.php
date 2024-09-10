@@ -3,23 +3,6 @@
 
     {!! seo()->for($post) !!}
 
-    <style>
-    div#social-links {
-        margin: 0 ;
-        max-width: 500px;
-    }
-
-    div#social-links ul li {
-        display: inline-block;
-    }   
-
-    div#social-links ul li a {
-        padding: 5px;
-        margin: 1px;
-        font-size: 20px;       
-    }
-    </style>
-
 @section('meta_title', ($post->title))
 @section('meta_type', 'article')
 @section('meta_description', strip_tags($post->getExcerpt()))

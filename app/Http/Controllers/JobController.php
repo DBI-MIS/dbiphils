@@ -55,7 +55,7 @@ class JobController extends Controller
         $shareComponent = ShareFacade::page($jobUrl, $jobTitle,[
             'class' => 'my-class',
             'id' => 'my-id',
-            'title' => 'my-title',
+            'title' => 'Share '. $jobTitle,
             'rel' => 'nofollow noopener noreferrer'])
         ->facebook()
         ->linkedin()

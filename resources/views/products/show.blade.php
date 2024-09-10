@@ -1,22 +1,7 @@
 
 <x-app-layout :title="$product->title">
 
-    <style>
-        div#social-links {
-            margin: 0 ;
-            max-width: 500px;
-        }
-    
-        div#social-links ul li {
-            display: inline-block;
-        }   
-    
-        div#social-links ul li a {
-            padding: 5px;
-            margin: 1px;
-            font-size: 20px;       
-        }
-        </style>
+ 
 
 @section('meta_title', ($product->title))
 @section('meta_type', 'website')

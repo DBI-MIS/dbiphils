@@ -1,22 +1,6 @@
 <x-app-layout :title="$job->title">
+    
     {!! seo()->for($job) !!}
-
-    <style>
-        div#social-links {
-            margin: 0;
-            max-width: 500px;
-        }
-
-        div#social-links ul li {
-            display: inline-block;
-        }
-
-        div#social-links ul li a {
-            padding: 5px;
-            margin: 1px;
-            font-size: 20px;
-        }
-    </style>
 
     @section('meta_title', ($job->title))
     @section('meta_type', 'website')

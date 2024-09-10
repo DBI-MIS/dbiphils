@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#social-links {
+    @apply m-0 max-w-[500px];
+}
+
+#social-links ul {
+    @apply list-none p-0;
+}
+
+#social-links ul li {
+    @apply inline-block;
+}
+
+#social-links ul li a {
+    @apply p-[5px] m-[1px] text-[26px];
+}
+
+#social-links #my-id {
+    @apply hover:text-3xl transition-transform ease-in-out cursor-pointer hover:text-blue-800;
+}

@@ -38,7 +38,7 @@ class PostsController extends Controller
             [
                 'class' => 'my-class',
                 'id' => 'my-id',
-                'title' => 'my-title',
+                'title' => 'Share '. $postTitle,
                 'rel' => 'nofollow noopener noreferrer',]
             )
         ->facebook()

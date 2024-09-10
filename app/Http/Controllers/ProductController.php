@@ -56,7 +56,7 @@ class ProductController extends Controller
         [
             'class' => 'my-class',
             'id' => 'my-id',
-            'title' => 'my-title',
+            'title' => 'Share '. $productTitle,
             'rel' => 'nofollow noopener noreferrer'])
         ->facebook()
         ->linkedin()
