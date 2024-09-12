@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Mail\FormResponse;
 use App\Models\JobResponse;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
@@ -13,14 +14,19 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Illuminate\Contracts\Queue\Job;
+use Illuminate\Http\Client\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Google\Client;
+use Google\Service\Gmail;
+use Google\Service\Gmail\Message;
 
 class CreateJobResponse extends Component implements HasForms, HasActions
 {
@@ -42,8 +48,6 @@ class CreateJobResponse extends Component implements HasForms, HasActions
     public $attachment = [];
     
     public bool $isValid = false;
-
-    public $recaptchaToken = null;
     
 
     protected $casts = [
@@ -58,6 +62,7 @@ class CreateJobResponse extends Component implements HasForms, HasActions
         'email_address' => 'required|email',
         'current_address' => 'required|min:5',
         'attachment' => 'required|max:5120|file|mimes:pdf, doc, docx',
+        
     ];
 
     protected $messages = [
@@ -84,7 +89,6 @@ class CreateJobResponse extends Component implements HasForms, HasActions
     {
         try {
             $this->validate();
-            $this->validateCaptcha($this->recaptchaToken);
             return true;
         } catch (\Illuminate\Validation\ValidationException $e) {
             return false;
@@ -173,29 +177,6 @@ class CreateJobResponse extends Component implements HasForms, HasActions
             
             
     }
-    
-    public function updatedCaptchaToken($token)
-    {
-        $this->recaptchaToken = $token;
-        $this->validateCaptcha($token);
-    }
-
-    protected function validateCaptcha($token)
-    {
-        $response = Http::post(
-            'https://www.google.com/recaptcha/api/siteverify?secret='.
-            env('RECAPTCHA_SECRET_KEY').
-            '&response='.$token
-        );
-
-        $success = $response->json()['success'];
-
-        if (!$success) {
-            throw ValidationException::withMessages([
-                'recaptcha' => __('Google thinks you are a bot, please refresh and try again!'),
-            ]);
-        }
-    }
 
  
 
@@ -203,13 +184,11 @@ class CreateJobResponse extends Component implements HasForms, HasActions
     public function create(): void
     {
         $this->validate();
-        
-        $this->validateCaptcha($this->recaptchaToken);
         $response = JobResponse::create($this->form->getState());
 
         $this->form->model($response)->saveRelationships();
 
-        // Mail::to('zhenjin666@gmail.com')->queue(new EmailResponse($response));
+        Mail::to('desktoppublisher@dbiphils.com')->send(new FormResponse($response));
         
         $this->dispatch('post-created');
         

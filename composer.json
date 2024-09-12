@@ -13,6 +13,7 @@
         "discoverydesign/filament-gaze": "^1.1",
         "eightynine/filament-excel-import": "^3.0",
         "filament/filament": "^3.2",
+        "google/apiclient": "*",
         "jorenvanhocht/laravel-share": "^4.2",
         "laravel/framework": "^11.9",
         "laravel/pulse": "^1.2",

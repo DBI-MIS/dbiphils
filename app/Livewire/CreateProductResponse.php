@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Mail\ProductFormResponse;
 use App\Models\ProductResponse;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
@@ -11,6 +12,7 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
@@ -140,6 +142,8 @@ class CreateProductResponse extends Component implements HasForms
         $response = ProductResponse::create($this->form->getState());
       
         $this->form->model($response)->saveRelationships();
+
+        Mail::to('desktoppublisher@dbiphils.com')->send(new ProductFormResponse($response));
 
         // $response->notify(new ResponseUpdate($response));
         

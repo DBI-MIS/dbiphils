@@ -6,6 +6,12 @@
         </button> --}}
     @livewire('notifications')
     @csrf
+    
+    <div wire:loading wire:target="create" class="la-ball-pulse float-right">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
 
 
 
@@ -113,6 +119,7 @@
 
 
                 <div class="flex gap-8 mt-5">
+                    
                 <div class="text-sm md:text-base">*Attach File Here</div>
                 <div x-data="{ isUploading: false, progress: 0 }" 
                     x-on:livewire-upload-start="isUploading = true"
@@ -127,31 +134,22 @@
 
                     <!-- Progress Bar -->
                     <div x-show="isUploading" >
-                        <progress max="100" x-bind:value="progress" class="w-full">AAA</progress>
+                        <progress max="100" x-bind:value="progress" class="w-full"></progress>
+                        
                     </div>
+                    
+                    
                 </div>
+                
                 </div>
-
+                <span class="text-xs">File size maximum of 5MB | PDF or DOC/X File Only.</span>
+                
                 <div>
                     @error('attachment')
                         <span class="error text-red-600 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
-
-              
-                <div id="recaptchaToken" class="g-recaptcha mt-4" data-sitekey='6LdOzxgqAAAAAG-HijnnRLOVdiLKEn8BCP7_exhO' wire:ignore></div>
-                
- 
-
-                @error('recaptchaToken')
-        
-                    <p class="mt-3 text-sm text-red-600 text-left">
-        
-                        {{ $message }}
-        
-                    </p>
-        
-                @enderror
+                <span class="text-xs">Refresh the Page if you encountered an upload error.</span>
               
 
 
@@ -172,7 +170,6 @@
         
     </form>
 
-    <script async src="https://www.google.com/recaptcha/api.js" defer></script>
 
 
 

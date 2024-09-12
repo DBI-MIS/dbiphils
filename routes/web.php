@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\EPHomeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
@@ -9,6 +10,11 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SocialShareButtonsController;
 use App\Http\Controllers\TestimonialsController;
+use App\Mail\FormResponse;
+use App\Mail\MainFormResponse;
+use App\Models\JobResponse;
+use App\Models\MainResponse;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 // Route::view('/', 'welcome');
@@ -45,6 +51,17 @@ Route::get('/posts/{post:slug}', [PostsController::class, 'show'])->name('posts.
 
 Route::get('/social-media-share', [PostsController::class,'ShareWidget']);
 
+// Route::get('/send-email', [EmailController::class, 'redirectToAuthUrl']);
+
+// Route::get('/callback', [EmailController::class, 'handleCallback']);
+
+Route::get('/mailable', function () {
+
+    $response = MainResponse::find(1);
+ 
+    return new MainFormResponse($response);
+});
+
 // Route::view('dashboard', 'dashboard')
 //     ->middleware(['auth', 'verified'])
 //     ->name('dashboard');
@@ -52,5 +69,6 @@ Route::get('/social-media-share', [PostsController::class,'ShareWidget']);
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+
 
 require __DIR__.'/auth.php';

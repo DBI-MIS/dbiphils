@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Mail\MainFormResponse;
 use App\Models\MainResponse;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -10,6 +11,7 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -153,7 +155,19 @@ class CreateMainResponse extends Component implements HasForms
     {
         $this->validate();
 
-        MainResponse::create($this->form->getState());
+        $response = MainResponse::create($this->form->getState());
+
+        $emailRecipients = [
+        'General Inquiry' => 'desktoppublisher@dbiphils.com',
+        'Product Inquiry' => 'ggcmis@dbiphils.com',
+        'Concern/Issue' => 'desktoppublisher@dbiphils.com',
+        'Careers/Hiring' => 'ggcmis@dbiphils.com',
+        'Feedback' => 'desktoppublisher@dbiphils.com',
+        ];
+
+        $recipientEmail = $emailRecipients[$this->subject] ?? 'desktoppublisher@dbiphils.com'; 
+        
+        Mail::to($recipientEmail)->send(new MainFormResponse($response));
 
         $this->dispatch('post-created');
         

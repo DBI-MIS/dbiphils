@@ -6,6 +6,7 @@
         </button> --}}
     @csrf
     
+    
 
     <form wire:submit="create" wire:confirm="Are you sure you want to submit this application?">
 
@@ -112,6 +113,11 @@
                                     <button wire:loading.class="opacity-50" type="submit"
                                         class="mt-3 inline-flex items-center justify-center h-10 px-4 font-medium tracking-wide text-white transition duration-200 bg-blue-900 rounded-lg hover:bg-gray-800 focus:shadow-outline focus:outline-none">
                                         <span wire:loading.remove>Submit</span>
+                                        <span wire:loading>Loading<div wire:loading wire:target="create" class="la-ball-pulse float-right">
+                                            <div></div>
+                                            <div></div>
+                                        </div></span>
+                                        
                                     </button>
                                     @endif
                                 </div>
