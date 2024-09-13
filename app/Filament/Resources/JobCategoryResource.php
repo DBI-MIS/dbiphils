@@ -11,6 +11,7 @@ use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
+use Filament\Forms\Components\ViewField;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -62,11 +63,7 @@ class JobCategoryResource extends Resource
                         Hidden::make('slug')
                             ->required()
                             ->unique(ignoreRecord: true),
-                    ])->columnSpan(2),
-                Section::make('Colors')
-                    ->description(' ')
-                    ->schema([
-                        ToggleButtons::make('text_color')->default('white')
+                            ToggleButtons::make('text_color')->default('white')
                             ->required()
                             ->options([
                                 'white' => 'white',
@@ -76,11 +73,13 @@ class JobCategoryResource extends Resource
                                 'green' => 'green',
                             ])
                             ->grouped()
+                            ->live()
                             ->label(__('Text Color')),
 
 
                         ToggleButtons::make('bg_color')->default('blue')
                             ->required()
+                            ->live()
                             ->options([
                                 'gray' => 'gray',
                                 'blue' => 'blue',
@@ -90,7 +89,17 @@ class JobCategoryResource extends Resource
                             ])
                             ->grouped()
                             ->label(__('Background Color')),
+                    ])->columnSpan(2),
+                Section::make('Preview')
+                    ->description(' ')
+                    ->schema([
+                        ViewField::make('preview')
+                        ->label(' ')
+                        ->live()
+                        ->view('forms.components.job-category-preview')
+                      
                     ])->columnSpan(1),
+                  
 
             ])->columns(3);
     }
