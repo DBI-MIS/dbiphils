@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\JobCategoryResource\Pages;
 use App\Filament\Resources\JobCategoryResource\RelationManagers;
+use App\Forms\Components\JobCategoryPreview;
 use App\Models\JobCategory;
 use DiscoveryDesign\FilamentGaze\Forms\Components\GazeBanner;
 use Filament\Forms;
@@ -40,10 +41,10 @@ class JobCategoryResource extends Resource
         return $form
             ->schema([
                 GazeBanner::make()
-                ->lock()
-                ->canTakeControl()
-                ->hideOnCreate()
-                ->columnSpanFull(),
+                    ->lock()
+                    ->canTakeControl()
+                    ->hideOnCreate()
+                    ->columnSpanFull(),
                 Section::make('Category')
                     ->description(' ')
                     ->schema([
@@ -63,9 +64,11 @@ class JobCategoryResource extends Resource
                         Hidden::make('slug')
                             ->required()
                             ->unique(ignoreRecord: true),
-                            ToggleButtons::make('text_color')->default('white')
+
+                        ToggleButtons::make('text_color')->default('white')
                             ->required()
                             ->options([
+                                'gray' => 'gray',
                                 'white' => 'white',
                                 'blue' => 'blue',
                                 'red' => 'red',
@@ -90,16 +93,49 @@ class JobCategoryResource extends Resource
                             ->grouped()
                             ->label(__('Background Color')),
                     ])->columnSpan(2),
-                Section::make('Preview')
+                Section::make('Color Preview')
                     ->description(' ')
                     ->schema([
-                        ViewField::make('preview')
-                        ->label(' ')
-                        ->live()
-                        ->view('forms.components.job-category-preview')
-                      
+                        JobCategoryPreview::make('color')
+                            ->label(' ')
+                            ->options(function (callable $get) {
+                                $textColor = 'text-white';
+                                $bgColor = 'bg-blue-500';
+
+                                if ($get('text_color') === 'gray') {
+                                    $textColor = 'text-gray-500';
+                                } elseif ($get('text_color') === 'blue') {
+                                    $textColor = 'text-blue-500';
+                                } elseif ($get('text_color') === 'red') {
+                                    $textColor = 'text-red-500';
+                                } elseif ($get('text_color') === 'yellow') {
+                                    $textColor = 'text-yellow-500';
+                                } elseif ($get('text_color') === 'green') {
+                                    $textColor = 'text-green-500';
+                                } elseif ($get('text_color') === 'white') {
+                                    $textColor = 'text-white';
+                                }
+
+                                if ($get('bg_color') === 'gray') {
+                                    $bgColor = 'bg-gray-500';
+                                } elseif ($get('bg_color') === 'blue') {
+                                    $bgColor = 'bg-blue-500';
+                                } elseif ($get('bg_color') === 'red') {
+                                    $bgColor = 'bg-red-500';
+                                } elseif ($get('bg_color') === 'yellow') {
+                                    $bgColor = 'bg-yellow-500';
+                                } elseif ($get('bg_color') === 'green') {
+                                    $bgColor = 'bg-green-500';
+                                }
+
+                                return ["$textColor $bgColor" => ucfirst($get('text_color') ?? 'blue') . ' & ' . ucfirst($get('bg_color') ?? 'blue')];
+                            }),
+
+
+
+
                     ])->columnSpan(1),
-                  
+
 
             ])->columns(3);
     }
@@ -111,13 +147,6 @@ class JobCategoryResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->label(__('Category Name')),
-                // Tables\Columns\TextColumn::make('slug')
-                //     ->searchable(),
-                // Tables\Columns\ColorColumn::make('text_color')
-                //     ->label(__('Text Color')),
-
-                // Tables\Columns\ColorColumn::make('bg_color')
-                //     ->label(__('Background Color')),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
