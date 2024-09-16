@@ -10,7 +10,7 @@
 | Email|: {{ $email_address }}    |
 </x-mail::table>
 
-<x-mail::button :url="'https://main.dbiphils.com/admin/job-responses'" color="success">
+<x-mail::button :url="'https://dbiphils.com/admin/job-responses'" color="success">
 View Details
 </x-mail::button>
 

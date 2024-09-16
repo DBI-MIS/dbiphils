@@ -10,7 +10,7 @@
 | Message  |: {{ $message }}    |
 </x-mail::table>
 
-<x-mail::button :url="'https://main.dbiphils.com/admin/main-responses'" color="success">
+<x-mail::button :url="'https://dbiphils.com/admin/main-responses'" color="success">
 View Details
 </x-mail::button>
 <x-mail::footer>
