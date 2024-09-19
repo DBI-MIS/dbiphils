@@ -71,7 +71,7 @@
                 
                
         </article>
-        <div class="flex flex-col md:flex-row md:items-center items-start gap-5 w-full justify-between py-4 px-5 md:px-10 border-y-2 border-blue-200 mt-24 mx-auto" style="max-width:900px">
+        <div class="flex flex-col md:flex-row md:items-center items-start gap-5 w-full justify-between py-4 px-5 md:px-10 border-y-2 border-blue-200 mt-24 mx-auto" style="max-width:900px" data-nosnippet>
             <div class="flex flex-row items-center gap-2">
                 <div class="">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-9">

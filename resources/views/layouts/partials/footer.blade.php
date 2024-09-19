@@ -1,7 +1,7 @@
 <footer class="
 mx-[clamp(12px,_-8.8031px_+_6.501vi,_80px)] 
 py-4 text-sm border-t border-gray-100">
-    <div class="flex flex-wrap items-center justify-between">
+    <div class="flex flex-wrap items-center justify-between" data-nosnippet>
     <div class="flex space-x-4 order-2 sm:order-1 my-5">
         <span class="text-sm">&copy;2024, D.B. International Sales & Services, Inc. All Rights Reserved. 
             <br>

@@ -1,6 +1,6 @@
 <header class="border-b bg-white border-gray-100 w-full">
 
-    <div class="w-full bg-blue-800 h-max py-1 text-right flex flex-row flex-wrap justify-center sm:justify-end px-1 sm:px-6 gap-2 items-center">
+    <div class="w-full bg-blue-800 h-max py-1 text-right flex flex-row flex-wrap justify-center sm:justify-end px-1 sm:px-6 gap-2 items-center" data-nosnippet>
         
         
              

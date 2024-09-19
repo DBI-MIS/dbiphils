@@ -1,4 +1,4 @@
-<div class="flex flex-col md:flex-row md:items-center items-start gap-5 w-full justify-between py-4 px-5 md:px-10  bg-white/50 rounded-lg">
+<div class="flex flex-col md:flex-row md:items-center items-start gap-5 w-full justify-between py-4 px-5 md:px-10  bg-white/50 rounded-lg" data-nosnippet>
 
 
     <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
