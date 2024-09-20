@@ -44,6 +44,8 @@
 
     <title>{{ isset($title) ? $title : '' }}</title>
 
+    @yield('structuredData')
+
     <!-- Fonts -->
     {{-- <link rel="icon" type="image/x-icon" href="{{ asset('/favicon.ico')}}"> --}}
     <link rel="preconnect" href="https://fonts.bunny.net">

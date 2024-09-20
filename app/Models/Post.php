@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
@@ -50,6 +51,20 @@ class Post extends Model
             description: $this->getExcerpt(),
             image: $pathToFeaturedImageRelativeToPublicPath,
         );
+    }
+
+    public function getDatePublished()
+    {
+        $publishedAt = $this->published_at->copy(); // Copy to avoid modifying the original timestamp
+        $publishedAt->setTimezone('Asia/Manila');
+        return $publishedAt->format(DateTime::ATOM); // ISO 8601 format
+    }
+    
+    public function getDateModified()
+    {
+        $updatedAt = $this->updated_at->copy(); // Copy to avoid modifying the original timestamp
+        $updatedAt->setTimezone('Asia/Manila');
+        return $updatedAt->format(DateTime::ATOM); // ISO 8601 format
     }
 
 }

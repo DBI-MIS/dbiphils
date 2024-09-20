@@ -9,6 +9,36 @@
 @section('meta_image', $product->product_img ? asset("/storage/$product->product_img") : asset('/Product_Default.png'))
 @section('meta_keywords', $product->title . ', ' . $product->product_brand?->name . ', ' . $product->product_categories->pluck('title')->implode(', ') . ', HVAC Equipment, Chiller, AHU, FCU')
 
+@section('structuredData')
+
+<script type="application/ld+json">
+{
+
+"@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "{{ $product->title }}",
+      "description": "{{ $product->getExcerpt() }}",
+      "review": {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": 4,
+          "bestRating": 5
+        },
+        "author": {
+          "@type": "Person",
+          "name": "TAC"
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": 4.4,
+        "reviewCount": 202
+      }
+
+}
+</script>
+@endsection
 
      
 

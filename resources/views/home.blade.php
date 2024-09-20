@@ -3,7 +3,38 @@
     @section('meta_type', 'website')
     @section('meta_description', 'The Exclusive Distributor of Dunham-Bush Airconditioning, Refrigeration, Ventilation Equipment and Ice Thermal Energy System in the Philippines.')
     @section('meta_image', (asset('/Meta.png')))
-    @section('meta_keywords', 'Dunham-Bush, D.B. International Sales & Services Inc., HVAC, HVAC Philippines, Airconditioning, Refrigeration, Ventilation Equipment, Ice Thermal Energy System ')
+    @section('meta_keywords', 'Dunham-Bush, D.B. International Sales & Services Inc., DBI, HVAC, HVAC Philippines, Airconditioning, Refrigeration, Ventilation Equipment, Ice Thermal Energy System ')
+
+    @section('structuredData')
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "image": "https:/dbiphils.com/DB_LOGO__.png",
+          "url": "https://dbiphils.com",
+          "sameAs": ["https://dbiphils.com", "https://www.dbiphils.com"],
+          "logo": "https:/dbiphils.com/DB_LOGO__.png",
+          "name": "D.B. International Sales & Services, Inc.",
+          "description": "The Exclusive Distributor of Dunham-Bush Airconditioning, Refrigeration, Ventilation Equipment and Ice Thermal Energy System in the Philippines.",
+          "email": "corporate@dbiphils.com",
+          "telephone": "+63-2-8723-4461",
+          "address": [{
+            "@type": "PostalAddress",
+            "streetAddress": "430 Lt. Artiaga St.",
+            "addressLocality": "San Juan",
+            "addressRegion": "Metro Manila",
+            "postalCode": "1500",
+            "addressCountry": "PH"
+          },{
+            "streetAddress": "430 Lt. Artiaga St.",
+            "addressLocality": "San Juan",
+            "postalCode": "1500",
+            "addressCountry": "PH"
+          }]
+        }
+        </script>
+    @endsection
 
     @section('hero')
         <!-- Hero -->

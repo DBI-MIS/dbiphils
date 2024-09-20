@@ -1,12 +1,50 @@
 <x-app-layout :title="$job->title">
-    
+
     {!! seo()->for($job) !!}
 
-    @section('meta_title', ($job->title))
+    @section('meta_title', $job->title)
     @section('meta_type', 'website')
-    @section('meta_description', ($job->getExcerpt()))
-    @section('meta_image', (asset('/Meta_jobpost.png')))
-    @section('meta_keywords', $job->title . ', ' . $job->job_level . ', ' . $job->job_type .', Job Vacancies, Trabaho')
+    @section('meta_description', $job->getExcerpt())
+    @section('meta_image', asset('/Meta_jobpost.png'))
+    @section('meta_keywords', $job->title . ', ' . $job->job_level . ', ' . $job->job_type . ', Job Vacancies, Trabaho')
+
+    @section('structuredData')
+
+        <script type="application/ld+json">
+        {
+      "@context" : "https://schema.org/",
+      "@type" : "JobPosting",
+      "title" : "{{ $job->title }}",
+      "description" : "{{ $job->getExcerpt() }}",
+      "identifier": {
+        "@type": "PropertyValue",
+        "name": "D.B. International Sales & Services, Inc.",
+        "value": "1234567"
+      },
+      "datePosted" : "{{ $job->getDatePosted() }}",
+      "validThrough" : "{{ $job->getValidThrough() }}",
+      "employmentType" : "{{ $job->getJobTypeName() }}",
+      "hiringOrganization" : {
+        "@type" : "Organization",
+        "name" : "D.B. International Sales & Services, Inc.",
+        "sameAs" : "https://dbiphils.com",
+        "logo" : "{{asset('/DB_LOGO__.png')}}"
+      },
+      "jobLocation": {
+        "@type": "Place",
+        "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "430 Lt. Artiaga St.",
+        "addressLocality": "Corazon De Jesus",
+        "addressRegion": "San Juan",
+        "postalCode": "1500",
+        "addressCountry": "PH"
+        }
+      }
+    
+    }
+    </script>
+    @endsection
 
     <article class="col-span-8 md:col-span-3 md:mt-10 mx-auto py-5 w-full h-5/6 min-h-[560px]" style="max-width:900px">
 
@@ -29,7 +67,7 @@
                 <span class="text-gray-500 mr-2">
                     {{ $job->date_posted->gt($job->updated_at) ? $job->date_posted->diffForHumans() : $job->updated_at->diffForHumans() }}
                 </span>
-                
+
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.3"
                     stroke="currentColor" class="w-5 h-5 text-gray-500">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -56,8 +94,8 @@
         <div
             class="my-6 flex text-base items-center justify-between border-t border-b border-gray-100 py-4 px-2 text-balance">
             <p>
-            @markdown($job->post_description)
-        </p>
+                @markdown($job->post_description)
+            </p>
             {{-- {!! $job->post_description !!} --}}
 
         </div>
@@ -142,8 +180,8 @@
 
             <div class="flex flex-col text-sm text-nowrap">
                 <span>For More Info:</span>
-                    <span>Contact Us @ </span>
-                    <span>Tel: +632 8723 4461 to 64</span>
+                <span>Contact Us @ </span>
+                <span>Tel: +632 8723 4461 to 64</span>
             </div>
         </div>
 
@@ -192,7 +230,8 @@
                                 </path>
                             </svg>
                         </div>
-                        <div><a href="https://facebook.com/DBIntPhilippines" target="_blank" rel="noopener noreferrer">DBIntPhilippines</a></div>
+                        <div><a href="https://facebook.com/DBIntPhilippines" target="_blank"
+                                rel="noopener noreferrer">DBIntPhilippines</a></div>
 
                     </div>
                     <div class="flex gap-1 mt-1">
@@ -205,7 +244,7 @@
                         </div>
 
                         <div><a href="https://www.linkedin.com/company/db-international-sales?originalSubdomain=ph"
-                            target="_blank" rel="noopener noreferrer">DBInternational</a></div>
+                                target="_blank" rel="noopener noreferrer">DBInternational</a></div>
                     </div>
                 </div>
             </div>

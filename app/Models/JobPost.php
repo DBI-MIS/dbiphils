@@ -105,4 +105,31 @@ class JobPost extends Model
             image: $pathToFeaturedImageRelativeToPublicPath,
         );
     }
+
+    public function getDatePosted()
+    {
+        return $this->date_posted->toDateString();
+    }
+
+    public function getValidThrough()
+    {
+        return $this->date_posted->copy()->addYear()->toDateString();
+    }
+
+    private const JOB_TYPES = [
+        'Full Time' => 'FULL_TIME',
+        'Part Time' => 'PART_TIME',
+        'Internship' => 'INTERN',
+    ];
+
+    public function getJobTypeName(): string
+    {
+        return match ($this->job_type) {
+            'Full Time' => self::JOB_TYPES['Full Time'],
+            'Part Time' => self::JOB_TYPES['Part Time'],
+            'Internship' => self::JOB_TYPES['Internship'],
+            default => 'Unknown',
+        };
+    }
+
 }

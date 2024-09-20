@@ -8,6 +8,33 @@
 @section('meta_description', strip_tags($post->getExcerpt()))
 @section('meta_image', (asset("/storage/$post->img")))
 @section('meta_keywords', $post->title . ', DBI Event, HVAC')
+
+@section('structuredData')
+
+        <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "NewsArticle",
+      "headline": "{{ $post->title }}",
+      "image": [
+        "{{asset("/storage/$post->img")}}",
+        "{{asset("/storage/$post->img")}}",
+        "{{asset("/storage/$post->img")}}" ],
+       "datePublished": "{{ $post->getDatePublished() }}",
+       "dateModified": "{{ $post->getDateModified() }}",
+       "author": [{
+           "@type": "Person",
+           "name": "DBI",
+           "url": "https://facebook.com/DBIntPhilippines"
+         },{
+            "@type": "Person",
+            "name": "DBI",
+            "url": "https://facebook.com/DBIntPhilippines"
+          }
+         ]
+    }
+    </script>
+    @endsection
  
     <article class="col-span-8 md:col-span-3 md:mt-8 mx-auto w-full h-full py-4" style="max-width:900px">
        
