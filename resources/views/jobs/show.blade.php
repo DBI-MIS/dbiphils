@@ -23,12 +23,12 @@
       },
       "datePosted" : "{{ $job->getDatePosted() }}",
       "validThrough" : "{{ $job->getValidThrough() }}",
-      "employmentType" : "{{ $job->getJobTypeName() }}",
+      "employmentType" : ["{{ $job->getJobTypeName() }}", "FULL_TIME"],
       "hiringOrganization" : {
         "@type" : "Organization",
         "name" : "D.B. International Sales & Services, Inc.",
         "sameAs" : "https://dbiphils.com",
-        "logo" : "{{asset('/DB_LOGO__.png')}}"
+        "logo" : "{{asset('/DB_LOGO_.png')}}"
       },
       "jobLocation": {
         "@type": "Place",
@@ -39,6 +39,16 @@
         "addressRegion": "San Juan",
         "postalCode": "1500",
         "addressCountry": "PH"
+        }
+      },
+      "baseSalary": {
+        "@type": "MonetaryAmount",
+        "currency": "PHP",
+        "value": {
+          "@type": "QuantitativeValue",
+          "minValue": 570.00,
+          "maxValue": 1200.00,
+          "unitText": "DAY"
         }
       }
     
