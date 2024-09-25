@@ -1,4 +1,4 @@
-@props(['project'])
+@props(['project', 'class'])
 <div class="rounded-xl border border-opacity-10 shadow-lg bg-white hover:bg-gray-100 border-blue-800 col-span-1 overflow-hidden
 cursor-pointer hover:scale-110 hover:z-50 transition-transform">
     <div class="text-balance flex flex-col" 
@@ -8,7 +8,11 @@ cursor-pointer hover:scale-110 hover:z-50 transition-transform">
             <img
             class="w-full" 
             src="/storage/{{ $project->img }}" 
-            alt="{{ $project->name }}" >
+            alt="{{ $project->name }}" />
+            {{-- <img class="w-auto h-auto " src="{{ $project->img }}" alt=""> --}}
+
+            {{-- class="w-full" 
+            src="/storage/{{ $project->img }}" /> --}}
             {{-- <img class="w-auto h-auto " src="{{ $project->img }}" alt=""> --}}
         </div>
         <div class="flex flex-col text-left gap-3 px-10 py-4">
