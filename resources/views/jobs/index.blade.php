@@ -13,8 +13,9 @@
             <!-- Hero Video -->
             
             <div class="absolute left-0 top-0 overflow-hidden -z-20 w-full bg-gradient-to-r from-sky-900 via-sky-200 brightness-50">
-                <video autoplay loop muted class="pointer-events-none object-cover">
+                <video autoplay loop muted poster class="pointer-events-none object-cover">
                     <source src="{{asset('/AvpShort.webm')}}" type="video/webm">
+                    <source src="https://dbiphils.com/AvpShort.webm" type="video/webm">
                 </video>
             </div>
             <div class="mx-[clamp(12px,_-8.8031px_+_6.501vi,_80px)] xl:flex xl:justify-between xl:items-center">
