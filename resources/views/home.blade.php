@@ -5,6 +5,10 @@
     @section('meta_image', (asset('/Meta.png')))
     @section('meta_keywords', 'Dunham-Bush, D.B. International Sales & Services Inc., DBI, HVAC, HVAC Philippines, Airconditioning, Refrigeration, Ventilation Equipment, Ice Thermal Energy System ')
 
+    @section('canonical')
+    <link rel="canonical" href="{{url()->current()}}" >
+    @endsection
+
     @section('structuredData')
 
     <script type="application/ld+json">

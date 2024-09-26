@@ -9,6 +9,10 @@
 @section('meta_image', (asset("/storage/$post->img")))
 @section('meta_keywords', $post->title . ', DBI Event, HVAC')
 
+@section('canonical')
+{{-- <link rel="canonical" href="{{url()->current()}}" > --}}
+@endsection
+
 @section('structuredData')
 
         <script type="application/ld+json">

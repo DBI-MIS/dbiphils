@@ -8,6 +8,10 @@
     @section('meta_image', asset('/Meta_jobpost.png'))
     @section('meta_keywords', $job->title . ', ' . $job->job_level . ', ' . $job->job_type . ', Job Vacancies, Trabaho')
 
+    @section('canonical')
+    {{-- <link rel="canonical" href="{{url()->current()}}" > --}}
+    @endsection
+
     @section('structuredData')
 
         <script type="application/ld+json">

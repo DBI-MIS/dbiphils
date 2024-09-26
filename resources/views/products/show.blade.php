@@ -9,6 +9,10 @@
 @section('meta_image', $product->product_img ? asset("/storage/$product->product_img") : asset('/Product_Default.png'))
 @section('meta_keywords', $product->title . ', ' . $product->product_brand?->name . ', ' . $product->product_categories->pluck('title')->implode(', ') . ', HVAC Equipment, Chiller, AHU, FCU')
 
+@section('canonical')
+{{-- <link rel="canonical" href="{{url()->current()}}" > --}}
+@endsection
+
 @section('structuredData')
 
 <script type="application/ld+json">

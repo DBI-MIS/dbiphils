@@ -21,7 +21,8 @@
         content="The Exclusive Distributor of Dunham-Bush Airconditioning, Refrigeration, Ventilation Equipment and Ice Thermal Energy System in the Philippines.">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="keywords" content="@yield('meta_keywords')" >
-    <link rel="canonical" href="{{url()->current()}}" >
+    @yield('canonical')
+    
 
     <meta property="og:site_name" content="dbiphils.com">
     <meta property="og:title" content="@yield('meta_title')">
