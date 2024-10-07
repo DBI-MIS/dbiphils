@@ -9,7 +9,7 @@
     @section('meta_keywords', $job->title . ', ' . $job->job_level . ', ' . $job->job_type . ', Job Vacancies, Trabaho')
 
     @section('canonical')
-    {{-- <link rel="canonical" href="{{url()->current()}}" > --}}
+        {{-- <link rel="canonical" href="{{url()->current()}}" > --}}
     @endsection
 
     @section('structuredData')
@@ -96,13 +96,15 @@
             {!! $shareComponent !!}
         </div>
 
-        <div class="gap-x-2">
-            <span class="mr-1 rounded-xl px-3 py-1 text-base bg-gray-200">{{ $job->job_level }}</span>
-            <span class="mr-1 rounded-xl px-3 py-1 text-base bg-gray-200">{{ $job->job_type }}</span>
+        <div class="inline">
+            <span class="mr-1 rounded-xl px-3 py-1 text-base bg-gray-200 text-nowrap">{{ $job->job_level }}</span>
+            <span class="mr-1 rounded-xl px-3 py-1 text-base bg-gray-200 text-nowrap">{{ $job->job_type }}</span>
             {{-- <span class="mr-1 rounded-xl px-3 py-1 text-base bg-gray-200">{{ $job->job_location }}</span> --}}
-            @foreach ($job->job_location as $location)
-                <span class="mr-1 rounded-xl px-3 py-1 text-base bg-gray-200">{{ $location }}</span>
-            @endforeach
+            <div class="mt-2 block sm:inline">
+                @foreach ($job->job_location as $location)
+                    <span class="mr-1 rounded-xl px-3 py-1 text-base bg-gray-200 text-nowrap">{{ $location }}</span>
+                @endforeach
+            </div>
         </div>
 
         <div

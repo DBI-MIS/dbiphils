@@ -26,7 +26,7 @@
                 @markdown($job->getExcerpt())
             </p>
             <div class=" flex flex-row justify-between items-center mt-6">
-            <div class="article-actions-bar  flex items-center justify-start gap-2">
+            <div class="article-actions-bar flex items-center justify-start gap-2 flex-wrap text-nowrap">
                 @foreach ($job->jobcategories as $category)
                 <x-badge wire:navigate href="{{ route('jobs.list', ['category' => $category->slug])}}"
                     :textColor="$category->text_color" :bgColor="$category->bg_color"> 
