@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CareerTestimonialsController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\EPHomeController;
 use App\Http\Controllers\HomeController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\SocialShareButtonsController;
 use App\Http\Controllers\TestimonialsController;
 use App\Mail\FormResponse;
 use App\Mail\MainFormResponse;
+use App\Models\CareerTestimonial;
 use App\Models\JobResponse;
 use App\Models\MainResponse;
 use Illuminate\Support\Facades\Mail;
@@ -38,6 +40,8 @@ Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
 Route::get('/jobs-list', [JobController::class, 'list'])->name('jobs.list');
 
 Route::get('/jobs/{job:slug}', [JobController::class, 'show'])->name('jobs.show');
+
+Route::get('/job/testimonials', [CareerTestimonialsController::class, 'index'])->name('career-testimonials.index');
 
 Route::get('/epsolutions', EPHomeController::class)->name('ephome');
 

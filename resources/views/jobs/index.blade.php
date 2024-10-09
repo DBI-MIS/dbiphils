@@ -121,7 +121,7 @@
     
 
         <div class="mb-10 mt-2 sm:mt-4 md:mt-6 xl:mt-0 w-full">
-            <div class="mb-16">
+            <div>
                 <hr>
                 <h2 class="my-2 sm:my-4 md:my-6 text-2xl md:text-3xl text-gray-800 font-bold 2xl:text-white" animate-shake animate-infinite animate-ease-in>
                     Featured Jobs</h2>
@@ -141,10 +141,12 @@
                     href="{{ route('jobs.list') }}">More
                     Jobs</a>
             </div>
-            <hr>
+            
 
             
         </div>
+
+        @include('layouts.sections.featured-career-testimonials')
     
 
 </x-app-layout>
