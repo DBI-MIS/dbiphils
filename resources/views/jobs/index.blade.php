@@ -137,7 +137,8 @@
                         
                     </div>
                 </div>
-                <a class="mt-10 block text-center text-sm text-blue-500 font-semibold"
+                
+                <a class="mt-7 block text-center text-lg text-blue-500 font-semibold hover:text-blue-900 cursor-pointer"
                     href="{{ route('jobs.list') }}">More
                     Jobs</a>
             </div>
