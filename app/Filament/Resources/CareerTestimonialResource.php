@@ -49,9 +49,9 @@ class CareerTestimonialResource extends Resource
                             ->required()
                             ->label('Name of School/Company/Heading'),
                         TextInput::make('personnel')
-                        ->label('Company/Person-in-charge'),
+                            ->label('Company/Person-in-charge'),
                         RichEditor::make('description')
-                        ->label('Verbatim')
+                            ->label('Verbatim')
                             ->columnSpanFull()
                             ->toolbarButtons([
                                 'blockquote',
@@ -85,18 +85,18 @@ class CareerTestimonialResource extends Resource
     {
         return $table
             ->defaultPaginationPageOption(25)
-            ->defaultSort('order','asc')
+            ->defaultSort('order', 'asc')
             ->reorderable('order')
             ->paginatedWhileReordering()
             ->recordUrl(null)
             ->columns([
                 TextColumn::make('order')
-                ->numeric(),
+                    ->numeric(),
                 TextColumn::make('title')
-                ->limit(30)
+                    ->limit(30)
                     ->searchable(),
                 TextColumn::make('personnel')
-                ->label('Company/Person-in-charge')
+                    ->label('Company/Person-in-charge')
                     ->searchable()
                     ->limit(30),
                 ToggleColumn::make('is_featured'),

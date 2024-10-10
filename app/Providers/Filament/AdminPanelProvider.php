@@ -36,6 +36,7 @@ class AdminPanelProvider extends PanelProvider
             ->breadcrumbs(false)
             ->brandName('DBI')
             ->font('Open Sans')
+            ->unsavedChangesAlerts()
             // ->favicon(asset('/favicon.ico'))
             ->colors([
                 'primary' => Color::hex('#36c'),
