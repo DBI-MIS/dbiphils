@@ -52,7 +52,7 @@ class JobPostList extends Component
     #[Computed()]
     public function jobs()
     {
-        return JobPost::orderBy('date_posted', $this->sort)->where('status',true)
+        return JobPost::orderBy('urgent', 'desc')->orderBy('date_posted', $this->sort)->where('status',true)
         ->where('title','like',"%{$this->search}%")
         
         ->when($this->activeCategory, function ($query)

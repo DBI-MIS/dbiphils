@@ -15,8 +15,8 @@ class JobPost extends Model
 {
 
     use HasFactory,
-    SoftDeletes,
-    HasSEO;
+        SoftDeletes,
+        HasSEO;
     // HasFilamentComments;
 
     protected $fillable = [
@@ -61,6 +61,11 @@ class JobPost extends Model
         return $this->belongsToMany(JobCategory::class, 'job_category_post');
     }
 
+    public function scopeUrgent($query)
+    {
+        return $query->where('urgent', true);
+    }
+
     public function jobresponses()
     {
         return $this->belongsToMany(JobResponse::class);
@@ -74,8 +79,7 @@ class JobPost extends Model
 
     public function scopeWithCategory($query, string $category)
     {
-        $query->whereHas('jobcategories', function($query) use ($category)
-        {
+        $query->whereHas('jobcategories', function ($query) use ($category) {
             $query->where('slug', $category);
         });
     }
@@ -85,12 +89,12 @@ class JobPost extends Model
         $query->where('title', 'like', "%{$search}%");
     }
 
-    public function getExcerpt() 
+    public function getExcerpt()
     {
         return Str::limit(strip_tags($this->post_description), 200);
     }
 
-    public function markdowntransform() 
+    public function markdowntransform()
     {
         return app(MarkdownRenderer::class)->toHtml($this->post_description);
     }
@@ -131,5 +135,4 @@ class JobPost extends Model
             default => 'Unknown',
         };
     }
-
 }

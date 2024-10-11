@@ -28,6 +28,7 @@ class JobController extends Controller
             // 'featuredPosts' => $featuredPosts,
             'featuredPosts' => JobPost::where('status', true)
             ->where('featured',true)
+            ->orderBy('urgent', 'desc')
             // ->latest('date_posted')
             ->orderByRaw('COALESCE(updated_at, date_posted) DESC')
             ->take(6)
@@ -39,11 +40,18 @@ class JobController extends Controller
 
     public function list()
     {
+
         $categories = Cache::remember('job_categories', now(), function () {
             return JobCategory::whereHas('jobposts', function ($query) {
                 $query->published();
+                
             })->take(20)->get();
         });
+        
+        // $categories = JobCategory::whereHas('jobposts', function ($query) {
+        //     $query->published()->urgent();
+            
+        // })->take(20)->get();
 
         return view(
             'jobs.list',
